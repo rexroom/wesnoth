@@ -980,3 +980,5 @@ wesnoth.format_disjunct_list = wesnoth.deprecate_api('wesnoth.format_disjunct_li
 -- MathX module
 wesnoth.random = wesnoth.deprecate_api('wesnoth.random', 'mathx.random', 1, nil, mathx.random)
 wesnoth.get_time_stamp = wesnoth.deprecate_api('wesnoth.get_time_stamp', 'mathx.current_timestamp', 1, nil, mathx.current_timestamp)
+-- Other
+wesnoth.compare_versions = wesnoth.deprecate_api('wesnoth.compare_versions', 'versions.compare', 1, nil, versions.compare)
