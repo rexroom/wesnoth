@@ -43,8 +43,7 @@ private:
 	template<class SocketPtr> void login_client(boost::asio::yield_context yield, SocketPtr socket);
 	template<class SocketPtr> bool is_login_allowed(SocketPtr socket, const simple_wml::node* const login, const std::string& username, bool& registered, bool& is_moderator);
 	template<class SocketPtr> bool authenticate(SocketPtr socket, const std::string& username, const std::string& password, bool name_taken, bool& registered);
-	template<class SocketPtr> void send_password_request(SocketPtr socket, const std::string& msg,
-		const std::string& user, const char* error_code = "", bool force_confirmation = false);
+	template<class SocketPtr> void send_password_request(SocketPtr socket, const std::string& msg, const char* error_code = "", bool force_confirmation = false);
 	bool accepting_connections() const { return !graceful_restart; }
 
 	template<class SocketPtr> void handle_player(boost::asio::yield_context yield, SocketPtr socket, const player& player);
@@ -115,7 +114,6 @@ private:
 	std::deque<login_log> failed_logins_;
 
 	std::unique_ptr<user_handler> user_handler_;
-	std::map<void*, std::string> seeds_;
 
 	std::mt19937 die_;
 
@@ -259,6 +257,11 @@ private:
 	void start_lan_server_timer();
 	void abort_lan_server_timer();
 	void handle_lan_server_shutdown(const boost::system::error_code& error);
+
+	boost::asio::steady_timer dummy_player_timer_;
+	int dummy_player_timer_interval_;
+	void start_dummy_player_updates();
+	void dummy_player_updates(const boost::system::error_code& ec);
 };
 
 }
