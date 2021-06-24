@@ -28,7 +28,6 @@
 #include "serialization/preprocessor.hpp"
 #include "serialization/string_utils.hpp"
 #include "serialization/unicode.hpp"
-#include <functional>
 #include "utils/general.hpp"
 #include "utils/iterable_pair.hpp"
 #include "game_version.hpp"
@@ -53,6 +52,7 @@
 #include <cerrno>
 #include <csignal>
 #include <cstdlib>
+#include <functional>
 #include <iomanip>
 #include <iostream>
 #include <map>
@@ -259,6 +259,8 @@ server::server(int port,
 	, cmd_handlers_()
 	, timer_(io_service_)
 	, lan_server_timer_(io_service_)
+	, dummy_player_timer_(io_service_)
+	, dummy_player_timer_interval_(30)
 {
 	setup_handlers();
 	load_config();
@@ -539,6 +541,24 @@ void server::load_config()
 #endif
 
 	load_tls_config(cfg_);
+
+	if(cfg_["dummy_player_count"].to_int() > 0) {
+		for(int i = 0; i < cfg_["dummy_player_count"].to_int(); i++) {
+			simple_wml::node& dummy_user = games_and_users_list_.root().add_child_at("user", i);
+			dummy_user.set_attr_dup("available", "yes");
+			dummy_user.set_attr_int("forum_id", i);
+			dummy_user.set_attr_int("game_id", 0);
+			dummy_user.set_attr_dup("location", "");
+			dummy_user.set_attr_dup("moderator", "no");
+			dummy_user.set_attr_dup("name", ("player"+std::to_string(i)).c_str());
+			dummy_user.set_attr_dup("registered", "yes");
+			dummy_user.set_attr_dup("status", "lobby");
+		}
+		if(cfg_["dummy_player_timer_interval"].to_int() > 0) {
+			dummy_player_timer_interval_ = cfg_["dummy_player_timer_interval"].to_int();
+		}
+		start_dummy_player_updates();
+	}
 }
 
 bool server::ip_exceeds_connection_limit(const std::string& ip) const
@@ -570,11 +590,7 @@ std::string server::is_ip_banned(const std::string& ip)
 
 void server::start_dump_stats()
 {
-#if BOOST_VERSION >= 106600
 	dump_stats_timer_.expires_after(std::chrono::minutes(5));
-#else
-	dump_stats_timer_.expires_from_now(std::chrono::minutes(5));
-#endif
 	dump_stats_timer_.async_wait([this](const boost::system::error_code& ec) { dump_stats(ec); });
 }
 
@@ -590,13 +606,52 @@ void server::dump_stats(const boost::system::error_code& ec)
 	start_dump_stats();
 }
 
+void server::start_dummy_player_updates()
+{
+	dummy_player_timer_.expires_after(std::chrono::seconds(dummy_player_timer_interval_));
+	dummy_player_timer_.async_wait([this](const boost::system::error_code& ec) { dummy_player_updates(ec); });
+}
+
+void server::dummy_player_updates(const boost::system::error_code& ec)
+{
+	if(ec) {
+		ERR_SERVER << "Error waiting for dummy player timer: " << ec.message() << "\n";
+		return;
+	}
+
+	int size = games_and_users_list_.root().children("user").size();
+	LOG_SERVER << "player count: " << size << std::endl;
+	if(size % 2 == 0) {
+		simple_wml::node* dummy_user = games_and_users_list_.root().children("user").at(size-1);
+
+		simple_wml::document diff;
+		if(make_delete_diff(games_and_users_list_.root(), nullptr, "user", dummy_user, diff)) {
+			send_to_lobby(diff);
+		}
+
+		games_and_users_list_.root().remove_child("user", size-1);
+	} else {
+		simple_wml::node& dummy_user = games_and_users_list_.root().add_child_at("user", size-1);
+		dummy_user.set_attr_dup("available", "yes");
+		dummy_user.set_attr_int("forum_id", size-1);
+		dummy_user.set_attr_int("game_id", 0);
+		dummy_user.set_attr_dup("location", "");
+		dummy_user.set_attr_dup("moderator", "no");
+		dummy_user.set_attr_dup("name", ("player"+std::to_string(size-1)).c_str());
+		dummy_user.set_attr_dup("registered", "yes");
+		dummy_user.set_attr_dup("status", "lobby");
+
+		simple_wml::document diff;
+		make_add_diff(games_and_users_list_.root(), nullptr, "user", diff);
+		send_to_lobby(diff);
+	}
+
+	start_dummy_player_updates();
+}
+
 void server::start_tournaments_timer()
 {
-#if BOOST_VERSION >= 106600
 	tournaments_timer_.expires_after(std::chrono::minutes(60));
-#else
-	tournaments_timer_.expires_from_now(std::chrono::minutes(60));
-#endif
 	tournaments_timer_.async_wait([this](const boost::system::error_code& ec) { refresh_tournaments(ec); });
 }
 
@@ -880,13 +935,9 @@ template<class SocketPtr> bool server::authenticate(
 {
 	// Current login procedure  for registered nicks is:
 	// - Client asks to log in with a particular nick
-	// - Server sends client random nonce plus some info
-	// 	generated from the original hash that is required to
-	// 	regenerate the hash
-	// - Client generates hash for the user provided password
-	// 	and mixes it with the received random nonce
-	// - Server received password hash hashed with the nonce,
-	// applies the nonce to the valid hash and compares the results
+	// - Server sends client a password request (if TLS/database support is enabled)
+	// - Client sends the plaintext password
+	// - Server receives plaintext password, hashes it, and compares it to the password in the forum database
 
 	registered = false;
 
@@ -900,36 +951,42 @@ template<class SocketPtr> bool server::authenticate(
 				"nickname until you activate your account via email or ask an administrator to do it for you.",
 				MP_NAME_INACTIVE_WARNING);
 		} else if(exists) {
+			const std::string salt = user_handler_->extract_salt(username);
+			if(salt.empty()) {
+				async_send_error(socket,
+					"Even though your nickname is registered on this server you "
+					"cannot log in due to an error in the hashing algorithm. "
+					"Logging into your forum account on https://forums.wesnoth.org "
+					"may fix this problem.");
+				return false;
+			}
+			const std::string hashed_password = hash_password(password, salt, username);
+
 			// This name is registered and no password provided
 			if(password.empty()) {
 				if(!name_taken) {
-					send_password_request(socket, "The nickname '" + username + "' is registered on this server.",
-						username, MP_PASSWORD_REQUEST);
+					send_password_request(socket, "The nickname '" + username + "' is registered on this server.", MP_PASSWORD_REQUEST);
 				} else {
 					send_password_request(socket,
 						"The nickname '" + username + "' is registered on this server."
 						"\n\nWARNING: There is already a client using this username, "
 						"logging in will cause that client to be kicked!",
-						username, MP_PASSWORD_REQUEST_FOR_LOGGED_IN_NAME, true
+						MP_PASSWORD_REQUEST_FOR_LOGGED_IN_NAME, true
 					);
 				}
 
 				return false;
 			}
 
-			// A password (or hashed password) was provided, however
-			// there is no seed
-			if(seeds_[socket.get()].empty()) {
-				send_password_request(socket, "Please try again.", username, MP_NO_SEED_ERROR);
+			// hashing the password failed
+			// note: this could be due to other related problems other than *just* the hashing step failing
+			if(hashed_password.empty()) {
+				async_send_error(socket, "Password hashing failed.", MP_HASHING_PASSWORD_FAILED);
 				return false;
 			}
-
 			// This name is registered and an incorrect password provided
-			else if(!(user_handler_->login(username, password, seeds_[socket.get()]))) {
+			else if(!(user_handler_->login(username, hashed_password))) {
 				const std::time_t now = std::time(nullptr);
-
-				// Reset the random seed
-				seeds_.erase(socket.get());
 
 				login_log login_ip { client_address(socket), 0, now };
 				auto i = std::find(failed_logins_.begin(), failed_logins_.end(), login_ip);
@@ -960,7 +1017,7 @@ template<class SocketPtr> bool server::authenticate(
 					async_send_error(socket, "You have made too many failed login attempts.", MP_TOO_MANY_ATTEMPTS_ERROR);
 				} else {
 					send_password_request(socket,
-						"The password you provided for the nickname '" + username + "' was incorrect.", username,
+						"The password you provided for the nickname '" + username + "' was incorrect.",
 						MP_INCORRECT_PASSWORD_ERROR);
 				}
 
@@ -974,7 +1031,6 @@ template<class SocketPtr> bool server::authenticate(
 			registered = true;
 
 			// Reset the random seed
-			seeds_.erase(socket.get());
 			user_handler_->user_logged_in(username);
 		}
 	}
@@ -984,36 +1040,13 @@ template<class SocketPtr> bool server::authenticate(
 
 template<class SocketPtr> void server::send_password_request(SocketPtr socket,
 		const std::string& msg,
-		const std::string& user,
 		const char* error_code,
 		bool force_confirmation)
 {
-	std::string salt = user_handler_->extract_salt(user);
-
-	// If using crypt_blowfish, use 32 random Base64 characters, cryptographic-strength, 192 bits entropy
-	// else (phppass, MD5, $H$), use 8 random integer digits, not secure, do not use, this is crap, 29.8 bits entropy
-	std::string nonce{(salt[1] == '2')
-		? user_handler_->create_secure_nonce()
-		: user_handler_->create_unsecure_nonce()};
-
-	std::string password_challenge = salt + nonce;
-	if(salt.empty()) {
-		async_send_error(socket,
-			"Even though your nickname is registered on this server you "
-			"cannot log in due to an error in the hashing algorithm. "
-			"Logging into your forum account on https://forums.wesnoth.org "
-			"may fix this problem.");
-		return;
-	}
-
-	seeds_[socket.get()] = nonce;
-
 	simple_wml::document doc;
 	simple_wml::node& e = doc.root().add_child("error");
 	e.set_attr_dup("message", msg.c_str());
 	e.set_attr("password_request", "yes");
-	e.set_attr("phpbb_encryption", "yes");
-	e.set_attr_dup("salt", password_challenge.c_str());
 	e.set_attr("force_confirmation", force_confirmation ? "yes" : "no");
 
 	if(*error_code != '\0') {

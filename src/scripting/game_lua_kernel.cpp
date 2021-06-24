@@ -725,31 +725,6 @@ int game_lua_kernel::intf_clear_menu_item(lua_State *L)
 	return 0;
 }
 
-int game_lua_kernel::intf_set_end_campaign_credits(lua_State *L)
-{
-	game_classification &classification = play_controller_.get_classification();
-	classification.end_credits = luaW_toboolean(L, 1);
-	return 0;
-}
-
-int game_lua_kernel::intf_set_end_campaign_text(lua_State *L)
-{
-	game_classification &classification = play_controller_.get_classification();
-	classification.end_text = luaW_checktstring(L, 1);
-	if (lua_isnumber(L, 2)) {
-		classification.end_text_duration = static_cast<int> (lua_tonumber(L, 2));
-	}
-
-	return 0;
-}
-
-int game_lua_kernel::intf_set_next_scenario(lua_State *L)
-{
-	deprecated_message("wesnoth.set_next_scenario", DEP_LEVEL::INDEFINITE, "");
-	gamedata().set_next_scenario(luaL_checkstring(L, 1));
-	return 0;
-}
-
 int game_lua_kernel::intf_shroud_op(lua_State *L, bool place_shroud)
 {
 
@@ -1154,13 +1129,6 @@ int game_lua_kernel::impl_game_config_get(lua_State *L)
 		return_cfgref_attrib_deprecated("era", "wesnoth.game_config", INDEFINITE, "1.17", "Use wesnoth.scenario.era instead",
 			game_config_manager::get()->game_config().find_child("era","id",classification.era_id));
 		//^ finds the era with name matching mp_era, and creates a lua reference from the config of that era.
-
-		//This code for SigurdFD, not the cleanest implementation but seems to work just fine.
-		std::vector<std::string> eras_list;
-		for (const config& era : game_config_manager::get()->game_config().child_range("era") ) {
-			eras_list.push_back(era["id"].str());
-		}
-		return_string_attrib("eras", utils::join(eras_list));
 	}
 	return lua_kernel_base::impl_game_config_get(L);
 }
@@ -1253,7 +1221,7 @@ int game_lua_kernel::impl_scenario_get(lua_State *L)
 		return_cfgref_attrib("mp_settings", play_controller_.get_mp_settings().to_config());
 		return_cfgref_attrib("era", find_addon("era", classification.era_id));
 	}
-	return lua_kernel_base::impl_game_config_get(L);
+	return 0;
 }
 
 /**
@@ -1277,7 +1245,7 @@ int game_lua_kernel::impl_scenario_set(lua_State *L)
 	modify_bool_attrib("show_credits", classification.end_credits = value);
 	modify_string_attrib("end_text", classification.end_text = value);
 	modify_int_attrib("end_text_duration", classification.end_text_duration = value);
-	return lua_kernel_base::impl_game_config_set(L);
+	return 0;
 }
 
 /**
@@ -2578,9 +2546,9 @@ int game_lua_kernel::intf_simulate_combat(lua_State *L)
  */
 int game_lua_kernel::intf_play_sound(lua_State *L)
 {
-	char const *m = luaL_checkstring(L, 1);
 	if (play_controller_.is_skipping_replay()) return 0;
-	int repeats = lua_tointeger(L, 2);
+	char const *m = luaL_checkstring(L, 1);
+	int repeats = luaL_optinteger(L, 2, 1);
 	sound::play_sound(m, sound::SOUND_FX, repeats);
 	return 0;
 }
@@ -2606,25 +2574,6 @@ int game_lua_kernel::intf_scroll_to_tile(lua_State *L)
 	;
 	if (game_display_) {
 		game_display_->scroll_to_tile(loc, scroll, check_fogged);
-	}
-	return 0;
-}
-
-int game_lua_kernel::intf_select_hex(lua_State *L)
-{
-	events::command_disabler command_disabler;
-	deprecated_message("wesnoth.select_hex", DEP_LEVEL::PREEMPTIVE, {1, 15, 0}, "Use wesnoth.units.select and/or wesnoth.interface.highlight_hex instead.");
-
-	// Need this because check_location may change the stack
-	// By doing this now, we ensure that it won't do so when
-	// intf_select_unit and intf_highlight_hex call it.
-	const map_location loc = luaW_checklocation(L, 1);
-	luaW_pushlocation(L, loc);
-	lua_replace(L, 1);
-
-	intf_select_unit(L);
-	if(!lua_isnoneornil(L, 2) && luaW_toboolean(L,2)) {
-		intf_highlight_hex(L);
 	}
 	return 0;
 }
@@ -4081,11 +4030,7 @@ game_lua_kernel::game_lua_kernel(game_state & gs, play_controller & pc, reports 
 		{ "redraw",                    &dispatch<&game_lua_kernel::intf_redraw                     >        },
 		{ "remove_event_handler",      &dispatch<&game_lua_kernel::intf_remove_event               >        },
 		{ "replace_schedule",          &dispatch<&game_lua_kernel::intf_replace_schedule           >        },
-		{ "select_hex",                &dispatch<&game_lua_kernel::intf_select_hex                 >        },
 		{ "set_time_of_day",           &dispatch<&game_lua_kernel::intf_set_time_of_day            >        },
-		{ "set_end_campaign_credits",  &dispatch<&game_lua_kernel::intf_set_end_campaign_credits   >        },
-		{ "set_end_campaign_text",     &dispatch<&game_lua_kernel::intf_set_end_campaign_text      >        },
-		{ "set_next_scenario",         &dispatch<&game_lua_kernel::intf_set_next_scenario          >        },
 		{ "simulate_combat",           &dispatch<&game_lua_kernel::intf_simulate_combat            >        },
 		{ "synchronize_choice",        &intf_synchronize_choice                                             },
 		{ "synchronize_choices",       &intf_synchronize_choices                                            },

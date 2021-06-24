@@ -55,6 +55,25 @@ struct server_shutdown : public game::error
 	server_shutdown(const std::string& msg) : game::error(msg) {}
 };
 
+/**
+ * Base class for implementing servers that use gzipped-WML network protocol
+ *
+ * The protocol is based on TCP connection between client and server.
+ * Before WML payloads can be sent a handshake is required. Handshake process is as follows:
+ * - client establishes a TCP connection to server.
+ * - client sends 32-bit integer(network byte order) representing protocol version requested.
+ * - server receives 32-bit integer. Depending on number received server does the following:
+ *   0: unencrypted protocol, send unspecified 32-bit integer for compatibility(current implementation sends 42)
+ *   1: depending on whether TLS is enabled on server
+ *     if TLS enabled: send 32-bit integer 0 and immediately start TLS, client is expected to start TLS on receiving this 0
+ *     if TLS disabled: send 32-bit integer 0xFFFFFFFF, on receiving this client should proceed as with unencrypted connection or immediately close
+ *   any other number: server closes connection immediately
+ * - at this point handshake is completed and client and server can exchange WML messages
+ *
+ * Message format is as follows:
+ * - 32-bit unsigned integer(network byte order), this is size of the following payload
+ * - payload: gzipped WML data, which is WML text fed through gzip utility or the equivalent library function.
+ */
 class server_base
 {
 public:
@@ -98,6 +117,31 @@ public:
 	template<class SocketPtr> void async_send_error(SocketPtr socket, const std::string& msg, const char* error_code = "", const info_table& info = {});
 	template<class SocketPtr> void async_send_warning(SocketPtr socket, const std::string& msg, const char* warning_code = "", const info_table& info = {});
 
+	/**
+	 * Create the poor security nonce for use with passwords still hashed with MD5.
+	 * Uses 8 random integer digits, 29.8 bits entropy.
+	 *
+	 * @param length How many random numbers to generate.
+	 * @return The nonce to use.
+	 */
+	std::string create_unsecure_nonce(int length = 8);
+	/**
+	 * Create a good security nonce for use with bcrypt/crypt_blowfish hashing.
+	 * Uses 32 random Base64 characters, cryptographic-strength, 192 bits entropy
+	 *
+	 * @return The nonce to use.
+	 */
+	std::string create_secure_nonce();
+	/**
+	 * Handles hashing the password provided by the player before comparing it to the hashed password in the forum database.
+	 *
+	 * @param pw The plaintext password.
+	 * @param salt The salt as retrieved from the forum database.
+	 * @param username The player attempting to log in.
+	 * @return The hashed password, or empty if the password couldn't be hashed.
+	 */
+	std::string hash_password(const std::string& pw, const std::string& salt, const std::string& username);
+
 protected:
 	unsigned short port_;
 	bool keep_alive_;
@@ -112,10 +156,7 @@ protected:
 	void start_server();
 	void serve(boost::asio::yield_context yield, boost::asio::ip::tcp::acceptor& acceptor, boost::asio::ip::tcp::endpoint endpoint);
 
-	union {
-		uint32_t connection_num;
-		char buf[4];
-	} handshake_response_;
+	uint32_t handshake_response_;
 
 	virtual void handle_new_client(socket_ptr socket) = 0;
 	virtual void handle_new_client(tls_socket_ptr socket) = 0;

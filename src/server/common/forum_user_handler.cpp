@@ -49,31 +49,21 @@ fuh::fuh(const config& c)
 	}
 }
 
-bool fuh::login(const std::string& name, const std::string& password, const std::string& seed) {
+bool fuh::login(const std::string& name, const std::string& password) {
 	// Retrieve users' password as hash
-	std::string hash;
-
 	try {
-		hash = get_hash(name);
+		std::string hash = get_hashed_password_from_db(name);
+
+		if(utils::md5::is_valid_hash(hash) || utils::bcrypt::is_valid_prefix(hash)) { // md5 hash
+			return password == hash;
+		} else {
+			ERR_UH << "Invalid hash for user '" << name << "'" << std::endl;
+			return false;
+		}
 	} catch (const error& e) {
 		ERR_UH << "Could not retrieve hash for user '" << name << "' :" << e.message << std::endl;
 		return false;
 	}
-
-	std::string valid_hash;
-
-	if(utils::md5::is_valid_hash(hash)) { // md5 hash
-		valid_hash = utils::md5(hash.substr(12,34), seed).base64_digest();
-	} else if(utils::bcrypt::is_valid_prefix(hash)) { // bcrypt hash
-		valid_hash = utils::md5(hash, seed).base64_digest();
-	} else {
-		ERR_UH << "Invalid hash for user '" << name << "'" << std::endl;
-		return false;
-	}
-
-	if(password == valid_hash) return true;
-
-	return false;
 }
 
 std::string fuh::extract_salt(const std::string& name) {
@@ -86,7 +76,7 @@ std::string fuh::extract_salt(const std::string& name) {
 	std::string hash;
 
 	try {
-		hash = get_hash(name);
+		hash = get_hashed_password_from_db(name);
 	} catch (const error& e) {
 		ERR_UH << "Could not retrieve hash for user '" << name << "' :" << e.message << std::endl;
 		return "";
@@ -188,7 +178,7 @@ std::string fuh::user_info(const std::string& name) {
 	return info.str();
 }
 
-std::string fuh::get_hash(const std::string& user) {
+std::string fuh::get_hashed_password_from_db(const std::string& user) {
 	return conn_.get_user_string(db_users_table_, "user_password", user);
 }
 

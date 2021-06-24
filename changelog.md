@@ -1,18 +1,33 @@
 ## Version 1.15.13+dev
  ### Add-ons client
+   * Fixed: using the versions drop-down in small-screen mode returned to the title screen (issue #5810)
+   * Fixed: keyboard input in small-screen mode returned to the title screen (part of issue #3059)
  ### Add-ons server
  ### Campaigns
+   * Sceptre of Fire
+     * Revisions to the last two scenarios
  ### Editor
  ### Multiplayer
+ ### Networking
+   * Added support for encrypting connection using TLS to multiplayer/addon client/server
+   * Moved password hashing code from client to server, relying on TLS to avoid sending cleartext passwords
  ### Packaging
  ### Terrain
+   * Added some great tree variations
+   * Added 'icy cobbles' (terrain code `Rra`) - mostly useful for the transitions
  ### Translations
-   * Updated translations: British English, Slovak
+   * Updated translations: British English, Czech, Indonesian, Italian, Slovak
  ### Units
    * Added missing Seahorse graphics
+   * Revised Jinn (unit config and graphics)
+   * Fire Wraith added
+   * Moved Naga guardian line from UtBS to core, and made some revisions
  ### User interface
  ### WML Engine
+   * add 'unslowable' and 'unpetrifiable' status to immune to slow or petrifies
  ### Miscellaneous and Bug Fixes
+   * The unit description tooltip in the sidebar now includes the text from `[special_note]`s.
+   * Added a collection of item images
 
 ## Version 1.15.13
  ### Add-ons client

@@ -14,8 +14,11 @@
 
 #include "server/common/server_base.hpp"
 
+#include "config.hpp"
+#include "hash.hpp"
 #include "log.hpp"
 #include "serialization/parser.hpp"
+#include "serialization/base64.hpp"
 #include "filesystem.hpp"
 
 #ifdef HAVE_CONFIG_H
@@ -38,8 +41,13 @@
 #endif
 #include <boost/asio/write.hpp>
 
+#include <array>
+#include <ctime>
 #include <functional>
 #include <queue>
+#include <sstream>
+#include <string>
+
 
 static lg::log_domain log_server("server");
 #define ERR_SERVER LOG_STREAM(err, log_server)
@@ -76,7 +84,7 @@ void server_base::start_server()
 	boost::asio::ip::tcp::endpoint endpoint_v4(boost::asio::ip::tcp::v4(), port_);
 	boost::asio::spawn(io_service_, [this, endpoint_v4](boost::asio::yield_context yield) { serve(yield, acceptor_v4_, endpoint_v4); });
 
-	handshake_response_.connection_num = htonl(42);
+	handshake_response_ = htonl(42);
 
 #ifndef _WIN32
 	sighup_.async_wait(
@@ -140,7 +148,7 @@ void server_base::serve(boost::asio::yield_context yield, boost::asio::ip::tcp::
 
 	switch(ntohl(protocol_version)) {
 		case 0:
-			async_write(*socket, boost::asio::buffer(handshake_response_.buf, 4), yield[error]);
+			async_write(*socket, boost::asio::buffer(reinterpret_cast<std::byte*>(&handshake_response_), 4), yield[error]);
 			if(check_error(error, socket)) return;
 			final_socket = socket;
 			break;
@@ -569,6 +577,50 @@ void server_base::load_tls_config(const config& cfg)
 	tls_context_.use_certificate_chain_file(cfg["tls_fullchain"].str());
 	tls_context_.use_private_key_file(cfg["tls_private_key"].str(), boost::asio::ssl::context::pem);
 	if(!cfg["tls_dh"].str().empty()) tls_context_.use_tmp_dh_file(cfg["tls_dh"].str());
+}
+
+std::string server_base::hash_password(const std::string& pw, const std::string& salt, const std::string& username)
+{
+	if(salt.length() < 12) {
+		ERR_SERVER << "Bad salt found for user: " << username << std::endl;
+		return "";
+	}
+
+	std::string password = pw;
+
+	// Apparently HTML key-characters are passed to the hashing functions of phpbb in this escaped form.
+	// I will do closer investigations on this, for now let's just hope these are all of them.
+
+	// Note: we must obviously replace '&' first, I wasted some time before I figured that out... :)
+	for(std::string::size_type pos = 0; (pos = password.find('&', pos)) != std::string::npos; ++pos) {
+		password.replace(pos, 1, "&amp;");
+	}
+	for(std::string::size_type pos = 0; (pos = password.find('\"', pos)) != std::string::npos; ++pos) {
+		password.replace(pos, 1, "&quot;");
+	}
+	for(std::string::size_type pos = 0; (pos = password.find('<', pos)) != std::string::npos; ++pos) {
+		password.replace(pos, 1, "&lt;");
+	}
+	for(std::string::size_type pos = 0; (pos = password.find('>', pos)) != std::string::npos; ++pos) {
+		password.replace(pos, 1, "&gt;");
+	}
+
+	if(utils::md5::is_valid_prefix(salt)) {
+		std::string hash = utils::md5(password, utils::md5::get_salt(salt), utils::md5::get_iteration_count(salt)).base64_digest();
+		return salt+hash;
+	} else if(utils::bcrypt::is_valid_prefix(salt)) {
+		try {
+			auto bcrypt_salt = utils::bcrypt::from_salted_salt(salt);
+			auto hash = utils::bcrypt::hash_pw(password, bcrypt_salt);
+			return hash.base64_digest();
+		} catch(const utils::hash_error& err) {
+			ERR_SERVER << "bcrypt hash failed for user " << username << ": " << err.what() << std::endl;
+			return "";
+		}
+	} else {
+		ERR_SERVER << "Unable to determine how to hash the password for user: " << username << std::endl;
+		return "";
+	}
 }
 
 // This is just here to get it to build without the deprecation_message function
