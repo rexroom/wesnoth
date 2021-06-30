@@ -11,12 +11,14 @@ msgstr ""
 "Project-Id-Version: wescamp-i 18n\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
 "POT-Creation-Date: 2021-06-23 11:42-0400\n"
-"PO-Revision-Date: 2021-06-30 19:32+0300\n"
-"Last-Translator: Juhana Uuttu <rexroom@sci.fi>\n""Language-Team: Finnish <http://wiki.wesnoth.org/FinnishTranslation>\n"
+"PO-Revision-Date: 2021-06-30 20:44+0300\n"
+"Last-Translator: Juhana Uuttu <rexroom@sci.fi>\n"
+"Language-Team: \n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"\"\"Language-Team: Finnish <http://wiki.wesnoth.org/FinnishTranslation>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0\n"
 
@@ -5129,7 +5131,8 @@ msgstr ""
 
 #. [tip]
 #. Translate the word "Flight" as a collective noun for drakes
-#: data/tips.cfg:260msgid "<i>― Galun, Flight Leader, 5YW</i>"
+#: data/tips.cfg:260
+msgid "<i>― Galun, Flight Leader, 5YW</i>"
 msgstr "<i>― Galun, lennonjohtaja, 5WV</i>"
 
 #. [tip]
@@ -5144,7 +5147,8 @@ msgstr ""
 "voidaan parantaa nopeammin kuin normaalisti."
 
 #. [tip]
-#: data/tips.cfg:264msgid "<i>― Lord Tallin of Knalga, 538 YW</i>"
+#: data/tips.cfg:264
+msgid "<i>― Lord Tallin of Knalga, 538 YW</i>"
 msgstr "<i>― Knalgan Lordi Tallinn, 538 WV</i>"
 
 #. [tip]
@@ -5157,9 +5161,10 @@ msgid ""
 msgstr ""
 "Pitämällä <b>shift</b>-näppäintä pohjassa saat animaatiot liikkumiseen ja "
 "taistelemiseen nopeammaksi. <i>Nopeutuskerrointa</i> voi säätää ja asettaa "
-"päälle vakiona <i>Asetukset</i>-valikon <i>Yleiset</i>-välilehdestä."
+"päälle vakiona "
 
-#. [tip]#. Translate "Change difficulty" and "Load Game" as in wesnoth-lib textdomain
+#. [tip]
+#. Translate "Change difficulty" and "Load Game" as in wesnoth-lib textdomain
 #: data/tips.cfg:272
 msgid ""
 "Did you know that you can change the difficulty level during a campaign? "
@@ -5990,7 +5995,8 @@ msgstr "%b %d"
 msgid "%b %d %Y"
 msgstr "%b %d %Y"
 
-#: src/game_config.cpp:528msgid "Invalid color in range: "
+#: src/game_config.cpp:528
+msgid "Invalid color in range: "
 msgstr "Virheellinen väri alueella: "
 
 #: src/game_config_manager.cpp:253 src/game_config_manager.cpp:263
@@ -6207,10 +6213,12 @@ msgstr "Ei löydetty johtajaa liittoumalle $faction"
 msgid "Cannot obtain genders for invalid leader $leader"
 msgstr "Ei saatu sukupuolia virheelliselle johtajalle $leader"
 
-#: src/game_initialization/lobby_data.cpp:222msgid "Missing addon: $name"
+#: src/game_initialization/lobby_data.cpp:222
+msgid "Missing addon: $name"
 msgstr "Puuttuva lisäosa: $name"
 
-#: src/game_initialization/lobby_data.cpp:224msgid "Missing addon: $id"
+#: src/game_initialization/lobby_data.cpp:224
+msgid "Missing addon: $id"
 msgstr "Puuttuva lisäosa: $id"
 
 #: src/game_initialization/lobby_data.cpp:256
@@ -6254,10 +6262,12 @@ msgstr "Täynnä"
 msgid "Turn"
 msgstr "Vuoro"
 
-#: src/game_initialization/lobby_data.cpp:453msgid "vision^none"
+#: src/game_initialization/lobby_data.cpp:453
+msgid "vision^none"
 msgstr "ei mitään"
 
-#: src/game_initialization/lobby_data.cpp:462msgid "time limit^none"
+#: src/game_initialization/lobby_data.cpp:462
+msgid "time limit^none"
 msgstr "rajaton"
 
 #: src/game_initialization/lobby_data.cpp:506
@@ -6288,11 +6298,12 @@ msgstr "Aikakautta $era ei löydy"
 msgid "Invalid address specified for multiplayer server"
 msgstr "Virheellinen osoite asetettu moninpelipalvelimelle."
 
-#: src/game_initialization/multiplayer.cpp:270msgid ""
+#: src/game_initialization/multiplayer.cpp:270
+msgid ""
 "The server accepts versions '$required_version', but you are using version "
 "'$your_version'"
 msgstr ""
-"Palvelin sallii versiot '$required_version', mutta sinulla on versio "
+"Palvelin sallii versiot '$required_version', mutta käytät versiota "
 "'$your_version'"
 
 #: src/game_initialization/multiplayer.cpp:283
@@ -6322,6 +6333,7 @@ msgstr "Varoitus"
 msgid ""
 "The remote server requested a password while using an insecure connection."
 msgstr "Etäpalvelin pyysi salasanaa käyttämällä tietoturvatonta yhteyttä."
+
 #: src/game_initialization/multiplayer.cpp:409
 msgid "You must login first."
 msgstr "Sinun täytyy ensin sisäänkirjautua."
@@ -6330,7 +6342,8 @@ msgstr "Sinun täytyy ensin sisäänkirjautua."
 msgid "The nickname ‘$nick’ is already taken."
 msgstr "Nimimerkki ”$nick” on jo käytössä."
 
-#: src/game_initialization/multiplayer.cpp:413msgid ""
+#: src/game_initialization/multiplayer.cpp:413
+msgid ""
 "The nickname ‘$nick’ contains invalid characters. Only alpha-numeric "
 "characters (one at minimum), underscores and hyphens are allowed."
 msgstr ""
@@ -6354,14 +6367,17 @@ msgstr "Nimimerkki ”$nick” ei ole rekisteröity tällä palvelimella."
 msgid " This server disallows unregistered nicknames."
 msgstr " Tämä palvelin ei hyväksy rekisteröimättömiä nimimerkkejä."
 
-#: src/game_initialization/multiplayer.cpp:425msgid "The nickname ‘$nick’ is banned on this server’s forums for $duration|."
+#: src/game_initialization/multiplayer.cpp:425
+msgid "The nickname ‘$nick’ is banned on this server’s forums for $duration|."
 msgstr ""
 "Nimimerkki ”$nick” on kielletty tämän palvelimen foorumilta noin $duration]."
 
-#: src/game_initialization/multiplayer.cpp:427msgid "The nickname ‘$nick’ is banned on this server’s forums."
+#: src/game_initialization/multiplayer.cpp:427
+msgid "The nickname ‘$nick’ is banned on this server’s forums."
 msgstr "Nimimerkki ”$nick” on kielletty tämän palvelimen foorumilta."
 
-#: src/game_initialization/multiplayer.cpp:431msgid "Your IP address is banned on this server’s forums for $duration|."
+#: src/game_initialization/multiplayer.cpp:431
+msgid "Your IP address is banned on this server’s forums for $duration|."
 msgstr ""
 "Sinun IP-osoitteesi on asetettu kieltoon tämän palvelimen foorumissa noin "
 "$duration]."
@@ -6370,14 +6386,16 @@ msgstr ""
 msgid "Your IP address is banned on this server’s forums."
 msgstr "Sinun IP-osoitteesi on asetettu kieltoon tämän palvelimen foorumissa."
 
-#: src/game_initialization/multiplayer.cpp:437msgid ""
+#: src/game_initialization/multiplayer.cpp:437
+msgid ""
 "The email address for the nickname ‘$nick’ is banned on this server’s forums "
 "for $duration|."
 msgstr ""
 "Sähköposti johon nimimerkki '$nick' on asetettu kieltoon tämän palvelimen "
 "foorumilla noin $duration]."
 
-#: src/game_initialization/multiplayer.cpp:439msgid ""
+#: src/game_initialization/multiplayer.cpp:439
+msgid ""
 "The email address for the nickname ‘$nick’ is banned on this server’s forums."
 msgstr ""
 "Sähköposti johon nimimerkki '$nick' on asetettu kieltoon tämän palvelimen "
@@ -6407,6 +6425,7 @@ msgstr "Liian monta kirjautumisyritystä."
 #: src/game_initialization/multiplayer.cpp:452
 msgid "Password hashing failed."
 msgstr "Salasanan tiivistys epäonnistui."
+
 #: src/game_initialization/playcampaign.cpp:75
 msgid "Scenario Report"
 msgstr "Taisteluraportti"
@@ -7605,8 +7624,9 @@ msgstr[1] ""
 msgid "Once this is fixed, you will need to restart this scenario."
 msgstr "Kun tämä on korjattu, sinun on ladattava tämä skenaario uudestaan."
 
-#: src/play_controller.cpp:1455msgid "No objectives available"
-msgstr "Ei tavoitteita saatavana"
+#: src/play_controller.cpp:1455
+msgid "No objectives available"
+msgstr "Tavoitteita ei tarjolla"
 
 #: src/playmp_controller.cpp:158
 msgid "Undoing moves not yet transmitted to the server."
@@ -7733,16 +7753,8 @@ msgid "Type: "
 msgstr "Tyyppi: "
 
 #: src/reports.cpp:196
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "\n"
-#| "Special Notes:"
 msgid "Special Notes:"
-msgstr ""
-"\n"
-"\n"
-"Erityistiedot:"
+msgstr "Huomautus:"
 
 #: src/reports.cpp:219
 msgid "Race: "
@@ -7796,9 +7808,9 @@ msgstr ""
 "\n"
 "Myrkky ei tapa yksikköä, vaan jättää jäljelle vähintään 1 EP."
 
-# Onko tälle parempi vaihtoehto?
-#: src/reports.cpp:351msgid "petrified: "
-msgstr "kivetetty: "
+#: src/reports.cpp:351
+msgid "petrified: "
+msgstr "kivettynyt: "
 
 #: src/reports.cpp:352
 msgid "This unit has been petrified. It may not move or attack."
@@ -8810,11 +8822,6 @@ msgstr "Valkotaulun asetukset"
 
 #~ msgid "Battle for Wesnoth"
 #~ msgstr "Taistelu Wesnothista"
-
-#, fuzzy
-#~| msgid "<i>― King Konrad, 536YW</i>"
-#~ msgid "<i>― Vank of Galun’s Flight, 6YW</i>"
-#~ msgstr "<i>― Kuningas Konrad, WV 536</i>"
 
 #, fuzzy
 #~| msgid "Sound Effects"
