@@ -93,7 +93,7 @@ function wesnoth.effects.wc2_min_defense(u, cfg)
 	local defense_new = {}
 	local defense_old = wml.parsed(wml.get_child(cfg, "defense"))
 	for k,v in pairs(defense_old) do
-		if type(k) == "string" and type(v) == "number" and wesnoth.unit_defense(u, terrain_map[k] or "") >= v then
+		if type(k) == "string" and type(v) == "number" and wesnoth.units.defense_on(u, terrain_map[k] or "") >= v then
 			defense_new[k] = v
 		end
 	end
@@ -113,7 +113,7 @@ function wesnoth.effects.wc2_update_aura(u, cfg)
 	local forcefield = wesnoth.units.matches(u, { ability = "forcefield" } )
 	local halo = ""
 	if illuminates and darkens then 
-		wesnoth.message("WC2", "Warning illuminates and darkens discovered on a unit")
+		wesnoth.interface.add_chat_message("WC2", "Warning illuminates and darkens discovered on a unit")
 	end
 	if forcefield and illuminates then
 		halo = "halo/illuminates-aura.png~R(50)"

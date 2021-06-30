@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-04-18 02:22 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2018-09-12 07:30+0000\n"
 "Last-Translator: 堀 秀幸 <Hide.HORI@gmail.com>, 2020\n"
 "Language-Team: Japanese (https://www.transifex.com/wesnoth-jp/teams/60513/"
@@ -7132,7 +7132,7 @@ msgstr ""
 "冷酷で美しい彼女は、 その永遠の若い容姿を生者の血を飲むことで維持しています。"
 
 #. [attack]: type=blade
-#: data/campaigns/The_Rise_Of_Wesnoth/units/Vampire_Lady.cfg:24
+#: data/campaigns/The_Rise_Of_Wesnoth/units/Vampire_Lady.cfg:23
 msgid "blood kiss"
 msgstr "血の接吻"
 
@@ -7212,8 +7212,8 @@ msgstr ""
 "このユニットは同盟ユニットの為に、自分の周囲の敵の支配領域を無効化します。"
 "（ただし自分自身のためにではありません）"
 
-#. [special_note]
-#: data/campaigns/The_Rise_Of_Wesnoth/utils/trow-abilities.cfg:17
+#. [skirmisher]: id=distract
+#: data/campaigns/The_Rise_Of_Wesnoth/utils/trow-abilities.cfg:8
 msgid ""
 "This unit is capable of distracting opponents, allowing allied units to "
 "trespass their Zones of Control and move unhindered around them."
@@ -7356,19 +7356,19 @@ msgstr ""
 #~ msgstr "易しい"
 
 #~ msgid ""
-#~ "Our strength is waning, and our foes grow stronger by the hour. The "
-#~ "battle is lost!"
-#~ msgstr ""
-#~ "こちらの兵力が弱ってきているのに、敵は時を追うごとに強さを増してきている。"
-#~ "この戦いは僕たちの負けだ！"
-
-#~ msgid ""
 #~ "Well, we can’t go back, and the road ahead is blocked. I guess we’ll have "
 #~ "to risk it and go through the Oldwood forest, then make a break for "
 #~ "Clearwater Port or Southbay."
 #~ msgstr ""
 #~ "さて、後戻りはできない、この先の道は塞がれている...... 危険を冒してでも古"
 #~ "木の森を抜けて、透水港か Southbay への突破口を開くしかなさそうだ。"
+
+#~ msgid ""
+#~ "Our strength is waning, and our foes grow stronger by the hour. The "
+#~ "battle is lost!"
+#~ msgstr ""
+#~ "こちらの兵力が弱ってきているのに、敵は時を追うごとに強さを増してきている。"
+#~ "この戦いは僕たちの負けだ！"
 
 #~ msgid "Wose Sapling"
 #~ msgstr "ウーズの若木"

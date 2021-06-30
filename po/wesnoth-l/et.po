@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wescamp-i 18n\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-05-16 02:06 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2012-01-07 19:16+0300\n"
 "Last-Translator: Kaido Kikkas <kakk@kakupesa.net>\n"
 "Language-Team: none\n"
@@ -2842,7 +2842,7 @@ msgstr ""
 "samasuguste hobustega tumeda võlukunsti abil ellu, külvama hirmu ja hävingut."
 
 #. [attack]: type=impact
-#: data/campaigns/Liberty/units/Bone_Knight.cfg:44
+#: data/campaigns/Liberty/units/Bone_Knight.cfg:42
 msgid "trample"
 msgstr "trampimine"
 
@@ -2894,7 +2894,7 @@ msgstr ""
 "eluviis on neile õpetanud ka lühikese mõõga kasutamist."
 
 #. [attack]: type=cold
-#: data/campaigns/Liberty/units/Rogue_Mage.cfg:34
+#: data/campaigns/Liberty/units/Rogue_Mage.cfg:33
 msgid "ice blast"
 msgstr "jäälöök"
 
@@ -2919,18 +2919,18 @@ msgstr ""
 "alamatele."
 
 #. [attack]: type=blade
-#: data/campaigns/Liberty/units/Shadow_Lord.cfg:35
+#: data/campaigns/Liberty/units/Shadow_Lord.cfg:33
 msgid "astral blade"
 msgstr "varjumõõk"
 
 #. [attack]: type=cold
-#: data/campaigns/Liberty/units/Shadow_Lord.cfg:46
-#: data/campaigns/Liberty/units/Shadow_Mage.cfg:47
+#: data/campaigns/Liberty/units/Shadow_Lord.cfg:44
+#: data/campaigns/Liberty/units/Shadow_Mage.cfg:45
 msgid "shadow bolt"
 msgstr "varjunool"
 
 #. [attack]: type=impact
-#: data/campaigns/Liberty/units/Shadow_Lord.cfg:58
+#: data/campaigns/Liberty/units/Shadow_Lord.cfg:56
 msgid "shadow blast"
 msgstr "varjulöök"
 

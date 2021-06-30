@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Battle for Wesnoth 1.2\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-04-18 02:22 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2019-01-23 23:12+0100\n"
 "Last-Translator: PaulP <paulp@hotmail.sk>\n"
 "Language-Team: none <viliam@bur.sk>\n"
@@ -7077,7 +7077,7 @@ msgstr ""
 "Chladná a krásna, udržiava svoj večný mladistvý vzhľad pitím krvi živých."
 
 #. [attack]: type=blade
-#: data/campaigns/The_Rise_Of_Wesnoth/units/Vampire_Lady.cfg:24
+#: data/campaigns/The_Rise_Of_Wesnoth/units/Vampire_Lady.cfg:23
 msgid "blood kiss"
 msgstr "krvavý bozk"
 
@@ -7158,8 +7158,8 @@ msgstr ""
 "Táto jednotka ruší nepriateľské oblasti kontroly okolo seba pre spojenecké "
 "jednotky (ale nie pre seba)."
 
-#. [special_note]
-#: data/campaigns/The_Rise_Of_Wesnoth/utils/trow-abilities.cfg:17
+#. [skirmisher]: id=distract
+#: data/campaigns/The_Rise_Of_Wesnoth/utils/trow-abilities.cfg:8
 #, fuzzy
 #| msgid ""
 #| "This unit is capable of distracting opponents, allowing allied units to "

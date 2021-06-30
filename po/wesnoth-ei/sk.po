@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Battle for Wesnoth 1.2\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-04-18 02:21 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2019-01-27 20:27+0100\n"
 "Last-Translator: PaulP <paulp@hotmail.sk>\n"
 "Language-Team: none\n"
@@ -3826,7 +3826,7 @@ msgstr ""
 "vytiahnutí zo zeme nečistou mágiou, aby šírili strach a zkazu."
 
 #. [attack]: type=impact
-#: data/campaigns/Eastern_Invasion/units/Bone_Knight.cfg:44
+#: data/campaigns/Eastern_Invasion/units/Bone_Knight.cfg:42
 msgid "trample"
 msgstr "dupot"
 
@@ -3914,8 +3914,8 @@ msgstr ""
 "Keď je tento útok využitý ofenzívne, protivník bude spôsobovať o jeden úder "
 "menej ako zvyčajne, až do minima jedného zásahu."
 
-#. [special_note]
-#: data/campaigns/Eastern_Invasion/utils/abilities.cfg:21
+#. [attacks]: id=shock
+#: data/campaigns/Eastern_Invasion/utils/abilities.cfg:10
 msgid ""
 "This unit’s melee attack can overwhelm the defenses of enemies, preventing "
 "them from retaliating as effectively."

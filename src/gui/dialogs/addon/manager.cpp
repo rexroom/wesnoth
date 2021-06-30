@@ -309,6 +309,24 @@ void addon_manager::pre_show(window& window)
 {
 	window.set_escape_disabled(true);
 
+	stacked_widget& addr_info = find_widget<stacked_widget>(&window, "server_conn_info", false);
+	grid* addr_visible;
+
+	if(client_.using_tls()) {
+		addr_info.select_layer(1);
+		addr_visible = addr_info.get_layer_grid(1);
+	} else {
+		addr_info.select_layer(0);
+		addr_visible = addr_info.get_layer_grid(0);
+	}
+
+	if(addr_visible) {
+		auto addr_box = dynamic_cast<styled_widget*>(addr_visible->find("server_addr", false));
+		if(addr_box) {
+			addr_box->set_label(client_.addr());
+		}
+	}
+
 	addon_list& list = find_widget<addon_list>(&window, "addons", false);
 
 	text_box& filter = find_widget<text_box>(&window, "filter", false);
@@ -487,7 +505,7 @@ void addon_manager::toggle_details(button& btn, stacked_widget& stk)
 		btn.set_label(_("addons^Back to List"));
 		stk.select_layer(1);
 	} else {
-		btn.set_label(_("Addon Details"));
+		btn.set_label(_("Add-on Details"));
 		stk.select_layer(0);
 	}
 }
@@ -722,7 +740,7 @@ void addon_manager::execute_action_on_selected_addon()
 	// Explicitly return to the main page if we're in low-res mode so the list is visible.
 	if(stacked_widget* stk = find_widget<stacked_widget>(get_window(), "main_stack", false, false)) {
 		stk->select_layer(0);
-		find_widget<button>(get_window(), "details_toggle", false).set_label(_("Addon Details"));
+		find_widget<button>(get_window(), "details_toggle", false).set_label(_("Add-on Details"));
 	}
 
 	addon_list& addons = find_widget<addon_list>(get_window(), "addons", false);

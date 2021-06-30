@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Battle for Wesnoth 1.12 (wesnoth-ei)\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-04-18 02:21 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2020-02-14 16:44+0000\n"
 "Last-Translator: trewe <sjrs456@yandex.com>\n"
 "Language-Team: wesn-pt-trans <wesn-pt-trans-users@lists.sourceforge.net>\n"
@@ -4307,7 +4307,7 @@ msgstr ""
 "e destruição."
 
 #. [attack]: type=impact
-#: data/campaigns/Eastern_Invasion/units/Bone_Knight.cfg:44
+#: data/campaigns/Eastern_Invasion/units/Bone_Knight.cfg:42
 msgid "trample"
 msgstr "pisada"
 
@@ -4408,8 +4408,8 @@ msgstr ""
 "Quando este ataque é usado na ofensiva, o oponente irá retaliar com um golpe "
 "a menos que o normal, com um mínimo de um golpe."
 
-#. [special_note]
-#: data/campaigns/Eastern_Invasion/utils/abilities.cfg:21
+#. [attacks]: id=shock
+#: data/campaigns/Eastern_Invasion/utils/abilities.cfg:10
 #, fuzzy
 #| msgid ""
 #| " This unit’s melee attack can overwhelm the defenses of enemies, "

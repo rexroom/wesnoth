@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wesnoth-l\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-05-16 02:06 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2012-01-07 13:20+0100\n"
 "Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
 "Language-Team: Serbian\n"
@@ -2875,7 +2875,7 @@ msgstr ""
 "bejahu izdignuti iz zemlje nesvetom magijom, da šire strah i uništenje."
 
 #. [attack]: type=impact
-#: data/campaigns/Liberty/units/Bone_Knight.cfg:44
+#: data/campaigns/Liberty/units/Bone_Knight.cfg:42
 msgid "trample"
 msgstr "topot"
 
@@ -2927,7 +2927,7 @@ msgstr ""
 "odmetničko okruženje donosi im i umereno vladanje kratkim mačem."
 
 #. [attack]: type=cold
-#: data/campaigns/Liberty/units/Rogue_Mage.cfg:34
+#: data/campaigns/Liberty/units/Rogue_Mage.cfg:33
 msgid "ice blast"
 msgstr "ledeni prasak"
 
@@ -2951,18 +2951,18 @@ msgstr ""
 "oružjem, strahopoštuju ih kako neprijatelji tako i oni kojima gospodare."
 
 #. [attack]: type=blade
-#: data/campaigns/Liberty/units/Shadow_Lord.cfg:35
+#: data/campaigns/Liberty/units/Shadow_Lord.cfg:33
 msgid "astral blade"
 msgstr "zvezdano sečivo"
 
 #. [attack]: type=cold
-#: data/campaigns/Liberty/units/Shadow_Lord.cfg:46
-#: data/campaigns/Liberty/units/Shadow_Mage.cfg:47
+#: data/campaigns/Liberty/units/Shadow_Lord.cfg:44
+#: data/campaigns/Liberty/units/Shadow_Mage.cfg:45
 msgid "shadow bolt"
 msgstr "strela senke"
 
 #. [attack]: type=impact
-#: data/campaigns/Liberty/units/Shadow_Lord.cfg:58
+#: data/campaigns/Liberty/units/Shadow_Lord.cfg:56
 msgid "shadow blast"
 msgstr "prasak senke"
 

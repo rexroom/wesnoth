@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: he\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-05-16 02:06 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2006-02-15 00:16+0200\n"
 "Last-Translator: Ely Levy <nakeee@gmail.com>\n"
 "Language-Team: Hebrew\n"
@@ -4313,6 +4313,12 @@ msgstr "אני לא מאמינה שזה צריך להגמר ככה!"
 msgid "The Sceptre of Fire"
 msgstr "שרביט האש"
 
+#. [generator]: id=cavegen
+#: data/campaigns/Heir_To_The_Throne/scenarios/17_Scepter_of_Fire.cfg:9
+#, fuzzy
+msgid "Sceptre of Fire Caves"
+msgstr "שרביט אש"
+
 #. [part]
 #: data/campaigns/Heir_To_The_Throne/scenarios/17_Scepter_of_Fire.cfg:215
 msgid ""
@@ -7556,14 +7562,14 @@ msgstr ""
 #. [variation]: race=human
 #. [unit_type]: id=Battle Princess, race=human
 #: data/campaigns/Heir_To_The_Throne/units/Battle_Princess.cfg:4
-#: data/campaigns/Heir_To_The_Throne/units/Battle_Princess.cfg:105
+#: data/campaigns/Heir_To_The_Throne/units/Battle_Princess.cfg:103
 msgid "female^Battle Princess"
 msgstr "נסיכת קרב"
 
 #. [variation]: race=human
 #. [unit_type]: id=Battle Princess, race=human
 #: data/campaigns/Heir_To_The_Throne/units/Battle_Princess.cfg:29
-#: data/campaigns/Heir_To_The_Throne/units/Battle_Princess.cfg:128
+#: data/campaigns/Heir_To_The_Throne/units/Battle_Princess.cfg:126
 #, fuzzy
 #| msgid ""
 #| "A noble by birth, the Princess has learnt swordplay with the greatest "
@@ -7582,22 +7588,22 @@ msgstr ""
 
 #. [variation]: race=human
 #. [variation]
-#: data/campaigns/Heir_To_The_Throne/units/Battle_Princess.cfg:103
-#: data/campaigns/Heir_To_The_Throne/units/Commander.cfg:102
+#: data/campaigns/Heir_To_The_Throne/units/Battle_Princess.cfg:101
+#: data/campaigns/Heir_To_The_Throne/units/Commander.cfg:101
 #: data/campaigns/Heir_To_The_Throne/units/Fighter.cfg:58
-#: data/campaigns/Heir_To_The_Throne/units/Lord.cfg:115
-#: data/campaigns/Heir_To_The_Throne/units/Princess.cfg:63
+#: data/campaigns/Heir_To_The_Throne/units/Lord.cfg:114
+#: data/campaigns/Heir_To_The_Throne/units/Princess.cfg:61
 #, fuzzy
 #| msgid "scepter"
 msgid "with sceptre"
 msgstr "שרביט"
 
 #. [attack]: type=fire
-#: data/campaigns/Heir_To_The_Throne/units/Battle_Princess.cfg:147
-#: data/campaigns/Heir_To_The_Throne/units/Commander.cfg:112
-#: data/campaigns/Heir_To_The_Throne/units/Fighter.cfg:66
-#: data/campaigns/Heir_To_The_Throne/units/Lord.cfg:135
-#: data/campaigns/Heir_To_The_Throne/units/Princess.cfg:107
+#: data/campaigns/Heir_To_The_Throne/units/Battle_Princess.cfg:142
+#: data/campaigns/Heir_To_The_Throne/units/Commander.cfg:109
+#: data/campaigns/Heir_To_The_Throne/units/Fighter.cfg:65
+#: data/campaigns/Heir_To_The_Throne/units/Lord.cfg:132
+#: data/campaigns/Heir_To_The_Throne/units/Princess.cfg:102
 #, fuzzy
 msgid "sceptre of fire"
 msgstr "שרביט אש"
@@ -7605,7 +7611,7 @@ msgstr "שרביט אש"
 #. [variation]
 #. [unit_type]: id=Commander
 #: data/campaigns/Heir_To_The_Throne/units/Commander.cfg:95
-#: data/campaigns/Heir_To_The_Throne/units/Commander.cfg:106
+#: data/campaigns/Heir_To_The_Throne/units/Commander.cfg:105
 msgid ""
 "The rank of Commander is held by those who lead battle groups into combat. "
 "Possessing leadership skills, they give lower-level units in adjacent hexes "
@@ -7639,17 +7645,17 @@ msgstr ""
 "הופך אותה ליריב רציני בקרב, למרות שרוב כוחה נובע מפקודיה."
 
 #. [attack]: type=impact
-#: data/campaigns/Heir_To_The_Throne/units/Dark_Queen.cfg:25
+#: data/campaigns/Heir_To_The_Throne/units/Dark_Queen.cfg:24
 msgid "scepter"
 msgstr "שרביט"
 
 #. [attack]: type=cold
-#: data/campaigns/Heir_To_The_Throne/units/Dark_Queen.cfg:34
+#: data/campaigns/Heir_To_The_Throne/units/Dark_Queen.cfg:33
 msgid "raging blizzard"
 msgstr ""
 
 #. [variation]
-#: data/campaigns/Heir_To_The_Throne/units/Dark_Queen.cfg:95
+#: data/campaigns/Heir_To_The_Throne/units/Dark_Queen.cfg:94
 msgid "defeated"
 msgstr ""
 
@@ -7674,7 +7680,7 @@ msgstr ""
 #. [variation]
 #. [unit_type]: id=Lord
 #: data/campaigns/Heir_To_The_Throne/units/Lord.cfg:109
-#: data/campaigns/Heir_To_The_Throne/units/Lord.cfg:119
+#: data/campaigns/Heir_To_The_Throne/units/Lord.cfg:118
 msgid ""
 "The noble leaders of many troops, Lords are especially strong in melee "
 "combat, and also possess skill with the bow. Like Commanders, Lords possess "
@@ -7688,14 +7694,14 @@ msgstr ""
 #. [variation]: race=human
 #. [unit_type]: id=Princess, race=human
 #: data/campaigns/Heir_To_The_Throne/units/Princess.cfg:4
-#: data/campaigns/Heir_To_The_Throne/units/Princess.cfg:65
+#: data/campaigns/Heir_To_The_Throne/units/Princess.cfg:63
 msgid "female^Princess"
 msgstr "נסיכה"
 
 #. [variation]: race=human
 #. [unit_type]: id=Princess, race=human
 #: data/campaigns/Heir_To_The_Throne/units/Princess.cfg:29
-#: data/campaigns/Heir_To_The_Throne/units/Princess.cfg:88
+#: data/campaigns/Heir_To_The_Throne/units/Princess.cfg:86
 #, fuzzy
 #| msgid ""
 #| "A noble by birth, the Princess has learnt swordplay with the greatest "
@@ -7756,8 +7762,8 @@ msgid ""
 "defending."
 msgstr ""
 
-#. [special_note]
-#: data/campaigns/Heir_To_The_Throne/utils/abilities.cfg:35
+#. [firststrike]: id=initiative
+#: data/campaigns/Heir_To_The_Throne/utils/abilities.cfg:8
 msgid ""
 "This unit’s grasp of melee tactics allows adjacent allies to strike the "
 "first blow even when defending."

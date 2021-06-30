@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wesnoth-ei 1.1-dev\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-04-18 02:21 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2005-10-14 16:53+0200\n"
 "Last-Translator: Oron Peled <oron@actcom.co.il>\n"
 "Language-Team: Hebrew\n"
@@ -3376,7 +3376,7 @@ msgid ""
 msgstr ""
 
 #. [attack]: type=impact
-#: data/campaigns/Eastern_Invasion/units/Bone_Knight.cfg:44
+#: data/campaigns/Eastern_Invasion/units/Bone_Knight.cfg:42
 msgid "trample"
 msgstr ""
 
@@ -3460,8 +3460,8 @@ msgid ""
 "less strike than normally, to a minimum of one strike."
 msgstr ""
 
-#. [special_note]
-#: data/campaigns/Eastern_Invasion/utils/abilities.cfg:21
+#. [attacks]: id=shock
+#: data/campaigns/Eastern_Invasion/utils/abilities.cfg:10
 msgid ""
 "This unit’s melee attack can overwhelm the defenses of enemies, preventing "
 "them from retaliating as effectively."

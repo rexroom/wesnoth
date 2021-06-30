@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-04-18 02:21 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2020-01-17 16:50+0000\n"
 "Last-Translator: GunChleoc, 2019\n"
 "Language-Team: Gaelic, Scottish (https://www.transifex.com/gunchleoc/"
@@ -3990,12 +3990,12 @@ msgstr ""
 "dlùtha, thoir an aire air an spleuchd air astar."
 
 #. [attack]: type=impact
-#: data/campaigns/The_South_Guard/units/Eyestalk.cfg:35
+#: data/campaigns/The_South_Guard/units/Eyestalk.cfg:32
 msgid "smash"
 msgstr "smuais"
 
 #. [attack]: type=arcane
-#: data/campaigns/The_South_Guard/units/Eyestalk.cfg:59
+#: data/campaigns/The_South_Guard/units/Eyestalk.cfg:56
 msgid "gaze"
 msgstr "spleuchd"
 
@@ -4028,8 +4028,8 @@ msgstr ""
 "stiùirich iad na daoine aca le làimh stòlda is daingneachd shèimh."
 
 #. [attack]: type=blade
-#: data/campaigns/The_South_Guard/units/Infantry_Commander.cfg:32
-#: data/campaigns/The_South_Guard/units/Infantry_Lieutenant.cfg:30
+#: data/campaigns/The_South_Guard/units/Infantry_Commander.cfg:30
+#: data/campaigns/The_South_Guard/units/Infantry_Lieutenant.cfg:29
 msgid "glaive"
 msgstr "slaighre"
 

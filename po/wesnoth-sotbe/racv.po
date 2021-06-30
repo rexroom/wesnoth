@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ca\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-03-12 23:18 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2005-09-03 19:00+0200\n"
 "Last-Translator: Robert Millan <rmh@aybabtu.com>\n"
 "Language-Team: Català <wesnoth-ca@ettin.org>\n"
@@ -740,7 +740,9 @@ msgid "Blemaker"
 msgstr "Blemaker"
 
 #. [unit]: id=Grüü, type=Troll Hero
+#. [side]: id=Grüü, type=Great Troll
 #: data/campaigns/Son_Of_The_Black_Eye/scenarios/03_Toward_Mountains_of_Haag.cfg:248
+#: data/campaigns/Son_Of_The_Black_Eye/scenarios/14_Back_Home.cfg:80
 msgid "Grüü"
 msgstr "Grüü"
 

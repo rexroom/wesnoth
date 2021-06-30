@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wesnoth-trow-ca\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-04-18 02:22 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2021-02-04 17:49+0100\n"
 "Last-Translator: Miquel-Àngel Burgos i Fradeja <miquel.angel.burgos@gmail."
 "com>\n"
@@ -7210,7 +7210,7 @@ msgstr ""
 "les seves víctimes."
 
 #. [attack]: type=blade
-#: data/campaigns/The_Rise_Of_Wesnoth/units/Vampire_Lady.cfg:24
+#: data/campaigns/The_Rise_Of_Wesnoth/units/Vampire_Lady.cfg:23
 msgid "blood kiss"
 msgstr "petó de sang"
 
@@ -7293,8 +7293,8 @@ msgstr ""
 "Aquesta unitat ignora les zones de control enemigues al seu voltant per a "
 "les unitats aliades (però no per a si mateixa)."
 
-#. [special_note]
-#: data/campaigns/The_Rise_Of_Wesnoth/utils/trow-abilities.cfg:17
+#. [skirmisher]: id=distract
+#: data/campaigns/The_Rise_Of_Wesnoth/utils/trow-abilities.cfg:8
 msgid ""
 "This unit is capable of distracting opponents, allowing allied units to "
 "trespass their Zones of Control and move unhindered around them."

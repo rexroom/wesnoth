@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Battle for Wesnoth 0.8.8-CVS\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-04-18 02:22 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2013-06-20 23:48-0000\n"
 "Last-Translator: Thomas Hockings <elprofesh@gmail.com>\n"
 "Language-Team: Latin <http://wiki.wesnoth.org/LatinTranslation>\n"
@@ -6189,7 +6189,7 @@ msgstr ""
 "Frigida et pulchra, adspectus juvenis mantenet bibens sanguinem viventium."
 
 #. [attack]: type=blade
-#: data/campaigns/The_Rise_Of_Wesnoth/units/Vampire_Lady.cfg:24
+#: data/campaigns/The_Rise_Of_Wesnoth/units/Vampire_Lady.cfg:23
 msgid "blood kiss"
 msgstr "suavium sanguinis"
 
@@ -6259,8 +6259,8 @@ msgid ""
 "not for itself)."
 msgstr ""
 
-#. [special_note]
-#: data/campaigns/The_Rise_Of_Wesnoth/utils/trow-abilities.cfg:17
+#. [skirmisher]: id=distract
+#: data/campaigns/The_Rise_Of_Wesnoth/utils/trow-abilities.cfg:8
 msgid ""
 "This unit is capable of distracting opponents, allowing allied units to "
 "trespass their Zones of Control and move unhindered around them."

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-04-18 02:21 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2020-10-31 18:02+0100\n"
 "Last-Translator: Jarom <jaromirb@op.pl>\n"
 "Language-Team: \n"
@@ -3846,7 +3846,7 @@ msgstr ""
 "ponownego życia, by na kościanych koniach siać strach i zniszczenie."
 
 #. [attack]: type=impact
-#: data/campaigns/Eastern_Invasion/units/Bone_Knight.cfg:44
+#: data/campaigns/Eastern_Invasion/units/Bone_Knight.cfg:42
 msgid "trample"
 msgstr "tratowanie"
 
@@ -3936,8 +3936,8 @@ msgstr ""
 "Uderzenie w natarciu jest tak niespodziewane, iż przeciwnik zawsze zadaje o "
 "jeden cios mniej niż normalnie, ale nie mniej niż jeden."
 
-#. [special_note]
-#: data/campaigns/Eastern_Invasion/utils/abilities.cfg:21
+#. [attacks]: id=shock
+#: data/campaigns/Eastern_Invasion/utils/abilities.cfg:10
 msgid ""
 "This unit’s melee attack can overwhelm the defenses of enemies, preventing "
 "them from retaliating as effectively."

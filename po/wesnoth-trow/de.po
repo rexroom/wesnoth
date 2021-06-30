@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Battle for Wesnoth 1.12\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-04-18 02:22 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2020-02-01 11:09+0100\n"
 "Last-Translator: Aaron Winter <winter.aaron93@gmail.com>\n"
 "Language-Team: irc://irc.freenode.net/#wesnoth-de\n"
@@ -7350,7 +7350,7 @@ msgstr ""
 "sie das Blut der Lebenden trinkt."
 
 #. [attack]: type=blade
-#: data/campaigns/The_Rise_Of_Wesnoth/units/Vampire_Lady.cfg:24
+#: data/campaigns/The_Rise_Of_Wesnoth/units/Vampire_Lady.cfg:23
 msgid "blood kiss"
 msgstr "Kuss des Blutes"
 
@@ -7430,8 +7430,8 @@ msgstr ""
 "Ermöglicht befreundeten Einheiten, feindliche Kontrollzonen in ihrer Nähe zu "
 "durchdringen, ohne dies selbst zu können (gilt nicht für sich selbst)."
 
-#. [special_note]
-#: data/campaigns/The_Rise_Of_Wesnoth/utils/trow-abilities.cfg:17
+#. [skirmisher]: id=distract
+#: data/campaigns/The_Rise_Of_Wesnoth/utils/trow-abilities.cfg:8
 msgid ""
 "This unit is capable of distracting opponents, allowing allied units to "
 "trespass their Zones of Control and move unhindered around them."

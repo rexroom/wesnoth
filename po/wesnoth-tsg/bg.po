@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: bg\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-04-18 02:21 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2007-05-15 02:14+0300\n"
 "Last-Translator: Nikolay Vladimirov <nikolay@vladimiroff.com>\n"
 "Language-Team: Български\n"
@@ -4530,13 +4530,13 @@ msgid ""
 msgstr ""
 
 #. [attack]: type=impact
-#: data/campaigns/The_South_Guard/units/Eyestalk.cfg:35
+#: data/campaigns/The_South_Guard/units/Eyestalk.cfg:32
 #, fuzzy
 msgid "smash"
 msgstr "Миш"
 
 #. [attack]: type=arcane
-#: data/campaigns/The_South_Guard/units/Eyestalk.cfg:59
+#: data/campaigns/The_South_Guard/units/Eyestalk.cfg:56
 #, fuzzy
 msgid "gaze"
 msgstr "меч"
@@ -4570,8 +4570,8 @@ msgstr ""
 "предвождали хората си с твърда ръка и спокойна решителност."
 
 #. [attack]: type=blade
-#: data/campaigns/The_South_Guard/units/Infantry_Commander.cfg:32
-#: data/campaigns/The_South_Guard/units/Infantry_Lieutenant.cfg:30
+#: data/campaigns/The_South_Guard/units/Infantry_Commander.cfg:30
+#: data/campaigns/The_South_Guard/units/Infantry_Lieutenant.cfg:29
 msgid "glaive"
 msgstr "меч"
 

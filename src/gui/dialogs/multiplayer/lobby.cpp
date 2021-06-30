@@ -104,10 +104,7 @@ void sub_player_list::update_player_count_label()
 void player_list::init(window& w)
 {
 	active_game.init(w, _("Selected Game"), true);
-	other_rooms.init(w, _("Lobby"), true);
-#ifdef ENABLE_ROOM_MEMBER_TREE
-	active_room.init(w, _("Current Room"));
-#endif
+	lobby_players.init(w, _("Lobby"), true);
 	other_games.init(w, _("Other Games"));
 
 	tree = find_widget<tree_view>(&w, "player_tree", false, true);
@@ -284,6 +281,8 @@ bool handle_addon_requirements_gui(const std::vector<mp::game_info::required_add
 
 void mp_lobby::update_gamelist()
 {
+	if(delay_gamelist_update_) return;
+
 	SCOPE_LB;
 	gamelistbox_->clear();
 	gamelist_id_at_row_.clear();
@@ -319,6 +318,8 @@ void mp_lobby::update_gamelist()
 
 void mp_lobby::update_gamelist_diff()
 {
+	if(delay_gamelist_update_) return;
+
 	SCOPE_LB;
 	lobby_info_.make_games_vector();
 	int select_row = -1;
@@ -582,65 +583,42 @@ void mp_lobby::update_gamelist_filter()
 
 void mp_lobby::update_playerlist()
 {
+	if(delay_playerlist_update_) return;
+
 	SCOPE_LB;
 	DBG_LB << "Playerlist update: " << lobby_info_.users().size() << "\n";
-	lobby_info_.update_user_statuses(selected_game_id_, chatbox_->active_window_room());
-
-#ifdef ENABLE_ROOM_MEMBER_TREE
-	bool lobby = false;
-	if(mp::room_info* ri = chatbox_->active_window_room()) {
-		if(ri->name() == "lobby") {
-			lobby = true;
-		}
-	}
-#endif
+	lobby_info_.update_user_statuses(selected_game_id_);
 
 	assert(player_list_.active_game.tree);
-#ifdef ENABLE_ROOM_MEMBER_TREE
-	assert(player_list_.active_room.tree);
-#endif
 	assert(player_list_.other_games.tree);
-	assert(player_list_.other_rooms.tree);
+	assert(player_list_.lobby_players.tree);
 
 	unsigned scrollbar_position = player_list_.tree->get_vertical_scrollbar_item_position();
 
 	player_list_.active_game.tree->clear();
-#ifdef ENABLE_ROOM_MEMBER_TREE
-	player_list_.active_room.tree->clear();
-#endif
 	player_list_.other_games.tree->clear();
-	player_list_.other_rooms.tree->clear();
+	player_list_.lobby_players.tree->clear();
 
-	for(auto& user : lobby_info_.users()) {
-		sub_player_list* target_list(nullptr);
-
+	std::map<std::string, std::map<std::string, string_map>> lobby_player_items;
+	std::map<std::string, std::map<std::string, string_map>> active_game_items;
+	std::map<std::string, std::map<std::string, string_map>> other_game_items;
+	for(const auto& user : lobby_info_.users()) {
 		std::string name = user.name;
 
 		std::stringstream icon_ss;
+
 		icon_ss << "lobby/status";
 		switch(user.state) {
-#ifdef ENABLE_ROOM_MEMBER_TREE
-			case mp::user_info::user_state::SEL_ROOM:
-				icon_ss << "-lobby";
-				target_list = &player_list_.active_room;
-				if(lobby) {
-					target_list = &player_list_.other_rooms;
-				}
-				break;
-#endif
 			case mp::user_info::user_state::LOBBY:
 				icon_ss << "-lobby";
-				target_list = &player_list_.other_rooms;
 				break;
 			case mp::user_info::user_state::SEL_GAME:
 				name = colorize(name, {0, 255, 255});
 				icon_ss << (user.observing ? "-obs" : "-playing");
-				target_list = &player_list_.active_game;
 				break;
 			case mp::user_info::user_state::GAME:
 				name = colorize(name, font::GRAY_COLOR);
 				icon_ss << (user.observing ? "-obs" : "-playing");
-				target_list = &player_list_.other_games;
 				break;
 			default:
 				ERR_LB << "Bad user state in lobby: " << user.name << ": " << static_cast<int>(user.state) << "\n";
@@ -664,23 +642,7 @@ void mp_lobby::update_playerlist()
 				ERR_LB << "Bad user relation in lobby: " << static_cast<int>(user.relation) << "\n";
 		}
 
-		// TODO: on the official server this results in every name being bold since we
-		// require a registered account. Leaving this commented out in case we ever
-		// walk that back and want to have such an indication again (it's useless for
-		// custom servers since registered logins aren't supported there).
-#if 0
-		if(user.registered) {
-			name = "<b>" + name + "</b>";
-		}
-#endif
-
 		icon_ss << ".png";
-
-		if(!preferences::playerlist_group_players()) {
-			target_list = &player_list_.other_rooms;
-		}
-
-		assert(target_list->tree);
 
 		string_map tree_group_field;
 		std::map<std::string, string_map> tree_group_item;
@@ -693,17 +655,37 @@ void mp_lobby::update_playerlist()
 		tree_group_field["use_markup"] = "true";
 		tree_group_item["name"] = tree_group_field;
 
-		tree_view_node& player = target_list->tree->add_child("player", tree_group_item);
+		switch(user.state) {
+			case mp::user_info::user_state::LOBBY:
+				lobby_player_items[user.name] = tree_group_item;
+				break;
+			case mp::user_info::user_state::SEL_GAME:
+				active_game_items[user.name] = tree_group_item;
+				break;
+			case mp::user_info::user_state::GAME:
+				other_game_items[user.name] = tree_group_item;
+				break;
+			default:
+				ERR_LB << "Bad user state in lobby: " << user.name << ": " << static_cast<int>(user.state) << "\n";
+				continue;
+		}
+	}
 
-		connect_signal_mouse_left_double_click(find_widget<toggle_panel>(&player, "tree_view_node_label", false),
-			std::bind(&mp_lobby::user_dialog_callback, this, &user));
+	for(const auto& player : player_list_.active_game.tree->replace_children("player", active_game_items)) {
+		 connect_signal_mouse_left_double_click(find_widget<toggle_panel>(player.second.get(), "tree_view_node_label", false),
+		 	std::bind(&mp_lobby::user_dialog_callback, this, lobby_info_.get_user(player.first)));
+	}
+	for(const auto& player : player_list_.lobby_players.tree->replace_children("player", lobby_player_items)) {
+		 connect_signal_mouse_left_double_click(find_widget<toggle_panel>(player.second.get(), "tree_view_node_label", false),
+		 	std::bind(&mp_lobby::user_dialog_callback, this, lobby_info_.get_user(player.first)));
+	}
+	for(const auto& player : player_list_.other_games.tree->replace_children("player", other_game_items)) {
+		 connect_signal_mouse_left_double_click(find_widget<toggle_panel>(player.second.get(), "tree_view_node_label", false),
+		 	std::bind(&mp_lobby::user_dialog_callback, this, lobby_info_.get_user(player.first)));
 	}
 
 	player_list_.active_game.update_player_count_label();
-#ifdef ENABLE_ROOM_MEMBER_TREE
-	player_list_.active_room.update_player_count_label();
-#endif
-	player_list_.other_rooms.update_player_count_label();
+	player_list_.lobby_players.update_player_count_label();
 	player_list_.other_games.update_player_count_label();
 
 	// Don't attempt to restore the scroll position if the window hasn't been laid out yet
@@ -936,6 +918,8 @@ void mp_lobby::process_network_data(const config& data)
 
 void mp_lobby::process_gamelist(const config& data)
 {
+	if(delay_gamelist_update_ || delay_playerlist_update_) return;
+
 	lobby_info_.process_gamelist(data);
 	DBG_LB << "Received gamelist\n";
 	gamelist_dirty_ = true;
@@ -944,6 +928,8 @@ void mp_lobby::process_gamelist(const config& data)
 
 void mp_lobby::process_gamelist_diff(const config& data)
 {
+	if(delay_gamelist_update_ || delay_playerlist_update_) return;
+
 	if(lobby_info_.process_gamelist_diff(data)) {
 		DBG_LB << "Received gamelist diff\n";
 		gamelist_dirty_ = true;
@@ -1170,13 +1156,11 @@ void mp_lobby::player_filter_callback()
 
 void mp_lobby::user_dialog_callback(mp::user_info* info)
 {
-	lobby_player_info dlg(*chatbox_, *info, lobby_info_);
-
+	delay_playerlist_update_ = true;
 	lobby_delay_gamelist_update_guard g(*this);
 
+	lobby_player_info dlg(*chatbox_, *info, lobby_info_);
 	dlg.show();
-
-	delay_playerlist_update_ = true;
 
 	if(dlg.result_open_whisper()) {
 		lobby_chat_window* t = chatbox_->whisper_window_open(info->name, true);

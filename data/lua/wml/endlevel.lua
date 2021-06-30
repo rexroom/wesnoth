@@ -3,7 +3,7 @@ local already_ended = false
 function wesnoth.wml_actions.endlevel(cfg)
 	local parsed = wml.parsed(cfg)
 	if already_ended then
-		wesnoth.message("Repeated [endlevel] execution, ignoring")
+		wesnoth.interface.add_chat_message("Repeated [endlevel] execution, ignoring")
 		return
 	end
 	already_ended = true
@@ -92,7 +92,7 @@ function wesnoth.wml_actions.endlevel(cfg)
 		end
 	end
 
-	wesnoth.end_level {
+	wesnoth.scenario.end_level_data = {
 		carryover_report = cfg.carryover_report,
 		save = cfg.save,
 		replay_save = cfg.replay_save,

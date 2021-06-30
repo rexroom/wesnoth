@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wesnoth-ei\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-04-18 02:21 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2020-01-19 15:20+0300\n"
 "Last-Translator: Nilgün Belma Bugüner <nilgun@belgeler.gen.tr>\n"
 "Language-Team: Turkish\n"
@@ -3839,7 +3839,7 @@ msgstr ""
 "mezarlarından kaldırıldılar."
 
 #. [attack]: type=impact
-#: data/campaigns/Eastern_Invasion/units/Bone_Knight.cfg:44
+#: data/campaigns/Eastern_Invasion/units/Bone_Knight.cfg:42
 msgid "trample"
 msgstr "ezme"
 
@@ -3929,8 +3929,8 @@ msgstr ""
 "Bu saldırı hücumda kullanıldığında, rakip normalden daha az vuruşla karşı "
 "koyacak fakat en az bir vuruş yapacaktır."
 
-#. [special_note]
-#: data/campaigns/Eastern_Invasion/utils/abilities.cfg:21
+#. [attacks]: id=shock
+#: data/campaigns/Eastern_Invasion/utils/abilities.cfg:10
 #, fuzzy
 #| msgid ""
 #| " This unit’s melee attack can overwhelm the defenses of enemies, "

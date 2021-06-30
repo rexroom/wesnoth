@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wesnoth-tsg\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-04-18 02:21 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2020-08-05 03:47+0300\n"
 "Last-Translator: Nilgün Belma Bugüner <nilgun@belgeler.gen.tr>\n"
 "Language-Team: Turkish\n"
@@ -4732,12 +4732,12 @@ msgstr ""
 "atılmamalıdır."
 
 #. [attack]: type=impact
-#: data/campaigns/The_South_Guard/units/Eyestalk.cfg:35
+#: data/campaigns/The_South_Guard/units/Eyestalk.cfg:32
 msgid "smash"
 msgstr "tokat"
 
 #. [attack]: type=arcane
-#: data/campaigns/The_South_Guard/units/Eyestalk.cfg:59
+#: data/campaigns/The_South_Guard/units/Eyestalk.cfg:56
 msgid "gaze"
 msgstr "dikbakış"
 
@@ -4774,8 +4774,8 @@ msgstr ""
 "kararlılıkla adamlarına komuta ettiler."
 
 #. [attack]: type=blade
-#: data/campaigns/The_South_Guard/units/Infantry_Commander.cfg:32
-#: data/campaigns/The_South_Guard/units/Infantry_Lieutenant.cfg:30
+#: data/campaigns/The_South_Guard/units/Infantry_Commander.cfg:30
+#: data/campaigns/The_South_Guard/units/Infantry_Lieutenant.cfg:29
 msgid "glaive"
 msgstr "kılıç"
 

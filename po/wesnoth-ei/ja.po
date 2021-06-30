@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-04-18 02:21 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2018-09-12 07:30+0000\n"
 "Last-Translator: 堀 秀幸 <Hide.HORI@gmail.com>, 2020\n"
 "Language-Team: Japanese (https://www.transifex.com/wesnoth-jp/teams/60513/"
@@ -3803,7 +3803,7 @@ msgstr ""
 "すために不浄な魔法によって大地から蘇りました。"
 
 #. [attack]: type=impact
-#: data/campaigns/Eastern_Invasion/units/Bone_Knight.cfg:44
+#: data/campaigns/Eastern_Invasion/units/Bone_Knight.cfg:42
 msgid "trample"
 msgstr "踏みつけ"
 
@@ -3891,8 +3891,8 @@ msgstr ""
 "攻撃時にこの攻撃を使うと、敵の反撃は通常より1回少なくなります。ただし最低でも"
 "1回は反撃されます。"
 
-#. [special_note]
-#: data/campaigns/Eastern_Invasion/utils/abilities.cfg:21
+#. [attacks]: id=shock
+#: data/campaigns/Eastern_Invasion/utils/abilities.cfg:10
 #, fuzzy
 #| msgid ""
 #| " This unit’s melee attack can overwhelm the defenses of enemies, "
@@ -4054,11 +4054,11 @@ msgstr "このアイテムは私には適しません。他の人にあげてく
 msgid "Holy Amulet"
 msgstr "聖なるお守り"
 
-#~ msgid "Creatures from the deep, I summon thee to destroy this foe!"
-#~ msgstr "深淵の生物よ、現れいでて敵を滅ぼせ！"
-
 #~ msgid "Easy"
 #~ msgstr "易しい"
+
+#~ msgid "Creatures from the deep, I summon thee to destroy this foe!"
+#~ msgstr "深淵の生物よ、現れいでて敵を滅ぼせ！"
 
 #~ msgid "Gweddry reaches the western exit"
 #~ msgstr "Gweddryが西の出口に到着する"

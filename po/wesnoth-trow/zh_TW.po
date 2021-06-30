@@ -6,10 +6,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: wesnoth-1.15\n"
+"Project-Id-Version: wesnoth-1.16\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-04-18 02:22 UTC\n"
-"PO-Revision-Date: 2021-04-06 09:11+0800\n"
+"POT-Creation-Date: 2021-06-23 15:36 UTC\n"
+"PO-Revision-Date: 2021-06-25 20:19+0800\n"
 "Last-Translator: 李信融 <magiclen0810@gmail.com>\n"
 "Language-Team: Wesnoth Traditional Chinese Team\n"
 "Language: zh_TW\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n>1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.4.3\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. [campaign]: id=The_Rise_of_Wesnoth
@@ -30,7 +30,7 @@ msgstr "韋諾的崛起"
 #. [campaign]: id=The_Rise_of_Wesnoth
 #: data/campaigns/The_Rise_Of_Wesnoth/_main.cfg:15
 msgid "TRoW"
-msgstr "韋諾的崛起"
+msgstr "TRoW"
 
 #. [campaign]: id=The_Rise_of_Wesnoth
 #: data/campaigns/The_Rise_Of_Wesnoth/_main.cfg:20
@@ -6798,7 +6798,7 @@ msgid ""
 msgstr "冰冷而美麗，她透過吸取活物的血液來維持她永遠年輕的外表。"
 
 #. [attack]: type=blade
-#: data/campaigns/The_Rise_Of_Wesnoth/units/Vampire_Lady.cfg:24
+#: data/campaigns/The_Rise_Of_Wesnoth/units/Vampire_Lady.cfg:23
 msgid "blood kiss"
 msgstr "血之吻"
 
@@ -6873,8 +6873,8 @@ msgid ""
 "not for itself)."
 msgstr "這個單位可以使周圍敵人的控制區域被同盟單位忽略（但自身不行）。"
 
-#. [special_note]
-#: data/campaigns/The_Rise_Of_Wesnoth/utils/trow-abilities.cfg:17
+#. [skirmisher]: id=distract
+#: data/campaigns/The_Rise_Of_Wesnoth/utils/trow-abilities.cfg:8
 msgid ""
 "This unit is capable of distracting opponents, allowing allied units to "
 "trespass their Zones of Control and move unhindered around them."

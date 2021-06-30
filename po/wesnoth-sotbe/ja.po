@@ -1,16 +1,16 @@
 #
 # Translators:
-# tamanegi, 2018
 # RatArmy <broadbarredfirefish@gmail.com>, 2019
 # 堀 秀幸 <Hide.HORI@gmail.com>, 2020
+# tamanegi, 2021
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-03-12 23:18 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2018-05-18 00:11+0000\n"
-"Last-Translator: 堀 秀幸 <Hide.HORI@gmail.com>, 2020\n"
+"Last-Translator: tamanegi, 2021\n"
 "Language-Team: Japanese (https://www.transifex.com/wesnoth-jp/teams/60513/"
 "ja/)\n"
 "Language: ja\n"
@@ -783,7 +783,9 @@ msgid "Blemaker"
 msgstr "Blemaker"
 
 #. [unit]: id=Grüü, type=Troll Hero
+#. [side]: id=Grüü, type=Great Troll
 #: data/campaigns/Son_Of_The_Black_Eye/scenarios/03_Toward_Mountains_of_Haag.cfg:248
+#: data/campaigns/Son_Of_The_Black_Eye/scenarios/14_Back_Home.cfg:80
 msgid "Grüü"
 msgstr "Grüü"
 
@@ -2279,7 +2281,7 @@ msgstr "Shan Taum"
 #. [side]: type=Orcish Warlord, id=Shan Taum
 #: data/campaigns/Son_Of_The_Black_Eye/scenarios/09_Shan_Taum_the_Smug.cfg:69
 msgid "Rivals"
-msgstr ""
+msgstr "ライバル"
 
 #. [part]
 #: data/campaigns/Son_Of_The_Black_Eye/scenarios/09_Shan_Taum_the_Smug.cfg:78

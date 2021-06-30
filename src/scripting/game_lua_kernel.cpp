@@ -725,31 +725,17 @@ int game_lua_kernel::intf_clear_menu_item(lua_State *L)
 	return 0;
 }
 
-int game_lua_kernel::intf_shroud_op(lua_State *L, bool place_shroud)
+/**
+ * Toggle shroud on some locations
+ * Arg 1: Side number
+ * Arg 2: List of locations on which to place/remove shroud
+ */
+int game_lua_kernel::intf_toggle_shroud(lua_State *L, bool place_shroud)
 {
+	team& t = luaW_checkteam(L, 1, board());
 
-	int side_num = luaL_checkinteger(L, 1);
-
-	if(lua_isstring(L, 2)) {
-		std::string data = lua_tostring(L, 2);
-		// Special case - using a shroud_data string, or "all"
-		team& side = board().get_team(side_num);
-		if(place_shroud) {
-			side.reshroud();
-		}
-		if(data != "all") {
-			side.merge_shroud_map_data(data);
-		} else if(!place_shroud) {
-			bool was_shrouded = side.uses_shroud();
-			side.set_shroud(false);
-			actions::clear_shroud(side.side());
-			side.set_shroud(was_shrouded);
-		}
-		return 0;
-	} else if(lua_istable(L, 2)) {
-		std::vector<map_location> locs_v = lua_check<std::vector<map_location>>(L, 2);
-		std::set<map_location> locs(locs_v.begin(), locs_v.end());
-		team &t = board().get_team(side_num);
+	if(lua_istable(L, 2)) {
+		std::set<map_location> locs = luaW_check_locationset(L, 2);
 
 		for (const map_location& loc : locs)
 		{
@@ -760,7 +746,7 @@ int game_lua_kernel::intf_shroud_op(lua_State *L, bool place_shroud)
 			}
 		}
 	} else {
-		return luaL_argerror(L, 2, "expected list of locations or shroud data string");
+		return luaL_argerror(L, 2, "expected list of locations");
 	}
 
 	game_display_->labels().recalculate_shroud();
@@ -770,6 +756,60 @@ int game_lua_kernel::intf_shroud_op(lua_State *L, bool place_shroud)
 	return 0;
 }
 
+/**
+ * Overrides the shroud entirely. All locations are shrouded, except for the ones passed in as argument 2.
+ * Arg 1: Side number
+ * Arg 2: List of locations that should be unshrouded
+ */
+int game_lua_kernel::intf_override_shroud(lua_State *L)
+{
+	team& t = luaW_checkteam(L, 1, board());
+
+	if(lua_istable(L, 2)) {
+		std::set<map_location> locs = luaW_check_locationset(L, 2);
+		t.reshroud();
+		for(const map_location& loc : locs) {
+			t.clear_shroud(loc);
+		}
+	} else {
+		return luaW_type_error(L, 2, "list of locations");
+	}
+
+	game_display_->labels().recalculate_shroud();
+	game_display_->recalculate_minimap();
+	game_display_->invalidate_all();
+
+	return 0;
+}
+
+static int intf_parse_shroud_bitmap(lua_State* L)
+{
+	shroud_map temp;
+	temp.set_enabled(true);
+	temp.read(luaL_checkstring(L, 1));
+	std::set<map_location> locs;
+	for(int x = 1; x <= temp.width(); x++) {
+		for(int y = 1; y <= temp.height(); y++) {
+			if(!temp.value(x, y)) {
+				locs.emplace(x, y, wml_loc());
+			}
+		}
+	}
+	luaW_push_locationset(L, locs);
+	return 1;
+}
+
+static int intf_make_shroud_bitmap(lua_State* L)
+{
+	shroud_map temp;
+	temp.set_enabled(true);
+	auto locs = luaW_check_locationset(L, 1);
+	for(const auto& loc : locs) {
+		temp.clear(loc.wml_x(), loc.wml_y());
+	}
+	lua_push(L, temp.write());
+	return 1;
+}
 
 /**
  * Highlights the given location on the map.
@@ -839,6 +879,173 @@ int game_lua_kernel::intf_lock_view(lua_State *L)
 	return 0;
 }
 
+static void luaW_push_tod(lua_State* L, const time_of_day& tod)
+{
+	lua_newtable(L);
+	lua_pushstring(L, tod.id.c_str());
+	lua_setfield(L, -2, "id");
+	lua_pushinteger(L, tod.lawful_bonus);
+	lua_setfield(L, -2, "lawful_bonus");
+	lua_pushinteger(L, tod.bonus_modified);
+	lua_setfield(L, -2, "bonus_modified");
+	lua_pushstring(L, tod.image.c_str());
+	lua_setfield(L, -2, "image");
+	luaW_pushtstring(L, tod.name);
+	lua_setfield(L, -2, "name");
+	lua_pushstring(L, tod.sounds.c_str());
+	lua_setfield(L, -2, "sound");
+	lua_pushstring(L, tod.image_mask.c_str());
+	lua_setfield(L, -2, "mask");
+
+	lua_pushinteger(L, tod.color.r);
+	lua_setfield(L, -2, "red");
+	lua_pushinteger(L, tod.color.g);
+	lua_setfield(L, -2, "green");
+	lua_pushinteger(L, tod.color.b);
+	lua_setfield(L, -2, "blue");
+}
+
+// A schedule object is an index with a special metatable.
+// The global schedule uses index -1
+void game_lua_kernel::luaW_push_schedule(lua_State* L, int area_index)
+{
+	lua_newuserdatauv(L, 0, 1);
+	lua_pushinteger(L, area_index);
+	lua_setiuservalue(L, -2, 1);
+	if(luaL_newmetatable(L, "schedule")) {
+		static luaL_Reg const schedule_meta[] {
+			{"__index", &dispatch<&game_lua_kernel::impl_schedule_get>},
+			{"__newindex", &dispatch<&game_lua_kernel::impl_schedule_set>},
+			{"__len", &dispatch<&game_lua_kernel::impl_schedule_len>},
+			{ nullptr, nullptr }
+		};
+		luaL_setfuncs(L, schedule_meta, 0);
+	}
+	lua_setmetatable(L, -2);
+}
+
+static int luaW_check_schedule(lua_State* L, int idx)
+{
+	int save_top = lua_gettop(L);
+	luaL_checkudata(L, idx, "schedule");
+	lua_getiuservalue(L, idx, 1);
+	int i = luaL_checkinteger(L, -1);
+	lua_settop(L, save_top);
+	return i;
+}
+
+int game_lua_kernel::impl_schedule_get(lua_State *L)
+{
+	int area_index = luaW_check_schedule(L, 1);
+	if(lua_isnumber(L, 2)) {
+		const auto& times = area_index < 0 ? tod_man().times() : tod_man().times(area_index);
+		int i = lua_tointeger(L, 2) - 1;
+		if(i < 0 || i >= static_cast<int>(times.size())) {
+			return luaL_argerror(L, 2, "invalid time of day index");
+		}
+		luaW_push_tod(L, times[i]);
+		return 1;
+	} else {
+		const char* m = luaL_checkstring(L, 2);
+		if(area_index >= 0) {
+			return_string_attrib("time_of_day", tod_man().get_area_time_of_day(area_index).id);
+			return_string_attrib("id", tod_man().get_area_id(area_index));
+			if(strcmp(m, "hexes") == 0) {
+				const auto& hexes = tod_man().get_area_by_index(area_index);
+				luaW_push_locationset(L, hexes);
+				return 1;
+			}
+		} else {
+			return_string_attrib("time_of_day", tod_man().get_time_of_day().id);
+			return_int_attrib("liminal_bonus", tod_man().get_max_liminal_bonus());
+		}
+
+		if(luaW_getglobal(L, "wesnoth", "schedule", m)) {
+			return 1;
+		}
+	}
+	return 0;
+}
+
+int game_lua_kernel::impl_schedule_len(lua_State *L)
+{
+	int area_index = luaW_check_schedule(L, 1);
+	const auto& times = area_index < 0 ? tod_man().times() : tod_man().times(area_index);
+	lua_pushinteger(L, times.size());
+	return 1;
+}
+
+int game_lua_kernel::impl_schedule_set(lua_State *L)
+{
+	int area_index = luaW_check_schedule(L, 1);
+	if(lua_isnumber(L, 2)) {
+		std::vector<time_of_day> times = area_index < 0 ? tod_man().times() : tod_man().times(area_index);
+		int i = lua_tointeger(L, 2) - 1;
+		if(i < 0 || i >= static_cast<int>(times.size())) {
+			return luaL_argerror(L, 2, "invalid time of day index");
+		}
+		config time_cfg = luaW_checkconfig(L, 3);
+		times[i] = time_of_day(time_cfg);
+		if(area_index < 0) {
+			tod_man().replace_schedule(times);
+		} else {
+			tod_man().replace_local_schedule(times, area_index);
+		}
+	} else {
+		const char* m = luaL_checkstring(L, 2);
+		if(strcmp(m, "time_of_day") == 0) {
+			std::string value = luaL_checkstring(L, 3);
+			const auto& times = area_index < 0 ? tod_man().times() : tod_man().times(area_index);
+			auto iter = std::find_if(times.begin(), times.end(), [&value](const time_of_day& tod) {
+				return tod.id == value;
+			});
+			if(iter == times.end()) {
+				std::ostringstream err;
+				err << "invalid time of day ID for ";
+				if(area_index < 0) {
+					err << "global schedule";
+				} else {
+					const std::string& id = tod_man().get_area_id(area_index);
+					if(id.empty()) {
+						const auto& hexes = tod_man().get_area_by_index(area_index);
+						if(hexes.empty()) {
+							err << "anonymous empty time area";
+						} else {
+							err << "anonymous time area at (" << hexes.begin()->wml_x() << ',' << hexes.begin()->wml_y() << ")";
+						}
+					} else {
+						err << "time area with id=" << id;
+					}
+				}
+				lua_push(L, err.str());
+				return lua_error(L);
+			}
+			int n = std::distance(times.begin(), iter);
+			if(area_index < 0) {
+				tod_man().set_current_time(n);
+			} else {
+				tod_man().set_current_time(n, area_index);
+			}
+		}
+		if(area_index >= 0) {
+			modify_string_attrib("id", tod_man().set_area_id(area_index, value));
+			if(strcmp(m, "hexes") == 0) {
+				auto hexes = luaW_check_locationset(L, 3);
+				tod_man().replace_area_locations(area_index, hexes);
+				return 0;
+			}
+		} else {
+			// Assign nil to reset the bonus to the default (best) value
+			if(lua_isnil(L, 3) && strcmp(m, "liminal_bonus") == 0) {
+				tod_man().reset_max_liminal_bonus();
+				return 0;
+			}
+			modify_int_attrib("liminal_bonus", tod_man().set_max_liminal_bonus(value));
+		}
+	}
+	return 0;
+}
+
 /**
  * Gets details about a terrain.
  * - Arg 1: terrain code string.
@@ -880,38 +1087,41 @@ int game_lua_kernel::impl_get_terrain_info(lua_State *L)
 
 /**
  * Gets time of day information.
- * - Arg 1: optional turn number
- * - Arg 2: optional location
- * - Arg 3: optional boolean (consider_illuminates)
+ * - Arg 1: schedule object, location, time area ID, or nil
+ * - Arg 2: optional turn number
  * - Ret 1: table.
  */
+template<bool consider_illuminates>
 int game_lua_kernel::intf_get_time_of_day(lua_State *L)
 {
-	unsigned arg = 1;
-
 	int for_turn = tod_man().turn();
 	map_location loc = map_location();
-	bool consider_illuminates = false;
 
-	if(lua_isnumber(L, arg)) {
-		++arg;
-		for_turn = luaL_checkinteger(L, 1);
+	if(luaW_tolocation(L, 1, loc)) {
+		if(!board().map().on_board_with_border(loc)) {
+			return luaL_argerror(L, 1, "coordinates are not on board");
+		}
+	} else if(lua_isstring(L, 1)) {
+		auto area = tod_man().get_area_by_id(lua_tostring(L, 1));
+		if(area.empty()) {
+			return luaL_error(L, "invalid or empty time_area ID");
+		}
+		// We just need SOME location in that area, it doesn't matter which one.
+		loc = *area.begin();
+	} else if(!lua_isnil(L, 1)) {
+		auto area = tod_man().get_area_by_index(luaW_check_schedule(L, 1));
+		if(area.empty()) {
+			return luaL_error(L, "empty time_area");
+		}
+		// We just need SOME location in that area, it doesn't matter which one.
+		loc = *area.begin();
+	}
+
+	if(lua_isnumber(L, 2)) {
+		for_turn = luaL_checkinteger(L, 2);
 		int number_of_turns = tod_man().number_of_turns();
 		if(for_turn < 1 || (number_of_turns != -1 && for_turn > number_of_turns)) {
-			return luaL_argerror(L, 1, "turn number out of range");
-		}
-	}
-	else if(lua_isnil(L, arg)) ++arg;
-
-	if(luaW_tolocation(L, arg, loc)) {
-		if(!board().map().on_board(loc)) return luaL_argerror(L, arg, "coordinates are not on board");
-
-		if(lua_istable(L, arg)) {
-			lua_rawgeti(L, arg, 3);
-			consider_illuminates = luaW_toboolean(L, -1);
-			lua_pop(L, 1);
-		} else if(lua_isboolean(L, arg + 1)) {
-			consider_illuminates = luaW_toboolean(L, arg + 1);
+			return luaL_argerror(L, 2, "turn number out of range");
 		}
 	}
 
@@ -919,36 +1129,7 @@ int game_lua_kernel::intf_get_time_of_day(lua_State *L)
 		tod_man().get_illuminated_time_of_day(board().units(), board().map(), loc, for_turn) :
 		tod_man().get_time_of_day(loc, for_turn);
 
-	lua_newtable(L);
-	lua_pushstring(L, tod.id.c_str());
-	lua_setfield(L, -2, "id");
-	lua_pushinteger(L, tod.lawful_bonus);
-	lua_setfield(L, -2, "lawful_bonus");
-	lua_pushinteger(L, tod.bonus_modified);
-	lua_setfield(L, -2, "bonus_modified");
-	lua_pushstring(L, tod.image.c_str());
-	lua_setfield(L, -2, "image");
-	luaW_pushtstring(L, tod.name);
-	lua_setfield(L, -2, "name");
-
-	lua_pushinteger(L, tod.color.r);
-	lua_setfield(L, -2, "red");
-	lua_pushinteger(L, tod.color.g);
-	lua_setfield(L, -2, "green");
-	lua_pushinteger(L, tod.color.b);
-	lua_setfield(L, -2, "blue");
-
-	return 1;
-}
-
-/**
- * Gets the max liminal bonus
- * - Ret 1: integer.
- */
-int game_lua_kernel::intf_get_max_liminal_bonus(lua_State *L)
-{
-	int bonus = tod_man().get_max_liminal_bonus();
-	lua_pushinteger(L, bonus);
+	luaW_push_tod(L, tod);
 
 	return 1;
 }
@@ -1120,6 +1301,20 @@ int game_lua_kernel::impl_game_config_get(lua_State *L)
 	return_vector_string_attrib_deprecated("active_resources", "wesnoth.game_config", INDEFINITE, "1.17", "Use wesnoth.scenario.resources instead",
 		utils::split(play_controller_.get_loaded_resources()));
 
+	if(strcmp(m, "global_traits") == 0) {
+		lua_newtable(L);
+		for(const config& trait : unit_types.traits()) {
+			const std::string& id = trait["id"];
+			//It seems the engine never checks the id field for emptiness or duplicates
+			//However, the worst that could happen is that the trait read later overwrites the older one,
+			//and this is not the right place for such checks.
+			lua_pushstring(L, id.c_str());
+			luaW_pushconfig(L, trait);
+			lua_rawset(L, -3);
+		}
+		return 1;
+	}
+
 	const mp_game_settings& mp_settings = play_controller_.get_mp_settings();
 	const game_classification & classification = play_controller_.get_classification();
 
@@ -1130,6 +1325,7 @@ int game_lua_kernel::impl_game_config_get(lua_State *L)
 			game_config_manager::get()->game_config().find_child("era","id",classification.era_id));
 		//^ finds the era with name matching mp_era, and creates a lua reference from the config of that era.
 	}
+
 	return lua_kernel_base::impl_game_config_get(L);
 }
 
@@ -1171,6 +1367,61 @@ namespace {
 	{
 		return game_config_manager::get()->game_config().find_child(type, "id", id);
 	}
+}
+
+static int impl_end_level_data_get(lua_State* L)
+{
+	const end_level_data& data = *static_cast<end_level_data*>(lua_touserdata(L, 1));
+	const char* m = luaL_checkstring(L, 2);
+
+	return_bool_attrib("linger_mode", data.transient.linger_mode);
+	return_bool_attrib("reveal_map", data.transient.reveal_map);
+	return_bool_attrib("carryover_report", data.transient.carryover_report);
+	return_bool_attrib("prescenario_save", data.prescenario_save);
+	return_bool_attrib("replay_save", data.replay_save);
+	return_bool_attrib("proceed_to_next_level", data.proceed_to_next_level);
+	return_bool_attrib("is_victory", data.is_victory);
+	return_bool_attrib("is_loss", !data.is_victory);
+	return_cstring_attrib("result", data.is_victory ? "victory" : "loss"); // to match wesnoth.end_level()
+	return_string_attrib("test_result", data.test_result);
+	return_cfg_attrib("__cfg", data.to_config_full());
+
+	return 0;
+}
+
+namespace {
+	struct end_level_committer {
+		end_level_committer(end_level_data& data, play_controller& pc) : data_(data), pc_(pc) {}
+		~end_level_committer() {
+			pc_.set_end_level_data(data_);
+		}
+	private:
+		end_level_data& data_;
+		play_controller& pc_;
+	};
+}
+
+int game_lua_kernel::impl_end_level_data_set(lua_State* L)
+{
+	end_level_data& data = *static_cast<end_level_data*>(lua_touserdata(L, 1));
+	const char* m = luaL_checkstring(L, 2);
+	end_level_committer commit(data, play_controller_);
+
+	modify_bool_attrib("linger_mode", data.transient.linger_mode = value);
+	modify_bool_attrib("reveal_map", data.transient.reveal_map = value);
+	modify_bool_attrib("carryover_report", data.transient.carryover_report = value);
+	modify_bool_attrib("prescenario_save", data.prescenario_save = value);
+	modify_bool_attrib("replay_save", data.replay_save = value);
+	modify_string_attrib("test_result", data.test_result = value);
+
+	return 0;
+}
+
+static int impl_end_level_data_collect(lua_State* L)
+{
+	end_level_data* data = static_cast<end_level_data*>(lua_touserdata(L, 1));
+	data->~end_level_data();
+	return 0;
 }
 
 /**
@@ -1216,6 +1467,25 @@ int game_lua_kernel::impl_scenario_get(lua_State *L)
 		lua_push(L, mods);
 		return 1;
 	}
+	if(strcmp(m, "end_level_data") == 0) {
+		if (!play_controller_.is_regular_game_end()) {
+			return 0;
+		}
+		auto data = play_controller_.get_end_level_data();
+		new(L) end_level_data(data);
+		if(luaL_newmetatable(L, "end level data")) {
+			static luaL_Reg const callbacks[] {
+				{ "__index", 	    &impl_end_level_data_get},
+				{ "__newindex",     &dispatch<&game_lua_kernel::impl_end_level_data_set>},
+				{ "__gc",           &impl_end_level_data_collect},
+				{ nullptr, nullptr }
+			};
+			luaL_setfuncs(L, callbacks, 0);
+		}
+		lua_setmetatable(L, -2);
+
+		return 1;
+	}
 
 	if(classification.is_multiplayer()) {
 		return_cfgref_attrib("mp_settings", play_controller_.get_mp_settings().to_config());
@@ -1245,6 +1515,22 @@ int game_lua_kernel::impl_scenario_set(lua_State *L)
 	modify_bool_attrib("show_credits", classification.end_credits = value);
 	modify_string_attrib("end_text", classification.end_text = value);
 	modify_int_attrib("end_text_duration", classification.end_text_duration = value);
+	if(strcmp(m, "end_level_data") == 0) {
+		vconfig cfg(luaW_checkvconfig(L, 3));
+		end_level_data data;
+
+		data.proceed_to_next_level = cfg["proceed_to_next_level"].to_bool(true);
+		data.transient.carryover_report = cfg["carryover_report"].to_bool(true);
+		data.prescenario_save = cfg["save"].to_bool(true);
+		data.replay_save = cfg["replay_save"].to_bool(true);
+		data.transient.linger_mode = cfg["linger_mode"].to_bool(true) && !teams().empty();
+		data.transient.reveal_map = cfg["reveal_map"].to_bool(true);
+		data.is_victory = cfg["result"] == "victory";
+		data.test_result = cfg["test_result"].str(LEVEL_RESULT::enum_to_string(LEVEL_RESULT::TEST_NOT_SET));
+		play_controller_.set_end_level_data(data);
+
+		return 1;
+	}
 	return 0;
 }
 
@@ -1290,6 +1576,10 @@ int game_lua_kernel::impl_current_get(lua_State *L)
 
 	if(strcmp(m, "map") == 0) {
 		return intf_terrainmap_get(L);
+	}
+	if(strcmp(m, "schedule") == 0) {
+		luaW_push_schedule(L, -1);
+		return 1;
 	}
 
 	if (strcmp(m, "event_context") == 0)
@@ -1372,98 +1662,6 @@ int game_lua_kernel::intf_clear_messages(lua_State*)
 	if (game_display_) {
 		game_display_->get_chat_manager().clear_chat_messages();
 	}
-	return 0;
-}
-
-static int impl_end_level_data_get(lua_State* L)
-{
-	const end_level_data& data = *static_cast<end_level_data*>(lua_touserdata(L, 1));
-	const char* m = luaL_checkstring(L, 2);
-
-	return_bool_attrib("linger_mode", data.transient.linger_mode);
-	return_bool_attrib("reveal_map", data.transient.reveal_map);
-	return_bool_attrib("carryover_report", data.transient.carryover_report);
-	return_bool_attrib("prescenario_save", data.prescenario_save);
-	return_bool_attrib("replay_save", data.replay_save);
-	return_bool_attrib("proceed_to_next_level", data.proceed_to_next_level);
-	return_bool_attrib("is_victory", data.is_victory);
-	return_bool_attrib("is_loss", !data.is_victory);
-	return_cstring_attrib("result", data.is_victory ? "victory" : "loss"); // to match wesnoth.end_level()
-	return_string_attrib("test_result", data.test_result);
-	return_cfg_attrib("__cfg", data.to_config_full());
-
-	return 0;
-}
-
-namespace {
-	struct end_level_committer {
-		end_level_committer(end_level_data& data, play_controller& pc) : data_(data), pc_(pc) {}
-		~end_level_committer() {
-			pc_.set_end_level_data(data_);
-		}
-	private:
-		end_level_data& data_;
-		play_controller& pc_;
-	};
-}
-
-int game_lua_kernel::impl_end_level_data_set(lua_State* L)
-{
-	end_level_data& data = *static_cast<end_level_data*>(lua_touserdata(L, 1));
-	const char* m = luaL_checkstring(L, 2);
-	end_level_committer commit(data, play_controller_);
-
-	modify_bool_attrib("linger_mode", data.transient.linger_mode = value);
-	modify_bool_attrib("reveal_map", data.transient.reveal_map = value);
-	modify_bool_attrib("carryover_report", data.transient.carryover_report = value);
-	modify_bool_attrib("prescenario_save", data.prescenario_save = value);
-	modify_bool_attrib("replay_save", data.replay_save = value);
-	modify_string_attrib("test_result", data.test_result = value);
-
-	return 0;
-}
-
-static int impl_end_level_data_collect(lua_State* L)
-{
-	end_level_data* data = static_cast<end_level_data*>(lua_touserdata(L, 1));
-	data->~end_level_data();
-	return 0;
-}
-
-int game_lua_kernel::intf_get_end_level_data(lua_State* L)
-{
-	if (!play_controller_.is_regular_game_end()) {
-		return 0;
-	}
-	auto data = play_controller_.get_end_level_data();
-	new(L) end_level_data(data);
-	if(luaL_newmetatable(L, "end level data")) {
-		static luaL_Reg const callbacks[] {
-			{ "__index", 	    &impl_end_level_data_get},
-			{ "__newindex",     &dispatch<&game_lua_kernel::impl_end_level_data_set>},
-			{ "__gc",           &impl_end_level_data_collect},
-			{ nullptr, nullptr }
-		};
-		luaL_setfuncs(L, callbacks, 0);
-	}
-	lua_setmetatable(L, -2);
-	return 1;
-}
-
-int game_lua_kernel::intf_end_level(lua_State *L)
-{
-	vconfig cfg(luaW_checkvconfig(L, 1));
-	end_level_data data;
-
-	data.proceed_to_next_level = cfg["proceed_to_next_level"].to_bool(true);
-	data.transient.carryover_report = cfg["carryover_report"].to_bool(true);
-	data.prescenario_save = cfg["save"].to_bool(true);
-	data.replay_save = cfg["replay_save"].to_bool(true);
-	data.transient.linger_mode = cfg["linger_mode"].to_bool(true) && !teams().empty();
-	data.transient.reveal_map = cfg["reveal_map"].to_bool(true);
-	data.is_victory = cfg["result"] == "victory";
-	data.test_result = cfg["test_result"].str(LEVEL_RESULT::enum_to_string(LEVEL_RESULT::TEST_NOT_SET));
-	play_controller_.set_end_level_data(data);
 	return 0;
 }
 
@@ -1561,7 +1759,7 @@ int game_lua_kernel::intf_find_path(lua_State *L)
 				// If there's a unit, we have a valid side, so fall back to legacy behaviour.
 				// If we don't have a unit, legacy behaviour would be a crash, so let's not.
 				if(u) see_all = true;
-				deprecated_message("wesnoth.find_path with viewing_side=0 (or an invalid side)", DEP_LEVEL::FOR_REMOVAL, {1, 17, 0}, "To consider fogged and hidden units, use ignore_visibility=true instead.");
+				deprecated_message("wesnoth.paths.find_path with viewing_side=0 (or an invalid side)", DEP_LEVEL::FOR_REMOVAL, {1, 17, 0}, "To consider fogged and hidden units, use ignore_visibility=true instead.");
 			}
 		}
 		lua_pop(L, 1);
@@ -1575,7 +1773,7 @@ int game_lua_kernel::intf_find_path(lua_State *L)
 	}
 	else if (lua_isfunction(L, arg))
 	{
-		deprecated_message("wesnoth.find_path with cost_function as last argument", DEP_LEVEL::FOR_REMOVAL, {1, 17, 0}, "Use calculate=cost_function inside the path options table instead.");
+		deprecated_message("wesnoth.paths.find_path with cost_function as last argument", DEP_LEVEL::FOR_REMOVAL, {1, 17, 0}, "Use calculate=cost_function inside the path options table instead.");
 		calc.reset(new lua_pathfind_cost_calculator(L, arg));
 	}
 
@@ -1583,7 +1781,7 @@ int game_lua_kernel::intf_find_path(lua_State *L)
 
 	if(!ignore_teleport) {
 		if(viewing_side == 0) {
-			return luaL_error(L, "wesnoth.find_path: ignore_teleport=false requires a valid viewing_side");
+			return luaL_error(L, "wesnoth.paths.find_path: ignore_teleport=false requires a valid viewing_side");
 		} else {
 			teleport_locations = pathfind::get_teleport_locations(*u, board().get_team(viewing_side), see_all, ignore_units);
 		}
@@ -1981,7 +2179,12 @@ int game_lua_kernel::intf_print(lua_State *L) {
 		return 0;
 
 	int size = cfg["size"].to_int(font::SIZE_SMALL);
-	int lifetime = cfg["duration"].to_int(50);
+	int lifetime;
+	if(cfg["duration"] == "unlimited") {
+		lifetime = -1;
+	} else {
+		lifetime = cfg["duration"].to_int(5000);
+	}
 
 	color_t color = font::LABEL_COLOR;
 
@@ -2548,7 +2751,7 @@ int game_lua_kernel::intf_play_sound(lua_State *L)
 {
 	if (play_controller_.is_skipping_replay()) return 0;
 	char const *m = luaL_checkstring(L, 1);
-	int repeats = luaL_optinteger(L, 2, 1);
+	int repeats = luaL_optinteger(L, 2, 0);
 	sound::play_sound(m, sound::SOUND_FX, repeats);
 	return 0;
 }
@@ -2687,7 +2890,9 @@ namespace
 			lua_pushnumber(L, side);
 			if (luaW_pcall(L, 1, 1, false)) {
 				if(!luaW_toconfig(L, -1, cfg)) {
-					lua_kernel_base::get_lua_kernel<game_lua_kernel>(L).log_error("function returned to wesnoth.synchronize_choice a table which was partially invalid");
+					static const char* msg = "function returned to wesnoth.sync.[multi_]evaluate a table which was partially invalid";
+					lua_kernel_base::get_lua_kernel<game_lua_kernel>(L).log_error(msg);
+					lua_warning(L, msg, false);
 				}
 			}
 		}
@@ -3052,26 +3257,6 @@ int game_lua_kernel::intf_get_sides(lua_State* L)
 }
 
 /**
- * .Returns information about the global traits known to the engine.
- * - Ret 1: Table with named fields holding wml tables describing the traits.
- */
-static int intf_get_traits(lua_State* L)
-{
-	lua_newtable(L);
-	for(const config& trait : unit_types.traits()) {
-		const std::string& id = trait["id"];
-		//It seems the engine does nowhere check the id field for emptyness or duplicates
-		//(also not later on).
-		//However, the worst thing to happen is that the trait read later overwrites the older one,
-		//and this is not the right place for such checks.
-		lua_pushstring(L, id.c_str());
-		luaW_pushconfig(L, trait);
-		lua_rawset(L, -3);
-	}
-	return 1;
-}
-
-/**
  * Adds a modification to a unit.
  * - Arg 1: unit.
  * - Arg 2: string.
@@ -3297,7 +3482,7 @@ int game_lua_kernel::intf_delay(lua_State *L)
 	return 0;
 }
 
-int game_lua_kernel::intf_label(lua_State *L, bool add)
+int game_lua_kernel::intf_add_label(lua_State *L)
 {
 	if (game_display_) {
 		vconfig cfg(luaW_checkvconfig(L, 1));
@@ -3306,8 +3491,27 @@ int game_lua_kernel::intf_label(lua_State *L, bool add)
 
 		terrain_label label(screen.labels(), cfg.get_config());
 
-		screen.labels().set_label(label.location(), add ? label.text() : "", label.creator(), label.team_name(), label.color(),
+		screen.labels().set_label(label.location(), label.text(), label.creator(), label.team_name(), label.color(),
 				label.visible_in_fog(), label.visible_in_shroud(), label.immutable(), label.category(), label.tooltip());
+	}
+	return 0;
+}
+
+int game_lua_kernel::intf_remove_label(lua_State *L)
+{
+	if (game_display_) {
+		map_location loc = luaW_checklocation(L, 1);
+		std::string team_name;
+
+		// If there's only one parameter and it's a table, check if it contains team_name
+		if(lua_gettop(L) == 1 && lua_istable(L, 1)) {
+			using namespace std::literals;
+			team_name = luaW_table_get_def(L, 1, "team_name", ""sv);
+		} else {
+			team_name = luaL_optstring(L, 2, "");
+		}
+
+		game_display_->labels().set_label(loc, "", -1, team_name);
 	}
 	return 0;
 }
@@ -3589,19 +3793,42 @@ int game_lua_kernel::intf_cancel_action(lua_State*)
 	return 0;
 }
 
-/** Adding new time_areas dynamically with Standard Location Filters. */
+/** Adding new time_areas dynamically with Standard Location Filters.
+ * Arg 1: Area ID
+ * Arg 2: Area locations (either a filter or a list of locations)
+ * Arg 3: (optional) Area schedule - WML table with [time] tags and optional current_time=
+ */
 int game_lua_kernel::intf_add_time_area(lua_State * L)
 {
 	log_scope("time_area");
 
-	vconfig cfg(luaW_checkvconfig(L, 1));
-	const std::string id = cfg["id"];
-
+	std::string id;
 	std::set<map_location> locs;
-	const terrain_filter filter(cfg, &game_state_, false);
-	filter.get_locations(locs, true);
-	config parsed_cfg = cfg.get_parsed_config();
-	tod_man().add_time_area(id, locs, parsed_cfg);
+	config times;
+
+	if(lua_gettop(L) == 1) {
+		vconfig cfg = luaW_checkvconfig(L, 1);
+		deprecated_message("Single-argument wesnoth.map.place_area is deprecated. Instead, pass ID, filter, and schedule as three separate arguments.", DEP_LEVEL::INDEFINITE, {1, 17, 0});
+		id = cfg["id"].str();
+		const terrain_filter filter(cfg, &game_state_, false);
+		filter.get_locations(locs, true);
+		times = cfg.get_parsed_config();
+	} else {
+		id = luaL_checkstring(L, 1);
+		if(!lua_isnoneornil(L, 3))
+			times = luaW_checkconfig(L, 3);
+		vconfig cfg{config()};
+		if(luaW_tovconfig(L, 2, cfg)) {
+			// Second argument is a location filter
+			const terrain_filter filter(cfg, &game_state_, false);
+			filter.get_locations(locs, true);
+		} else {
+			// Second argument is an array of locations
+			luaW_check_locationset(L, 2);
+		}
+	}
+
+	tod_man().add_time_area(id, locs, times);
 	LOG_LUA << "Lua inserted time_area '" << id << "'\n";
 	return 0;
 }
@@ -3618,70 +3845,52 @@ int game_lua_kernel::intf_remove_time_area(lua_State * L)
 	return 0;
 }
 
+int game_lua_kernel::intf_get_time_area(lua_State* L)
+{
+	map_location loc;
+	if(luaW_tolocation(L, 1, loc)) {
+		int area_index = tod_man().get_area_on_hex(loc).first;
+		if(area_index < 0) {
+			lua_pushnil(L);
+			return 1;
+		}
+		luaW_push_schedule(L, area_index);
+		return 1;
+	} else {
+		std::string area_id = luaL_checkstring(L, 1);
+		const auto& area_ids = tod_man().get_area_ids();
+		if(auto iter = std::find(area_ids.begin(), area_ids.end(), area_id); iter == area_ids.end()) {
+			lua_pushnil(L);
+			return 1;
+		} else {
+			luaW_push_schedule(L, std::distance(area_ids.begin(), iter));
+			return 1;
+		}
+	}
+}
+
 /** Replacing the current time of day schedule. */
 int game_lua_kernel::intf_replace_schedule(lua_State * L)
 {
-	vconfig cfg = luaW_checkvconfig(L, 1);
-
-	if(cfg.get_children("time").empty()) {
-		ERR_LUA << "attempted to to replace ToD schedule with empty schedule" << std::endl;
+	map_location loc;
+	if(luaL_testudata(L, 1, "schedule")) {
+		// Replace the global schedule with a time area's schedule
+		// Replacing the global schedule with the global schedule
+		// is also supported but obviously a no-op
+		int area = luaW_check_schedule(L, 1);
+		if(area >= 0) tod_man().replace_schedule(tod_man().times(area));
 	} else {
-		tod_man().replace_schedule(cfg.get_parsed_config());
-		if (game_display_) {
-			game_display_->new_turn();
-		}
-		LOG_LUA << "replaced ToD schedule\n";
-	}
-	return 0;
-}
+		vconfig cfg = luaW_checkvconfig(L, 1);
 
-int game_lua_kernel::intf_set_time_of_day(lua_State * L)
-{
-	if(!game_display_) {
-		return 0;
-	}
-	std::string area_id;
-	std::size_t area_i = 0;
-	if (lua_isstring(L, 2)) {
-		area_id = lua_tostring(L, 1);
-		std::vector<std::string> area_ids = tod_man().get_area_ids();
-		area_i = std::distance(area_ids.begin(), std::find(area_ids.begin(), area_ids.end(), area_id));
-		if(area_i >= area_ids.size()) {
-			return luaL_argerror(L, 1, "invalid time area ID");
-		}
-	}
-	int is_num = false;
-	int new_time = lua_tonumberx(L, 1, &is_num) - 1;
-	const std::vector<time_of_day>& times = area_id.empty()
-		? tod_man().times()
-		: tod_man().times(area_i);
-	int num_times = times.size();
-	if(!is_num) {
-		std::string time_id = luaL_checkstring(L, 1);
-		new_time = 0;
-		for(const time_of_day& time : times) {
-			if(time_id == time.id) {
-				break;
+		if(cfg.get_children("time").empty()) {
+			ERR_LUA << "attempted to to replace ToD schedule with empty schedule" << std::endl;
+		} else {
+			tod_man().replace_schedule(cfg.get_parsed_config());
+			if (game_display_) {
+				game_display_->new_turn();
 			}
-			new_time++;
+			LOG_LUA << "replaced ToD schedule\n";
 		}
-		if(new_time >= num_times) {
-			return luaL_argerror(L, 1, "invalid time of day ID");
-		}
-	}
-
-	if(new_time == 0 && num_times == 0) {
-		//ignore this case, because we don't want code like set_current_time(get_current_time()) to fail if num_times is 0.
-		return 0;
-	}
-	if(new_time < 0 || new_time >= num_times) {
-		return luaL_argerror(L, 1, "invalid time of day index");
-	}
-
-	if(area_id.empty()) {
-		tod_man().set_current_time(new_time);
-	} else {
-		tod_man().set_current_time(new_time, area_i);
 	}
 	return 0;
 }
@@ -3849,14 +4058,8 @@ int game_lua_kernel::intf_log(lua_State *L)
 
 int game_lua_kernel::intf_get_fog_or_shroud(lua_State *L, bool fog)
 {
-	int side = luaL_checknumber(L, 1);
+	team& t = luaW_checkteam(L, 1, board());
 	map_location loc = luaW_checklocation(L, 2);
-	if(side < 1 || static_cast<std::size_t>(side) > teams().size()) {
-		std::string error = "side " + std::to_string(side) + " does not exist";
-		return luaL_argerror(L, 1, error.c_str());
-	}
-
-	team& t = board().get_team(side);
 	lua_pushboolean(L, fog ? t.fogged(loc) : t.shrouded(loc));
 	return 1;
 }
@@ -3880,8 +4083,10 @@ int game_lua_kernel::intf_toggle_fog(lua_State *L, const bool clear)
 		affect_normal_fog = luaW_toboolean(L, -1);
 	}
 	std::set<int> sides;
-	if(lua_isnumber(L, 1)) {
-		sides.insert(lua_tonumber(L, 1));
+	if(team* t = luaW_toteam(L, 1)) {
+		sides.insert(t->side());
+	} else if(lua_isnumber(L, 1)) {
+		sides.insert(lua_tointeger(L, 1));
 	} else if(lua_istable(L, 1) && lua_istable(L, 2)) {
 		const auto& v = lua_check<std::vector<int>>(L, 1);
 		sides.insert(v.begin(), v.end());
@@ -4001,40 +4206,18 @@ game_lua_kernel::game_lua_kernel(game_state & gs, play_controller & pc, reports 
 		{ "add_known_unit",           &intf_add_known_unit           },
 		{ "get_era",                  &intf_get_era                  },
 		{ "get_resource",             &intf_get_resource             },
-		{ "get_traits",               &intf_get_traits               },
-		{ "get_viewing_side",         &intf_get_viewing_side         },
-		{ "invoke_synced_command",    &intf_invoke_synced_command    },
 		{ "modify_ai",                &intf_modify_ai_old            },
-		{ "unsynced",                 &intf_do_unsynced              },
 		{ "add_event_handler",         &dispatch<&game_lua_kernel::intf_add_event                  >        },
-		{ "allow_end_turn",            &dispatch<&game_lua_kernel::intf_allow_end_turn             >        },
 		{ "allow_undo",                &dispatch<&game_lua_kernel::intf_allow_undo                 >        },
 		{ "cancel_action",             &dispatch<&game_lua_kernel::intf_cancel_action              >        },
-		{ "clear_messages",            &dispatch<&game_lua_kernel::intf_clear_messages             >        },
-		{ "end_turn",                  &dispatch<&game_lua_kernel::intf_end_turn                   >        },
-		{ "end_level",                 &dispatch<&game_lua_kernel::intf_end_level                  >        },
-		{ "find_cost_map",             &dispatch<&game_lua_kernel::intf_find_cost_map              >        },
-		{ "find_path",                 &dispatch<&game_lua_kernel::intf_find_path                  >        },
-		{ "find_reach",                &dispatch<&game_lua_kernel::intf_find_reach                 >        },
-		{ "find_vacant_tile",          &dispatch<&game_lua_kernel::intf_find_vacant_tile           >        },
-		{ "find_vision_range",         &dispatch<&game_lua_kernel::intf_find_vision_range          >        },
 		{ "fire_event",                &dispatch2<&game_lua_kernel::intf_fire_event, false         >        },
 		{ "fire_event_by_id",          &dispatch2<&game_lua_kernel::intf_fire_event, true          >        },
-		{ "get_end_level_data",        &dispatch<&game_lua_kernel::intf_get_end_level_data         >        },
-		{ "get_time_of_day",           &dispatch<&game_lua_kernel::intf_get_time_of_day            >        },
-		{ "get_max_liminal_bonus",     &dispatch<&game_lua_kernel::intf_get_max_liminal_bonus      >        },
 		{ "log_replay",                &dispatch<&game_lua_kernel::intf_log_replay                 >        },
 		{ "log",                       &dispatch<&game_lua_kernel::intf_log                        >        },
-		{ "message",                   &dispatch<&game_lua_kernel::intf_message                    >        },
 		{ "print",                     &dispatch<&game_lua_kernel::intf_print                      >        },
 		{ "redraw",                    &dispatch<&game_lua_kernel::intf_redraw                     >        },
 		{ "remove_event_handler",      &dispatch<&game_lua_kernel::intf_remove_event               >        },
-		{ "replace_schedule",          &dispatch<&game_lua_kernel::intf_replace_schedule           >        },
-		{ "set_time_of_day",           &dispatch<&game_lua_kernel::intf_set_time_of_day            >        },
 		{ "simulate_combat",           &dispatch<&game_lua_kernel::intf_simulate_combat            >        },
-		{ "synchronize_choice",        &intf_synchronize_choice                                             },
-		{ "synchronize_choices",       &intf_synchronize_choices                                            },
-		{ "teleport",                  &dispatch<&game_lua_kernel::intf_teleport                   >        },
 		{ nullptr, nullptr }
 	};lua_getglobal(L, "wesnoth");
 	if (!lua_istable(L,-1)) {
@@ -4136,28 +4319,24 @@ game_lua_kernel::game_lua_kernel(game_state & gs, play_controller & pc, reports 
 		{"on_board", &intf_on_board},
 		{"on_border", &intf_on_border},
 		{"iter", &intf_terrainmap_iter},
-		// Shroud operations
-		{"place_shroud", &dispatch2<&game_lua_kernel::intf_shroud_op, true>},
-		{"remove_shroud", &dispatch2<&game_lua_kernel::intf_shroud_op, false>},
-		{"is_shrouded", &dispatch2<&game_lua_kernel::intf_get_fog_or_shroud, false>},
-		// Fog operations
-		{"place_fog", &dispatch2<&game_lua_kernel::intf_toggle_fog, false>},
-		{"remove_fog", &dispatch2<&game_lua_kernel::intf_toggle_fog, true>},
-		{"is_fogged", &dispatch2<&game_lua_kernel::intf_get_fog_or_shroud, true>},
 		// Village operations
 		{"get_owner", &dispatch<&game_lua_kernel::intf_get_village_owner>},
 		{"set_owner", &dispatch<&game_lua_kernel::intf_set_village_owner>},
 		// Label operations
-		{"add_label", &dispatch2<&game_lua_kernel::intf_label, true>},
-		{"remove_label", &dispatch2<&game_lua_kernel::intf_label, false>},
+		{"add_label", &dispatch<&game_lua_kernel::intf_add_label>},
+		{"remove_label", &dispatch<&game_lua_kernel::intf_remove_label>},
 		{"get_label", &dispatch<&game_lua_kernel::intf_get_label>},
 		// Time area operations
 		{"place_area", &dispatch<&game_lua_kernel::intf_add_time_area>},
 		{"remove_area", &dispatch<&game_lua_kernel::intf_remove_time_area>},
+		{"get_area", &dispatch<&game_lua_kernel::intf_get_time_area>},
 		// Filters
 		{"find", &dispatch<&game_lua_kernel::intf_get_locations>},
 		{"matches", &dispatch<&game_lua_kernel::intf_match_location>},
 		{"replace_if_failed", intf_replace_if_failed},
+		// Shroud bitmaps
+		{"parse_bitmap", intf_parse_shroud_bitmap},
+		{"make_bitmap", intf_make_shroud_bitmap},
 		{ nullptr, nullptr }
 	};
 	luaL_setfuncs(L, map_callbacks, 0);
@@ -4175,6 +4354,7 @@ game_lua_kernel::game_lua_kernel(game_state & gs, play_controller & pc, reports 
 		{"to_map", &dispatch<&game_lua_kernel::intf_put_unit>},
 		{"to_recall", &dispatch<&game_lua_kernel::intf_put_recall_unit>},
 		{"transform", &intf_transform_unit},
+		{"teleport", &dispatch<&game_lua_kernel::intf_teleport>},
 
 		{"ability", &dispatch<&game_lua_kernel::intf_unit_ability>},
 		{"defense_on", &intf_unit_defense},
@@ -4215,6 +4395,15 @@ game_lua_kernel::game_lua_kernel(game_state & gs, play_controller & pc, reports 
 		{ "find", &dispatch<&game_lua_kernel::intf_get_sides> },
 		{ "get", &dispatch<&game_lua_kernel::intf_get_side> },
 		{ "create", &dispatch<&game_lua_kernel::intf_create_side> },
+		// Shroud operations
+		{"place_shroud", &dispatch2<&game_lua_kernel::intf_toggle_shroud, true>},
+		{"remove_shroud", &dispatch2<&game_lua_kernel::intf_toggle_shroud, false>},
+		{"override_shroud", &dispatch<&game_lua_kernel::intf_override_shroud>},
+		{"is_shrouded", &dispatch2<&game_lua_kernel::intf_get_fog_or_shroud, false>},
+		// Fog operations
+		{"place_fog", &dispatch2<&game_lua_kernel::intf_toggle_fog, false>},
+		{"remove_fog", &dispatch2<&game_lua_kernel::intf_toggle_fog, true>},
+		{"is_fogged", &dispatch2<&game_lua_kernel::intf_get_fog_or_shroud, true>},
 		{ nullptr, nullptr }
 	};
 	std::vector<lua_cpp::Reg> const cpp_side_callbacks {
@@ -4253,6 +4442,11 @@ game_lua_kernel::game_lua_kernel(game_state & gs, play_controller & pc, reports 
 		{"zoom", &dispatch<&game_lua_kernel::intf_zoom>},
 		{"clear_menu_item", &dispatch<&game_lua_kernel::intf_clear_menu_item>},
 		{"set_menu_item", &dispatch<&game_lua_kernel::intf_set_menu_item>},
+		{"allow_end_turn", &dispatch<&game_lua_kernel::intf_allow_end_turn>},
+		{"clear_chat_messages", &dispatch<&game_lua_kernel::intf_clear_messages>},
+		{"end_turn", &dispatch<&game_lua_kernel::intf_end_turn>},
+		{"get_viewing_side", &intf_get_viewing_side},
+		{"add_chat_message", &dispatch<&game_lua_kernel::intf_message>},
 		{ nullptr, nullptr }
 	};
 	lua_getglobal(L, "wesnoth");
@@ -4271,6 +4465,53 @@ game_lua_kernel::game_lua_kernel(game_state & gs, play_controller & pc, reports 
 	lua_newtable(L);
 	luaL_setfuncs(L, audio_callbacks, 0);
 	lua_setfield(L, -2, "audio");
+	lua_pop(L, 1);
+
+	// Create the paths module
+	cmd_log_ << "Adding paths module...\n";
+	static luaL_Reg const path_callbacks[] {
+		{ "find_cost_map",             &dispatch<&game_lua_kernel::intf_find_cost_map              >        },
+		{ "find_path",                 &dispatch<&game_lua_kernel::intf_find_path                  >        },
+		{ "find_reach",                &dispatch<&game_lua_kernel::intf_find_reach                 >        },
+		{ "find_vacant_hex",          &dispatch<&game_lua_kernel::intf_find_vacant_tile           >        },
+		{ "find_vision_range",         &dispatch<&game_lua_kernel::intf_find_vision_range          >        },
+		{ nullptr, nullptr }
+	};
+	lua_getglobal(L, "wesnoth");
+	lua_newtable(L);
+	luaL_setfuncs(L, path_callbacks, 0);
+	lua_setfield(L, -2, "paths");
+	lua_pop(L, 1);
+
+	// Create the sync module
+	cmd_log_ << "Adding sync module...\n";
+	static luaL_Reg const sync_callbacks[] {
+		{ "invoke_command",    &intf_invoke_synced_command },
+		{ "run_unsynced",      &intf_do_unsynced },
+		{ "evaluate_single",   &intf_synchronize_choice },
+		{ "evaluate_multiple", &intf_synchronize_choices },
+		{ nullptr, nullptr }
+	};
+	lua_getglobal(L, "wesnoth");
+	lua_newtable(L);
+	luaL_setfuncs(L, sync_callbacks, 0);
+	lua_setfield(L, -2, "sync");
+	lua_pop(L, 1);
+
+	// Create the schedule module
+	cmd_log_ << "Adding schedule module...\n";
+	static luaL_Reg const schedule_callbacks[] {
+		{ "get_time_of_day", &dispatch<&game_lua_kernel::intf_get_time_of_day<false>>},
+		{ "get_illumination", &dispatch<&game_lua_kernel::intf_get_time_of_day<true>>},
+		{ "replace", &dispatch<&game_lua_kernel::intf_replace_schedule>},
+		{ nullptr, nullptr }
+	};
+	lua_getglobal(L, "wesnoth");
+	lua_newtable(L);
+	luaL_setfuncs(L, schedule_callbacks, 0);
+	lua_createtable(L, 0, 2);
+	lua_setmetatable(L, -2);
+	lua_setfield(L, -2, "schedule");
 	lua_pop(L, 1);
 
 	// Create the playlist table with its metatable

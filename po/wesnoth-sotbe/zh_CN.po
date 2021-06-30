@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wesnoth-1.14\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-03-12 23:18 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2020-08-10 20:15+0800\n"
 "Last-Translator: CloudiDust <cloudidust@gmail.com>\n"
 "Language-Team: Wesnoth Simplified Chinese Team\n"
@@ -729,7 +729,9 @@ msgid "Blemaker"
 msgstr "布列马克"
 
 #. [unit]: id=Grüü, type=Troll Hero
+#. [side]: id=Grüü, type=Great Troll
 #: data/campaigns/Son_Of_The_Black_Eye/scenarios/03_Toward_Mountains_of_Haag.cfg:248
+#: data/campaigns/Son_Of_The_Black_Eye/scenarios/14_Back_Home.cfg:80
 msgid "Grüü"
 msgstr "咕噜"
 

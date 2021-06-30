@@ -20,7 +20,7 @@ That means before loading the WML tags via wesnoth.require "wml".
 
 function wml_actions.sync_variable(cfg)
 	local names = cfg.name or wml.error "[sync_variable] missing required name= attribute."
-	local result = wesnoth.synchronize_choice(
+	local result = wesnoth.sync.evaluate_single(
 		function()
 			local res = {}
 			for _,name_raw in ipairs(names:split()) do
@@ -65,7 +65,7 @@ function wml_actions.chat(cfg)
 
 	for index, side in ipairs(side_list) do
 		if side.controller == "human" and side.is_local then
-			wesnoth.message(speaker, message)
+			wesnoth.interface.add_chat_message(speaker, message)
 			break
 		end
 	end
@@ -83,7 +83,7 @@ function wml_actions.chat(cfg)
 		end
 
 		if not has_human_side then
-			wesnoth.message(speaker, message)
+			wesnoth.interface.add_chat_message(speaker, message)
 		end
 	end
 end
@@ -651,11 +651,11 @@ function wml_actions.allow_undo(cfg)
 end
 
 function wml_actions.allow_end_turn(cfg)
-	wesnoth.allow_end_turn(true)
+	wesnoth.interface.allow_end_turn(true)
 end
 
 function wml_actions.disallow_end_turn(cfg)
-	wesnoth.allow_end_turn(cfg.reason or false)
+	wesnoth.interface.allow_end_turn(cfg.reason or false)
 end
 
 function wml_actions.clear_menu_item(cfg)
@@ -670,7 +670,7 @@ function wml_actions.place_shroud(cfg)
 	local sides = utils.get_sides(cfg)
 	local tiles = wesnoth.map.find(cfg)
 	for i,side in ipairs(sides) do
-		wesnoth.map.place_shroud(side.side, tiles)
+		side:place_shroud(tiles)
 	end
 end
 
@@ -678,7 +678,7 @@ function wml_actions.remove_shroud(cfg)
 	local sides = utils.get_sides(cfg)
 	local tiles = wesnoth.map.find(cfg)
 	for i,side in ipairs(sides) do
-		wesnoth.map.remove_shroud(side.side, tiles)
+		side:remove_shroud(tiles)
 	end
 end
 
@@ -686,7 +686,7 @@ function wml_actions.time_area(cfg)
 	if cfg.remove then
 		wml_actions.remove_time_area(cfg)
 	else
-		wesnoth.map.place_area(cfg)
+		wesnoth.map.place_area(cfg.id or '', cfg, cfg)
 	end
 end
 
@@ -699,7 +699,7 @@ function wml_actions.remove_time_area(cfg)
 end
 
 function wml_actions.replace_schedule(cfg)
-	wesnoth.replace_schedule(cfg)
+	wesnoth.schedule.replace(cfg)
 end
 
 function wml_actions.scroll(cfg)
@@ -720,7 +720,7 @@ function wml_actions.color_adjust(cfg)
 end
 
 function wml_actions.end_turn(cfg)
-	wesnoth.end_turn()
+	wesnoth.interface.end_turn()
 end
 
 function wml_actions.event(cfg)
@@ -753,7 +753,7 @@ function wml_actions.label( cfg )
 end
 
 function wml_actions.open_help(cfg)
-	gui.open_help(cfg.topic)
+	gui.show_help(cfg.topic)
 end
 
 function wml_actions.redraw(cfg)
@@ -772,7 +772,7 @@ function wml_actions.print(cfg)
 end
 
 function wml_actions.unsynced(cfg)
-	wesnoth.unsynced(function ()
+	wesnoth.sync.run_unsynced(function ()
 		wml_actions.command(cfg)
 	end)
 end
@@ -795,7 +795,7 @@ wml_actions.unstore_unit = function(cfg)
 	wesnoth.add_known_unit(unit.type)
 	if x ~= 'recall' and y ~= 'recall' and wesnoth.current.map:on_board(x, y) then
 		if cfg.find_vacant then
-			x,y = wesnoth.find_vacant_tile(x, y, check_passability and unit)
+			x,y = wesnoth.paths.find_vacant_hex(x, y, check_passability and unit)
 		end
 		unit:to_map(x, y, cfg.fire_event)
 		local text
@@ -831,7 +831,7 @@ wml_actions.teleport = function(cfg)
 	if cfg.location_id then
 		x,y = table.unpack(wesnoth.current.map.special_locations[cfg.location_id])
 	end
-	wesnoth.teleport(unit, x, y, cfg.check_passability == false, cfg.clear_shroud ~= false, cfg.animate)
+	unit:teleport(x, y, cfg.check_passability == false, cfg.clear_shroud ~= false, cfg.animate)
 end
 
 function wml_actions.remove_sound_source(cfg)
@@ -869,14 +869,14 @@ end
 function wml_actions.lift_fog(cfg)
 	local locs, sides = parse_fog_cfg(cfg)
 	for i = 1, #sides do
-		wesnoth.map.remove_fog(sides[i].side, locs, not cfg.multiturn)
+		sides[i]:remove_fog(locs, not cfg.multiturn)
 	end
 end
 
 function wml_actions.reset_fog(cfg)
 	local locs, sides = parse_fog_cfg(cfg)
 	for i = 1, #sides do
-		wesnoth.map.place_fog(sides[i].side, locs, cfg.reset_view)
+		sides[i]:place_fog(locs, cfg.reset_view)
 	end
 end
 

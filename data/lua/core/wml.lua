@@ -123,8 +123,8 @@ end
 --! Removes all matching child tags from @a cfg
 function wml.remove_children(cfg, ...)
 	for i = #cfg, 1, -1 do
-		for _,v in ipairs(...) do
-			if cfg[i] == v then
+		for j = 1, select('#', ...) do
+			if cfg[i] and cfg[i][1] == select(j, ...) then
 				table.remove(cfg, i)
 			end
 		end
@@ -385,7 +385,7 @@ if wesnoth.kernel_type() ~= "Application Lua Kernel" then
 	function global_vars_ns.__index(self, name)
 		local U = wesnoth.require "wml-utils"
 		local var <close> = U.scoped_var(global_temp)
-		wesnoth.unsynced(function()
+		wesnoth.sync.run_unsynced(function()
 			wesnoth.wml_actions.get_global_variable {
 				namespace = self[ns_key],
 				to_local = global_temp,
@@ -404,7 +404,7 @@ if wesnoth.kernel_type() ~= "Application Lua Kernel" then
 		local U = wesnoth.require "wml-utils"
 		local var <close> = U.scoped_var(global_temp)
 		var:set(val)
-		wesnoth.unsynced(function()
+		wesnoth.sync.run_unsynced(function()
 			wesnoth.wml_actions.set_global_variable {
 				namespace = self[ns_key],
 				from_local = global_temp,

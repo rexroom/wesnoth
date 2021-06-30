@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu-trow\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-04-18 02:22 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2018-08-02 13:58+0100\n"
 "Last-Translator: Krutki Tamás <krtamas-wesnoth@0x64.org>\n"
 "Language-Team: Hungarian <>\n"
@@ -7233,7 +7233,7 @@ msgstr ""
 "éri el."
 
 #. [attack]: type=blade
-#: data/campaigns/The_Rise_Of_Wesnoth/units/Vampire_Lady.cfg:24
+#: data/campaigns/The_Rise_Of_Wesnoth/units/Vampire_Lady.cfg:23
 msgid "blood kiss"
 msgstr "véres csók"
 
@@ -7314,8 +7314,8 @@ msgstr ""
 "Ez az egység semlegesíti az ellenséges ellenőrzési zónákat maga körül a "
 "baráti egységek számára (de önmagának nem)."
 
-#. [special_note]
-#: data/campaigns/The_Rise_Of_Wesnoth/utils/trow-abilities.cfg:17
+#. [skirmisher]: id=distract
+#: data/campaigns/The_Rise_Of_Wesnoth/utils/trow-abilities.cfg:8
 #, fuzzy
 #| msgid ""
 #| "This unit is capable of distracting opponents, allowing allied units to "

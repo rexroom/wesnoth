@@ -74,6 +74,7 @@ class game_lua_kernel : public lua_kernel_base
 	int intf_cancel_action(lua_State *);
 	int intf_add_time_area(lua_State *);
 	int intf_remove_time_area(lua_State *);
+	int intf_get_time_area(lua_State *);
 	int intf_animate_unit(lua_State *);
 	int intf_gamestate_inspector(lua_State *);
 	int impl_run_animation(lua_State *);
@@ -93,8 +94,11 @@ class game_lua_kernel : public lua_kernel_base
 	int intf_view_locked(lua_State *L);
 	int intf_lock_view(lua_State *L);
 	int impl_get_terrain_info(lua_State *L);
+	template<bool consider_illuminates>
 	int intf_get_time_of_day(lua_State *L);
-	int intf_get_max_liminal_bonus(lua_State *L);
+	int impl_schedule_get(lua_State *L);
+	int impl_schedule_len(lua_State *L);
+	void luaW_push_schedule(lua_State* L, int area_index);
 	int intf_get_village_owner(lua_State *L);
 	int intf_set_village_owner(lua_State *L);
 	int intf_get_map_size(lua_State *L);
@@ -106,9 +110,7 @@ class game_lua_kernel : public lua_kernel_base
 	int impl_scenario_set(lua_State *L);
 	int impl_current_get(lua_State *L);
 	int intf_clear_messages(lua_State*);
-	int intf_end_level(lua_State*);
 	int impl_end_level_data_set(lua_State*);
-	int intf_get_end_level_data(lua_State*);
 	int intf_end_turn(lua_State*);
 	int intf_find_cost_map(lua_State *L);
 	int intf_find_path(lua_State *L);
@@ -116,7 +118,6 @@ class game_lua_kernel : public lua_kernel_base
 	int intf_find_vision_range(lua_State *L);
 	int intf_heal_unit(lua_State *L);
 	int intf_message(lua_State *L);
-	int intf_open_help(lua_State *L);
 	int intf_play_sound(lua_State *L);
 	int intf_print(lua_State *L);
 	void put_unit_helper(const map_location& loc);
@@ -131,7 +132,8 @@ class game_lua_kernel : public lua_kernel_base
 	int intf_clear_menu_item(lua_State *L);
 	int intf_create_side(lua_State *L);
 	int intf_set_menu_item(lua_State *L);
-	int intf_shroud_op(lua_State *L, bool place_shroud);
+	int intf_toggle_shroud(lua_State *L, bool place_shroud);
+	int intf_override_shroud(lua_State *L);
 	int intf_simulate_combat(lua_State *L);
 	int intf_scroll_to_tile(lua_State *L);
 	int intf_select_unit(lua_State *L);
@@ -152,11 +154,12 @@ class game_lua_kernel : public lua_kernel_base
 	int intf_remove_event(lua_State *L);
 	int intf_color_adjust(lua_State *L);
 	int intf_delay(lua_State *L);
-	int intf_label(lua_State *L, bool add);
+	int intf_add_label(lua_State *L);
+	int intf_remove_label(lua_State *L);
 	int intf_get_label(lua_State* L);
 	int intf_redraw(lua_State *L);
 	int intf_replace_schedule(lua_State *l);
-	int intf_set_time_of_day(lua_State *L);
+	int impl_schedule_set(lua_State *L);
 	int intf_scroll(lua_State *L);
 	int intf_get_all_vars(lua_State *L);
 	int impl_theme_item(lua_State *L, std::string name);

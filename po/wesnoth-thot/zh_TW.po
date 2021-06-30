@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: wesnoth-1.15\n"
+"Project-Id-Version: wesnoth-1.16\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-02-20 21:40 UTC\n"
-"PO-Revision-Date: 2021-04-06 09:10+0800\n"
+"POT-Creation-Date: 2021-06-23 15:36 UTC\n"
+"PO-Revision-Date: 2021-06-25 20:19+0800\n"
 "Last-Translator: 李信融 <magiclen0810@gmail.com>\n"
 "Language-Team: Wesnoth Traditional Chinese Team\n"
 "Language: zh_TW\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n>1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.4.3\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. [campaign]: id=The_Hammer_of_Thursagan
@@ -27,7 +27,7 @@ msgstr "瑟薩岡之鎚"
 #. [campaign]: id=The_Hammer_of_Thursagan
 #: data/campaigns/The_Hammer_of_Thursagan/_main.cfg:12
 msgid "THoT"
-msgstr "瑟薩岡之鎚"
+msgstr "THoT"
 
 #. [campaign]: id=The_Hammer_of_Thursagan
 #: data/campaigns/The_Hammer_of_Thursagan/_main.cfg:19
@@ -69,7 +69,7 @@ msgid ""
 "\n"
 msgstr ""
 "在成立北方聯盟後的最初幾年，一支來自納爾迦的遠征隊出發尋找他們在卡爾‧卡薩的親"
-"族，並探索傳說中的瑟薩岡之鎚的下落。他們穿越北方大陸的旅途危險重重，但他們最"
+"族，並探索傳說中的瑟薩岡之鎚的下落。他們穿越北方土地的旅途危險重重，但他們最"
 "後面對的邪惡卻使路上的一切都黯然失色。\n"
 "\n"
 
@@ -2292,9 +2292,9 @@ msgstr ""
 "知道他們的存在。透過學習草藥和礦物的知識，他們比見證者多了治癒中毒的能力。"
 
 #. [attack]: type=impact
-#: data/campaigns/The_Hammer_of_Thursagan/units/Dwarvish_Annalist.cfg:65
-#: data/campaigns/The_Hammer_of_Thursagan/units/Dwarvish_Loremaster.cfg:69
-#: data/campaigns/The_Hammer_of_Thursagan/units/Dwarvish_Witness.cfg:69
+#: data/campaigns/The_Hammer_of_Thursagan/units/Dwarvish_Annalist.cfg:61
+#: data/campaigns/The_Hammer_of_Thursagan/units/Dwarvish_Loremaster.cfg:64
+#: data/campaigns/The_Hammer_of_Thursagan/units/Dwarvish_Witness.cfg:66
 msgid "bolas"
 msgstr "流星鎚"
 
@@ -2422,27 +2422,18 @@ msgstr ""
 "忘。見證者們會有意地學習和其他同胞不同的戰鬥風格，不依賴矮人自豪的力量。成為"
 "見證者的矮人被認為是神聖的，而見證者們經常作為矮人氏族間的外交使節。"
 
-#. [special_note]
-#: data/campaigns/The_Hammer_of_Thursagan/utils/abilities.cfg:5
-msgid ""
-"The presence of this unit inspires own units next to it to deal more damage "
-"in combat, though this only applies to units of lower or equal level."
-msgstr ""
-"該單位的存在能鼓舞他周遭的己方單位，使他們在交戰時能造成更多傷害，不過僅限於"
-"等級相等或較低的單位。"
-
 #. [leadership]: id=inspire
-#: data/campaigns/The_Hammer_of_Thursagan/utils/abilities.cfg:16
+#: data/campaigns/The_Hammer_of_Thursagan/utils/abilities.cfg:10
 msgid "inspire"
 msgstr "鼓舞"
 
 #. [leadership]: id=inspire
-#: data/campaigns/The_Hammer_of_Thursagan/utils/abilities.cfg:17
+#: data/campaigns/The_Hammer_of_Thursagan/utils/abilities.cfg:11
 msgid "female^inspire"
 msgstr "鼓舞"
 
 #. [leadership]: id=inspire
-#: data/campaigns/The_Hammer_of_Thursagan/utils/abilities.cfg:18
+#: data/campaigns/The_Hammer_of_Thursagan/utils/abilities.cfg:12
 msgid ""
 "This unit can inspire own units that are next to it, making them fight "
 "better. Adjacent own units of lower or equal level will deal 25% more damage "
@@ -2450,6 +2441,15 @@ msgid ""
 msgstr ""
 "這個單位可以鼓舞鄰近的己方單位，提高他們的戰鬥表現。與這個鼓舞單位同等級或比"
 "他低等級的單位會增加25%的傷害，每多一個等級差，會再增加25%的傷害。"
+
+#. [leadership]: id=inspire
+#: data/campaigns/The_Hammer_of_Thursagan/utils/abilities.cfg:13
+msgid ""
+"The presence of this unit inspires own units next to it to deal more damage "
+"in combat, though this only applies to units of lower or equal level."
+msgstr ""
+"該單位的存在能鼓舞他周遭的己方單位，使他們在交戰時能造成更多傷害，不過僅限於"
+"等級相等或較低的單位。"
 
 #: data/campaigns/The_Hammer_of_Thursagan/utils/characters.cfg:6
 msgid "Aiglondur"

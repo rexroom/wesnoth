@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Battle for Wesnoth 0.8.2-CVS\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-04-18 02:22 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2010-12-12 11:18+0200\n"
 "Last-Translator: Jussi Rautio <kipuna@gmail.com>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -7324,7 +7324,7 @@ msgstr ""
 "elävien verta."
 
 #. [attack]: type=blade
-#: data/campaigns/The_Rise_Of_Wesnoth/units/Vampire_Lady.cfg:24
+#: data/campaigns/The_Rise_Of_Wesnoth/units/Vampire_Lady.cfg:23
 msgid "blood kiss"
 msgstr "verisuudelma"
 
@@ -7429,8 +7429,8 @@ msgstr ""
 "Tämä yksikkö kumoaa vihollisen hallitseman alueen vaikutuksen itsensä "
 "ympäriltä liittolaisyksiköitään varten (lukuun ottamatta itseään)."
 
-#. [special_note]
-#: data/campaigns/The_Rise_Of_Wesnoth/utils/trow-abilities.cfg:17
+#. [skirmisher]: id=distract
+#: data/campaigns/The_Rise_Of_Wesnoth/utils/trow-abilities.cfg:8
 #, fuzzy
 #| msgid ""
 #| "This unit is capable of distracting opponents, allowing allied units to "

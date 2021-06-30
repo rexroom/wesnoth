@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.13.6+dev\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-05-23 02:21 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2019-01-03 00:34+0000\n"
 "Last-Translator: trewe <sjrs456@yandex.com>\n"
 "Language-Team: none\n"
@@ -3772,24 +3772,24 @@ msgstr ""
 #. recruit it launches the zombie recruit dialog as a child of the normal
 #. recruitment dialog. "Walking Corpse" is not used here because some swim,
 #. and some fly.
-#: data/campaigns/Secrets_of_the_Ancients/units/SotA_Corpses.cfg:93
+#: data/campaigns/Secrets_of_the_Ancients/units/SotA_Corpses.cfg:92
 msgid "All Corpses"
 msgstr ""
 
 #. [unit_type]: id=SotA Walking Corpse_Dummy, race=undead
-#: data/campaigns/Secrets_of_the_Ancients/units/SotA_Corpses.cfg:105
+#: data/campaigns/Secrets_of_the_Ancients/units/SotA_Corpses.cfg:104
 msgid "Choose this “unit” to get a list of available corpses."
 msgstr ""
 
 #. [unit_type]: id=SotA Flying Corpse_Gryphon
 #. [unit_type]: id=SotA Flying Corpse_Bat
-#: data/campaigns/Secrets_of_the_Ancients/units/SotA_Corpses.cfg:157
-#: data/campaigns/Secrets_of_the_Ancients/units/SotA_Corpses.cfg:315
+#: data/campaigns/Secrets_of_the_Ancients/units/SotA_Corpses.cfg:156
+#: data/campaigns/Secrets_of_the_Ancients/units/SotA_Corpses.cfg:314
 msgid "Flying Corpse"
 msgstr ""
 
 #. [unit_type]: id=SotA Swimming Corpse
-#: data/campaigns/Secrets_of_the_Ancients/units/SotA_Corpses.cfg:205
+#: data/campaigns/Secrets_of_the_Ancients/units/SotA_Corpses.cfg:204
 msgid "Swimming Corpse"
 msgstr ""
 

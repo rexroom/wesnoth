@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Battle for Wesnoth 1.5\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-04-18 02:21 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2008-12-21 13:15+0200\n"
 "Last-Translator: Joe Hansen <joedalton2@yahoo.dk>\n"
 "Language-Team: Danish <dansk@dansk-gruppen.dk>\n"
@@ -4668,12 +4668,12 @@ msgstr ""
 "skal deres blik på afstand ikke undervurderes."
 
 #. [attack]: type=impact
-#: data/campaigns/The_South_Guard/units/Eyestalk.cfg:35
+#: data/campaigns/The_South_Guard/units/Eyestalk.cfg:32
 msgid "smash"
 msgstr "smash"
 
 #. [attack]: type=arcane
-#: data/campaigns/The_South_Guard/units/Eyestalk.cfg:59
+#: data/campaigns/The_South_Guard/units/Eyestalk.cfg:56
 msgid "gaze"
 msgstr "stirre"
 
@@ -4706,8 +4706,8 @@ msgstr ""
 "beslutsomhed."
 
 #. [attack]: type=blade
-#: data/campaigns/The_South_Guard/units/Infantry_Commander.cfg:32
-#: data/campaigns/The_South_Guard/units/Infantry_Lieutenant.cfg:30
+#: data/campaigns/The_South_Guard/units/Infantry_Commander.cfg:30
+#: data/campaigns/The_South_Guard/units/Infantry_Lieutenant.cfg:29
 msgid "glaive"
 msgstr "bredsværd"
 

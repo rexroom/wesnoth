@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wesnoth\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-05-22 22:21-0400\n"
+"POT-Creation-Date: 2021-06-23 11:42-0400\n"
 "PO-Revision-Date: 2020-12-14 11:15+0300\n"
 "Last-Translator: Nilgün Belma Bugüner <nilgun@belgeler.gen.tr>\n"
 "Language-Team: Turkish\n"
@@ -92,28 +92,23 @@ msgstr "Salonda fısıltı pencerelerini doğrudan aç"
 
 #. [advanced_preference]: type=boolean
 #: data/advanced_preferences.cfg:68
-msgid "Group players in lobby"
-msgstr "Salondaki oyuncuları kümelere ayır"
-
-#. [advanced_preference]: type=boolean
-#: data/advanced_preferences.cfg:75
 msgid "Follow unit actions"
 msgstr "Birimlerin hareketlerini izle"
 
 #. [advanced_preference]: type=boolean
-#: data/advanced_preferences.cfg:76
+#: data/advanced_preferences.cfg:69
 msgid ""
 "Choose whether the map view should scroll to a unit when an action or move "
 "is animated"
 msgstr "Bir birim eyleme geçtiğinde ekranın oraya kayıp kaymayacağını seçin"
 
 #. [advanced_preference]: type=int
-#: data/advanced_preferences.cfg:92
+#: data/advanced_preferences.cfg:85
 msgid "Chat message aging"
 msgstr "Sohbet iletisinin eskimesi"
 
 #. [advanced_preference]: type=int
-#: data/advanced_preferences.cfg:93
+#: data/advanced_preferences.cfg:86
 msgid ""
 "Number of minutes to wait before clearing an ingame chat message. Set to 0 "
 "to disable."
@@ -122,22 +117,22 @@ msgstr ""
 "olur."
 
 #. [advanced_preference]: type=boolean
-#: data/advanced_preferences.cfg:103
+#: data/advanced_preferences.cfg:96
 msgid "Use 12-hour clock format"
 msgstr "12 saatlik gösterimi kullan"
 
 #. [advanced_preference]: type=boolean
-#: data/advanced_preferences.cfg:110
+#: data/advanced_preferences.cfg:103
 msgid "Confirm loading saves from a different version"
 msgstr " Başka bir sürümün kayıtlı oyununu yüklerken sor"
 
 #. [advanced_preference]: type=boolean
-#: data/advanced_preferences.cfg:117
+#: data/advanced_preferences.cfg:110
 msgid "Show all unit types in help"
 msgstr "Yardım kısmında bütün birim türlerini göster"
 
 #. [advanced_preference]: type=boolean
-#: data/advanced_preferences.cfg:118
+#: data/advanced_preferences.cfg:111
 #, fuzzy
 #| msgid ""
 #| "Show all unit types in the help (requires restart). This does not alter "
@@ -150,56 +145,56 @@ msgstr ""
 "karşılaşılmış birimler listesini etkilemez"
 
 #. [advanced_preference]: type=int
-#: data/advanced_preferences.cfg:125
+#: data/advanced_preferences.cfg:118
 msgid "Editor recent files limit"
 msgstr "Düzenleyici son dosyalar sınırı"
 
 #. [advanced_preference]: type=int
-#: data/advanced_preferences.cfg:126
+#: data/advanced_preferences.cfg:119
 msgid ""
 "The maximum number of items to display on the Recent Files menu in the editor"
 msgstr ""
 "Düzenleyicideki son dosyalar menüsünde kaç öğe gösterileceğini belirler"
 
 #. [advanced_preference]: type=boolean
-#: data/advanced_preferences.cfg:136
+#: data/advanced_preferences.cfg:129
 msgid "Show color cursors"
 msgstr "Renkli imleçleri göster"
 
 #. [advanced_preference]: type=boolean
-#: data/advanced_preferences.cfg:137
+#: data/advanced_preferences.cfg:130
 msgid "Use colored mouse cursors"
 msgstr "Renkli fare imleçlerini kullan"
 
 #. [advanced_preference]: type=custom
-#: data/advanced_preferences.cfg:144
+#: data/advanced_preferences.cfg:137
 msgid "Customize orb colors"
 msgstr "Küre renklerini özelleştir"
 
 #. [advanced_preference]: type=custom
-#: data/advanced_preferences.cfg:150
+#: data/advanced_preferences.cfg:143
 msgid "Logging"
 msgstr "Kayıt tutma"
 
 #. [advanced_preference]: type=boolean
-#: data/advanced_preferences.cfg:156
+#: data/advanced_preferences.cfg:149
 msgid "Allow damage calculation with Monte Carlo simulation"
 msgstr "Hasar hesaplanırken Monte Carlo yöntemi kullanılsın"
 
 #. [advanced_preference]: type=boolean
-#: data/advanced_preferences.cfg:157
+#: data/advanced_preferences.cfg:150
 msgid ""
 "Allow the damage calculation window to simulate fights instead of using "
 "exact probability calculations"
 msgstr "Hasar hesaplanırken olasılık hesapları yerine dövüş benzetimini kullan"
 
 #. [advanced_preference]: type=boolean
-#: data/advanced_preferences.cfg:164
+#: data/advanced_preferences.cfg:157
 msgid "Show deprecation messages in-game"
 msgstr "Oyunda kullanımdan kaldırma iletilerini göster"
 
 #. [advanced_preference]: type=boolean
-#: data/advanced_preferences.cfg:165
+#: data/advanced_preferences.cfg:158
 msgid ""
 "Show warnings about deprecated API in the in-game chat area. These messages "
 "will still be shown in the log, even if this is disabled. In addition, the "
@@ -523,138 +518,138 @@ msgid "Indonesian Translation"
 msgstr "Endonezyaca Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1009
+#: data/core/about_i18n.cfg:1014
 msgid "Irish Translation"
 msgstr "İrlandaca Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1016
+#: data/core/about_i18n.cfg:1021
 msgid "Italian Translation"
 msgstr "İtalyanca Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1063
+#: data/core/about_i18n.cfg:1068
 msgid "Japanese Translation"
 msgstr "Japonca Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1156
+#: data/core/about_i18n.cfg:1161
 msgid "Korean Translation"
 msgstr "Korece Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1164
+#: data/core/about_i18n.cfg:1169
 msgid "Latin Translation"
 msgstr "Latince Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1190
+#: data/core/about_i18n.cfg:1195
 msgid "Latvian Translation"
 msgstr "Letonca Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1205
+#: data/core/about_i18n.cfg:1210
 msgid "Lithuanian Translation"
 msgstr "Litvanyaca Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1230
+#: data/core/about_i18n.cfg:1235
 msgid "Macedonian Translation"
 msgstr "Makedonca Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1237
+#: data/core/about_i18n.cfg:1242
 msgid "Marathi Translation"
 msgstr "Maratice Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1246
+#: data/core/about_i18n.cfg:1251
 msgid "Norwegian Translation"
 msgstr "Norveççe Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1271
+#: data/core/about_i18n.cfg:1276
 msgid "Old English Translation"
 msgstr "Eski İngilizce Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1289
+#: data/core/about_i18n.cfg:1294
 msgid "Polish Translation"
 msgstr "Lehçe Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1345
+#: data/core/about_i18n.cfg:1350
 msgid "Portuguese Translation"
 msgstr "Portekizce Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1359
+#: data/core/about_i18n.cfg:1364
 msgid "Portuguese (Brazil) Translation"
 msgstr "Portekizce (Brezilya) Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1417
+#: data/core/about_i18n.cfg:1422
 msgid "Romanian Translation"
 msgstr "Romanyaca Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1425
+#: data/core/about_i18n.cfg:1430
 msgid "Russian Translation"
 msgstr "Rusça Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1520
+#: data/core/about_i18n.cfg:1525
 msgid "Scottish Gaelic Translation"
 msgstr "İskoç Galcesi Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1529
+#: data/core/about_i18n.cfg:1534
 msgid "Serbian Translation"
 msgstr "Sırpça Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1548
+#: data/core/about_i18n.cfg:1553
 msgid "Slovak Translation"
 msgstr "Slovakça Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1577
+#: data/core/about_i18n.cfg:1582
 msgid "Slovenian Translation"
 msgstr "Slovence Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1593
+#: data/core/about_i18n.cfg:1598
 msgid "Spanish Translation"
 msgstr "İspanyolca Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1675
+#: data/core/about_i18n.cfg:1680
 msgid "Swedish Translation"
 msgstr "İsveççe Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1720
+#: data/core/about_i18n.cfg:1725
 msgid "Turkish Translation"
 msgstr "Türkçe Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1745
+#: data/core/about_i18n.cfg:1750
 msgid "Ukrainian Translation"
 msgstr "Ukraynaca Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1761
+#: data/core/about_i18n.cfg:1766
 msgid "Valencian (southern Catalan) Translation"
 msgstr "Valensiyaca Tercüme"
 
 #. [about]
-#: data/core/about_i18n.cfg:1774
+#: data/core/about_i18n.cfg:1779
 msgid "Vietnamese Translation"
 msgstr "Vietnamca Tercüme"
 
 #. [about]
 #. Real Acadèmia de Cultura Valenciana
-#: data/core/about_i18n.cfg:1794
+#: data/core/about_i18n.cfg:1799
 msgid "RACV’s Translation"
 msgstr "RACV Çevirisi"
 
@@ -3582,14 +3577,14 @@ msgstr "Geçilmez"
 
 #. #-#-#-#-#  wesnoth.wml.pot (PACKAGE VERSION)  #-#-#-#-#
 #. [color_range]: id=fog
-#: data/core/team-colors.cfg:231 src/game_initialization/lobby_data.cpp:450
+#: data/core/team-colors.cfg:231 src/game_initialization/lobby_data.cpp:445
 msgid "Fog"
 msgstr "Sis"
 
 #. #-#-#-#-#  wesnoth.wml.pot (PACKAGE VERSION)  #-#-#-#-#
 #. [color_range]: id=shroud
-#: data/core/team-colors.cfg:237 src/game_initialization/lobby_data.cpp:453
-#: src/game_initialization/lobby_data.cpp:456
+#: data/core/team-colors.cfg:237 src/game_initialization/lobby_data.cpp:448
+#: src/game_initialization/lobby_data.cpp:451
 msgid "Shroud"
 msgstr "Örtü"
 
@@ -3943,12 +3938,12 @@ msgid "Install Dependencies"
 msgstr "Kurulum Gereksinimleri"
 
 #. [button]: id=ok
-#: data/gui/window/install_dependencies.cfg:85
+#: data/gui/window/install_dependencies.cfg:84
 msgid "Yes"
 msgstr "Evet"
 
 #. [button]: id=cancel
-#: data/gui/window/install_dependencies.cfg:96
+#: data/gui/window/install_dependencies.cfg:95
 msgid "No"
 msgstr "Hayır"
 
@@ -3978,15 +3973,6 @@ msgstr "Lato Light"
 #: data/hardwired/fonts.cfg:31
 msgid "Oldania ADF Std"
 msgstr "Oldania ADF Std"
-
-#. [fonts]
-#: data/hardwired/fonts.cfg:36
-msgid ""
-"Lato-Regular.ttf,DejaVuSans.ttf,Andagii.ttf,DroidSansJapanese.ttf,"
-"DroidSansFallbackFull.ttf,Junicode-Regular.ttf"
-msgstr ""
-"Lato-Regular.ttf,DejaVuSans.ttf,Andagii.ttf,DroidSansJapanese.ttf,"
-"DroidSansFallbackFull.ttf,Junicode-Regular.ttf"
 
 #. [lua]: wesnoth.deprecate_api
 #: data/lua/core/_initial.lua:22
@@ -4046,8 +4032,8 @@ msgstr "iyileştirilemez"
 
 #. #-#-#-#-#  wesnoth.wml.pot (PACKAGE VERSION)  #-#-#-#-#
 #. [lua]: wesnoth.wml_actions.message
-#: data/lua/wml/message.lua:432 src/scripting/game_lua_kernel.cpp:2763
-#: src/scripting/game_lua_kernel.cpp:2798
+#: data/lua/wml/message.lua:432 src/scripting/game_lua_kernel.cpp:2918
+#: src/scripting/game_lua_kernel.cpp:2953
 msgid "input"
 msgstr "girdi"
 
@@ -4148,76 +4134,6 @@ msgstr "İptal"
 #| msgid "No advancement"
 msgid "No planned advancement"
 msgstr "Terfi yok"
-
-#. [leadership]: id=magical_leadership
-#: data/scenario-test.cfg:339
-#, fuzzy
-#| msgid "Leadership: "
-msgid "magical leadership"
-msgstr "Liderlik: "
-
-#. [leadership]: id=magical_leadership
-#: data/scenario-test.cfg:340
-msgid "female^magical leadership"
-msgstr ""
-
-#. [leadership]: id=magical_leadership
-#: data/scenario-test.cfg:341
-msgid ""
-"This unit can lead your own units that are next to it, making them fight "
-"better with magicals weapons.\n"
-"Adjacent own units of lower level will do more damage in battle. When a unit "
-"adjacent to, of a lower level than, and on the same side as a unit with "
-"Leadership engages in combat, its attacks do 25% more damage times the "
-"difference in their levels."
-msgstr ""
-
-#. [resistance]: id=melee_steadfast
-#. This is not vanilla steadfast
-#: data/scenario-test.cfg:371
-msgid ""
-"This unit’s resistances are added to 20%, up to a maximum of 50%, when "
-"defending to melle attacks. Vulnerabilities are not affected."
-msgstr ""
-
-#. [chance_to_hit]: id=marksman_leadership
-#: data/scenario-test.cfg:485
-msgid "cantor"
-msgstr ""
-
-#. [chance_to_hit]: id=marksman_leadership
-#: data/scenario-test.cfg:486
-#, fuzzy
-#| msgid "female^chaotic"
-msgid "female^cantor"
-msgstr "kaypak"
-
-#. [chance_to_hit]: id=marksman_leadership
-#: data/scenario-test.cfg:487
-msgid "This unit grants marksman to all ranged attacks of all adjacent allies."
-msgstr ""
-
-#. [heals]: id=aura of death 4
-#. [heals]: id=aura of death 8
-#: data/scenario-test.cfg:1080 data/scenario-test.cfg:1108
-msgid "aura of death ("
-msgstr ""
-
-#. [heals]: id=aura of death 4
-#. [heals]: id=aura of death 8
-#: data/scenario-test.cfg:1081 data/scenario-test.cfg:1109
-msgid "female^aura of death ("
-msgstr ""
-
-#. [language]
-#: data/scenario-test.cfg:4459
-msgid "very long"
-msgstr "çok uzun"
-
-#. [language]
-#: data/scenario-test.cfg:4460
-msgid "electrical"
-msgstr "elektrikli"
 
 #. [action]: id=button-playreplay, type=image
 #: data/themes/_initial.cfg:413
@@ -4384,7 +4300,7 @@ msgstr "sav"
 
 # Bunu (sv) değiştirmeyin yoksa seviye numarası panele sığmıyor
 #. [unit_level]: id=unit-level
-#: data/themes/default.cfg:410
+#: data/themes/default.cfg:391
 msgid "statuspanel^lvl"
 msgstr "sv"
 
@@ -4455,11 +4371,10 @@ msgstr ""
 #: data/tips.cfg:49 data/tips.cfg:65 data/tips.cfg:69 data/tips.cfg:73
 #: data/tips.cfg:77 data/tips.cfg:81 data/tips.cfg:93 data/tips.cfg:97
 #: data/tips.cfg:101 data/tips.cfg:113 data/tips.cfg:121 data/tips.cfg:125
-#: data/tips.cfg:133 data/tips.cfg:161 data/tips.cfg:165 data/tips.cfg:169
-#: data/tips.cfg:177 data/tips.cfg:185 data/tips.cfg:193 data/tips.cfg:197
-#: data/tips.cfg:206 data/tips.cfg:210 data/tips.cfg:214 data/tips.cfg:222
-#: data/tips.cfg:242 data/tips.cfg:250 data/tips.cfg:258 data/tips.cfg:277
-#: data/tips.cfg:282
+#: data/tips.cfg:133 data/tips.cfg:161 data/tips.cfg:165 data/tips.cfg:173
+#: data/tips.cfg:181 data/tips.cfg:189 data/tips.cfg:198 data/tips.cfg:202
+#: data/tips.cfg:206 data/tips.cfg:214 data/tips.cfg:234 data/tips.cfg:242
+#: data/tips.cfg:250 data/tips.cfg:268 data/tips.cfg:273 data/tips.cfg:278
 msgid "<i>― The Wesnoth Tactical Guide</i>"
 msgstr "<i>― Vesnot Taktik Kılavuzu</i>"
 
@@ -4533,7 +4448,7 @@ msgstr ""
 "Fark bir yerine iki altıgen gidebilmek kadar önemli olabilir."
 
 #. [tip]
-#: data/tips.cfg:41 data/tips.cfg:117 data/tips.cfg:226 data/tips.cfg:238
+#: data/tips.cfg:41 data/tips.cfg:117 data/tips.cfg:218 data/tips.cfg:230
 msgid "<i>― High Lord Kalenz, 470YW</i>"
 msgstr "<i>― Beylerbeyi Kalenz, VY 470</i>"
 
@@ -4601,7 +4516,7 @@ msgstr ""
 
 #. [tip]
 #: data/tips.cfg:61 data/tips.cfg:85 data/tips.cfg:137 data/tips.cfg:145
-#: data/tips.cfg:230
+#: data/tips.cfg:222
 msgid "<i>― Haldric II, 42YW, Handbook of Tactical Analysis: Volume I</i>"
 msgstr "<i>― Taktik Analizleri Elkitabı I. Cilt - II. Haldrik, VY 42</i>"
 
@@ -4757,7 +4672,7 @@ msgstr ""
 "yaparken atlı birimler kale ve köylerden böyle bir fayda görmez."
 
 #. [tip]
-#: data/tips.cfg:105 data/tips.cfg:189
+#: data/tips.cfg:105 data/tips.cfg:185
 msgid "<i>― Sir Kaylan, 498YW</i>"
 msgstr "<i>― Sör Kaylan, VY 498</i>"
 
@@ -4916,11 +4831,6 @@ msgstr "<i>― Prenses Lisar, VY 515</i>"
 
 #. [tip]
 #: data/tips.cfg:160
-msgid "Read the <b>Hotkeys</b> list in the <b>Preferences</b> menu."
-msgstr "<b>Tercihler</b> menüsündeki <b>Kısayol Tuşlar</b>ını okuyun."
-
-#. [tip]
-#: data/tips.cfg:164
 msgid ""
 "If you move a unit, but don’t attack or discover any additional information, "
 "you can undo your move by pressing <b>u</b>."
@@ -4929,7 +4839,7 @@ msgstr ""
 "keşfetmezseniz, hareketi <b>U</b> tuşuna basarak geri alabilirsiniz."
 
 #. [tip]
-#: data/tips.cfg:168
+#: data/tips.cfg:164
 msgid ""
 "You can see how far enemy units can move by moving the mouse cursor over "
 "them."
@@ -4938,7 +4848,7 @@ msgstr ""
 "tutarak görebilirsiniz."
 
 #. [tip]
-#: data/tips.cfg:172
+#: data/tips.cfg:168
 msgid ""
 "Use healers to support your attacks — they will win you battles without "
 "needing to attack anything themselves."
@@ -4947,12 +4857,12 @@ msgstr ""
 "duymaksızın savaşları kazanmanıza yardım ederler."
 
 #. [tip]
-#: data/tips.cfg:173 data/tips.cfg:218
+#: data/tips.cfg:169 data/tips.cfg:210
 msgid "<i>― The Scroll of Chantal, 516YW</i>"
 msgstr "<i>― Çantal Parşomeni, VY 516</i>"
 
 #. [tip]
-#: data/tips.cfg:176
+#: data/tips.cfg:172
 msgid ""
 "The <i>Slow</i> attack makes enemy units move slower and halves the damage "
 "they do on all attacks until they end a turn."
@@ -4961,17 +4871,17 @@ msgstr ""
 "sonuna kadar bütün saldırılarının hasarı yarıya iner."
 
 #. [tip]
-#: data/tips.cfg:180
+#: data/tips.cfg:176
 msgid "<i>Arcane</i> attacks are very powerful against undead."
 msgstr "<i>Gizemli</i> saldırılar yarı ölülere karşı daha güçlüdür."
 
 #. [tip]
-#: data/tips.cfg:181
+#: data/tips.cfg:177
 msgid "<i>― Great Sage Dacyn, 626YW</i>"
 msgstr "<i>― Ulu Bilge Dasin, VY 626</i>"
 
 #. [tip]
-#: data/tips.cfg:184
+#: data/tips.cfg:180
 msgid ""
 "Units are healed when they advance a level. Used wisely, this can turn a "
 "fight."
@@ -4980,7 +4890,7 @@ msgstr ""
 "savaşın yönünü değiştirebilir."
 
 #. [tip]
-#: data/tips.cfg:188
+#: data/tips.cfg:184
 msgid ""
 "Charging units are best used against enemies they can kill with a single "
 "blow."
@@ -4989,7 +4899,7 @@ msgstr ""
 "düşmanlara karşıdır."
 
 #. [tip]
-#: data/tips.cfg:192
+#: data/tips.cfg:188
 msgid ""
 "Instead of leveling up, high-level units gain an <i>After Maximum Level "
 "Advancement</i> (AMLA) bonus, which usually increases the unit’s maximum "
@@ -5004,17 +4914,7 @@ msgstr ""
 "faydalıdır."
 
 #. [tip]
-#: data/tips.cfg:196
-msgid ""
-"Nearly every button and icon in the Wesnoth game has a tooltip. Hover the "
-"mouse pointer over any button or icon to get a description or explanation of "
-"what it does."
-msgstr ""
-"Vesnot Savaşı oyunundaki hemen her simge ve tuşun bir ipucu vardır. Bir "
-"açıklama veya tanım almak için fare imlecini bunların üzerine götürün."
-
-#. [tip]
-#: data/tips.cfg:200
+#: data/tips.cfg:192
 msgid ""
 "To advance low-level units quickly, team them with a veteran and use the "
 "veteran to damage a joint target heavily enough for the junior partner to "
@@ -5025,13 +4925,13 @@ msgstr ""
 "vermesini sağladıktan sonra onu terfi ettireceğiniz birime öldürtün."
 
 #. [tip]
-#: data/tips.cfg:201
+#: data/tips.cfg:193
 msgid "<i>― Queen Li’sar, 528YW</i>"
 msgstr "<i>― Kraliçe Lisar, VY 528</i>"
 
 #. [tip]
 #. Whiteboard is another name for the Planning Mode
-#: data/tips.cfg:205
+#: data/tips.cfg:197
 msgid ""
 "You cannot undo a move that uncovers hexes hidden by fog or shroud. Turn on "
 "the <b>Delay Shroud Updates</b> option when you need to move units while "
@@ -5043,7 +4943,7 @@ msgstr ""
 "yeni beyaz tahta planlama aracını kullanabilirsiniz."
 
 #. [tip]
-#: data/tips.cfg:209
+#: data/tips.cfg:201
 msgid ""
 "If an enemy benefits more from a rare terrain type than you do, occupying "
 "that terrain will deprive them of its benefits."
@@ -5052,7 +4952,7 @@ msgstr ""
 "araziyi onun yararlanmaması için işgal etmek daha iyidir."
 
 #. [tip]
-#: data/tips.cfg:213
+#: data/tips.cfg:205
 msgid ""
 "Few units have good defenses in water; a line of attackers along the edge of "
 "a river can inflict heavy casualties. Elves can use the edge of a forest in "
@@ -5063,7 +4963,7 @@ msgstr ""
 "ise dağları aynı anlamda kullanabilir."
 
 #. [tip]
-#: data/tips.cfg:217
+#: data/tips.cfg:209
 msgid ""
 "The <i>Slow</i> ability is extremely powerful because it has such wide-"
 "ranging effects. Enemy undead get half the normal benefit from their "
@@ -5080,7 +4980,7 @@ msgstr ""
 "karşı hasar alır, böylece onları iyileştirmesi daha kolay olur."
 
 #. [tip]
-#: data/tips.cfg:221
+#: data/tips.cfg:213
 #, fuzzy
 #| msgid ""
 #| "Try to operate units with a small number of powerful attacks—such as Dark "
@@ -5099,7 +4999,7 @@ msgstr ""
 "bir saldırı şansı verir."
 
 #. [tip]
-#: data/tips.cfg:225
+#: data/tips.cfg:217
 #, fuzzy
 #| msgid ""
 #| "Units with three or more attacks—especially magical attacks—are ideal for "
@@ -5118,7 +5018,7 @@ msgstr ""
 "kullanmayı unutmayın."
 
 #. [tip]
-#: data/tips.cfg:229
+#: data/tips.cfg:221
 msgid ""
 "Think twice before dismissing any unit from your recall list, no matter how "
 "little experience it has. Sometimes it’s worth paying a premium to know "
@@ -5129,7 +5029,7 @@ msgstr ""
 "bilmek fazladan ödenen altına değer."
 
 #. [tip]
-#: data/tips.cfg:233
+#: data/tips.cfg:225
 msgid ""
 "When a tough unit is heavily injured, send it to heal in a village several "
 "turns’ movement away from the fighting. Then it can recover in peace (at 10 "
@@ -5140,12 +5040,12 @@ msgstr ""
 "puanı)."
 
 #. [tip]
-#: data/tips.cfg:234 data/tips.cfg:246
+#: data/tips.cfg:226 data/tips.cfg:238
 msgid "<i>― Lord Hamel of Knalga</i>"
 msgstr "<i>— Knalgalı Hamel Bey</i>"
 
 #. [tip]
-#: data/tips.cfg:237
+#: data/tips.cfg:229
 msgid ""
 "Combining multiple special abilities can be deadly. While it may take some "
 "work to combine, for example, <i>Leadership</i>, <i>Illuminates</i> and "
@@ -5156,7 +5056,7 @@ msgstr ""
 "ve <i>Yüklenme</i> kullanılınca sonuçlar etkileyici olabilir."
 
 #. [tip]
-#: data/tips.cfg:241
+#: data/tips.cfg:233
 msgid ""
 "While finishing early gives a gold bonus, and reduces the opportunities for "
 "enemies to kill your valuable troops, it also means you lose chances to earn "
@@ -5169,7 +5069,7 @@ msgstr ""
 "düşünürken bu etkenleri de hesaba katın."
 
 #. [tip]
-#: data/tips.cfg:245
+#: data/tips.cfg:237
 msgid ""
 "If your forces have weak defenses everywhere on the map, occupy the areas "
 "where your enemies can only attack you by sharing the same disadvantages. "
@@ -5184,7 +5084,7 @@ msgstr ""
 "sarılın."
 
 #. [tip]
-#: data/tips.cfg:249
+#: data/tips.cfg:241
 msgid ""
 "The recruitment cost of some units may exceed the usual recall expenditure "
 "of 20 gold. In a campaign, always check if recalling a unit of the same type "
@@ -5194,7 +5094,7 @@ msgstr ""
 "Seferberlikteyken her zaman bir birimi çağırmak daha mı ucuz diye bir bakın."
 
 #. [tip]
-#: data/tips.cfg:253
+#: data/tips.cfg:245
 msgid ""
 "You must accept some losses in battle. It is not uncommon for beginners to "
 "lose sight of victory as they attempt to keep every unit alive."
@@ -5203,17 +5103,17 @@ msgstr ""
 "birimlerimi hayatta tutacağım\" derken zaferi kaçırdığı görülmemiş değildir."
 
 #. [tip]
-#: data/tips.cfg:254
+#: data/tips.cfg:246
 msgid "<i>― Queen Asheviere, 503YW</i>"
 msgstr "<i>― Kraliçe Aşevir, VY 503</i>"
 
 #. [tip]
-#: data/tips.cfg:257
+#: data/tips.cfg:249
 msgid "Using lower-level units can be very cost-effective."
 msgstr "Düşük seviyeli birimler kullanmak çok tasarruflu olabilir."
 
 #. [tip]
-#: data/tips.cfg:261
+#: data/tips.cfg:253
 msgid ""
 "Some higher-level units have inimitable abilities such as <i>Leadership</i>, "
 "<i>Cures</i>, or <i>Nightstalk</i>. Obtaining those units early can make a "
@@ -5224,26 +5124,26 @@ msgstr ""
 "bu birimlere sahip olmak büyük fark yaratabilir."
 
 #. [tip]
-#: data/tips.cfg:262
+#: data/tips.cfg:254
 msgid "<i>― Sir Gerrick of Westin, 607YW</i>"
 msgstr "<i>― Westin'li Sör Gerrick, VY 607</i>"
 
 #. [tip]
-#: data/tips.cfg:266
+#: data/tips.cfg:258
 msgid ""
 "Some types of terrain give unique bonuses, such as healing or illumination."
 msgstr ""
 
 #. [tip]
 #. Translate the word "Flight" as a collective noun for drakes
-#: data/tips.cfg:268
+#: data/tips.cfg:260
 #, fuzzy
 #| msgid "<i>― Vank of Galun’s Flight, 6YW</i>"
 msgid "<i>― Galun, Flight Leader, 5YW</i>"
 msgstr "<i>― Galun'un Sürüsünden Vank, VY 6</i>"
 
 #. [tip]
-#: data/tips.cfg:271
+#: data/tips.cfg:263
 msgid ""
 "If a unit is positioned next to healers from two allied sides, the unit will "
 "be healed on both sides’ turns. This way, a unit can be healed faster than "
@@ -5253,15 +5153,23 @@ msgstr ""
 "sıraları geldiğinde şifa alır. Bu yolla birim çok daha hızlı iyileşir."
 
 #. [tip]
-#: data/tips.cfg:272
+#: data/tips.cfg:264
 #, fuzzy
 #| msgid "<i>― Lord Hamel of Knalga</i>"
 msgid "<i>― Lord Tallin of Knalga, 538 YW</i>"
 msgstr "<i>— Knalgalı Hamel Bey</i>"
 
 #. [tip]
+#: data/tips.cfg:267
+msgid ""
+"Holding down <b>shift</b> will make the animations for moving and fighting "
+"quicker. The <i>acceleration factor</i> can be set, and turned on by "
+"default, in the <i>Preferences</i> menu’s <i>General</i> tab."
+msgstr ""
+
+#. [tip]
 #. Translate "Change difficulty" and "Load Game" as in wesnoth-lib textdomain
-#: data/tips.cfg:276
+#: data/tips.cfg:272
 msgid ""
 "Did you know that you can change the difficulty level during a campaign? "
 "Select the <i>Change difficulty</i> option at the bottom of the <i>Load "
@@ -5269,7 +5177,7 @@ msgid ""
 msgstr ""
 
 #. [tip]
-#: data/tips.cfg:281
+#: data/tips.cfg:277
 msgid ""
 "<i>Feral</i> units, such as Bats and wild animals, will avoid villages. Even "
 "if they occupy a village hex, they do not gain any defensive benefits from "
@@ -5525,7 +5433,7 @@ msgid "Do you really wish to continue?"
 msgstr "Gerçekten devam etmek istiyor musunuz?"
 
 #: src/addon/client.cpp:546 src/addon/manager_ui.cpp:172
-#: src/game_initialization/multiplayer.cpp:361
+#: src/game_initialization/multiplayer.cpp:360
 msgid "Confirm"
 msgstr "Onay"
 
@@ -6072,7 +5980,7 @@ msgstr "$elem kullanımdan çıkarıldı ve kaldırıldı."
 msgid "Chat message"
 msgstr "Sohbet iletisi"
 
-#: src/desktop/windows_tray_notification.cpp:125 src/game_config.cpp:578
+#: src/desktop/windows_tray_notification.cpp:125 src/game_config.cpp:580
 msgid "The Battle for Wesnoth"
 msgstr "Vesnot Savaşı"
 
@@ -6104,7 +6012,7 @@ msgstr "%d %b"
 msgid "%b %d %Y"
 msgstr "%b %d %Y"
 
-#: src/game_config.cpp:526
+#: src/game_config.cpp:528
 msgid "Invalid color in range: "
 msgstr "Geçersiz renk aralığı:"
 
@@ -6323,64 +6231,64 @@ msgstr "$faction ekibi için bir lider türü bulunamıyor"
 msgid "Cannot obtain genders for invalid leader $leader"
 msgstr "Geçersiz lider $leader için cinsiyet bulunamıyor"
 
-#: src/game_initialization/lobby_data.cpp:227
+#: src/game_initialization/lobby_data.cpp:222
 msgid "Missing addon: $name"
 msgstr "Kayıp eklenti: $name"
 
-#: src/game_initialization/lobby_data.cpp:229
+#: src/game_initialization/lobby_data.cpp:224
 msgid "Missing addon: $id"
 msgstr "Kayıp eklenti: $id"
 
-#: src/game_initialization/lobby_data.cpp:261
+#: src/game_initialization/lobby_data.cpp:256
 msgid "Unknown era"
 msgstr "Bilinmeyen çağ"
 
-#: src/game_initialization/lobby_data.cpp:328
-#: src/game_initialization/lobby_data.cpp:362
+#: src/game_initialization/lobby_data.cpp:323
+#: src/game_initialization/lobby_data.cpp:357
 msgid "scenario_abbreviation^S"
 msgstr "S"
 
-#: src/game_initialization/lobby_data.cpp:348
+#: src/game_initialization/lobby_data.cpp:343
 msgid "Remote scenario"
 msgstr "Uzak Senaryo"
 
-#: src/game_initialization/lobby_data.cpp:369
-#: src/game_initialization/lobby_data.cpp:395
+#: src/game_initialization/lobby_data.cpp:364
+#: src/game_initialization/lobby_data.cpp:390
 msgid "campaign_abbreviation^C"
 msgstr "C"
 
-#: src/game_initialization/lobby_data.cpp:401
+#: src/game_initialization/lobby_data.cpp:396
 msgid "Unknown scenario"
 msgstr "Bilinmeyen Senaryo"
 
-#: src/game_initialization/lobby_data.cpp:415
+#: src/game_initialization/lobby_data.cpp:410
 msgid "Reloaded game"
 msgstr "Oyun yeniden yüklendi"
 
-#: src/game_initialization/lobby_data.cpp:430
+#: src/game_initialization/lobby_data.cpp:425
 msgid "Vacant Slot:"
 msgid_plural "Vacant Slots:"
 msgstr[0] "Boş yer:"
 msgstr[1] "Boş yerler:"
 
-#: src/game_initialization/lobby_data.cpp:432
+#: src/game_initialization/lobby_data.cpp:427
 msgid "mp_game_available_slots^Full"
 msgstr "Dolu"
 
-#: src/game_initialization/lobby_data.cpp:443
-#: src/game_initialization/lobby_data.cpp:445 src/savegame.cpp:662
+#: src/game_initialization/lobby_data.cpp:438
+#: src/game_initialization/lobby_data.cpp:440 src/savegame.cpp:662
 msgid "Turn"
 msgstr "El"
 
-#: src/game_initialization/lobby_data.cpp:458
+#: src/game_initialization/lobby_data.cpp:453
 msgid "vision^none"
 msgstr "yok"
 
-#: src/game_initialization/lobby_data.cpp:467
+#: src/game_initialization/lobby_data.cpp:462
 msgid "time limit^none"
 msgstr "yok"
 
-#: src/game_initialization/lobby_data.cpp:511
+#: src/game_initialization/lobby_data.cpp:506
 msgid ""
 "The host's version of <i>$addon</i> is incompatible. They have version <b>"
 "$host_ver</b> while you have version <b>$local_ver</b>."
@@ -6388,7 +6296,7 @@ msgstr ""
 "Sunucunun <i>$addon</i> sürümü uyumsuz. Onlarınki <b>$host_ver</b> iken "
 "sizinki <b>$local_ver</b>."
 
-#: src/game_initialization/lobby_data.cpp:525
+#: src/game_initialization/lobby_data.cpp:520
 msgid ""
 "Your version of <i>$addon</i> is incompatible. You have version <b>"
 "$local_ver</b> while the host has version <b>$host_ver</b>."
@@ -6404,21 +6312,21 @@ msgstr "Düşman lider(ler)ini öldür"
 msgid "Cannot find era $era"
 msgstr "$era çağı bulunamıyor"
 
-#: src/game_initialization/multiplayer.cpp:236
+#: src/game_initialization/multiplayer.cpp:235
 msgid "Invalid address specified for multiplayer server"
 msgstr ""
 
-#: src/game_initialization/multiplayer.cpp:271
+#: src/game_initialization/multiplayer.cpp:270
 msgid ""
 "The server accepts versions '$required_version', but you are using version "
 "'$your_version'"
 msgstr "Bu sunucu '$required_version' kabul ediyor ama sizinki '$your_version'"
 
-#: src/game_initialization/multiplayer.cpp:284
+#: src/game_initialization/multiplayer.cpp:283
 msgid "Server-side redirect loop"
 msgstr "Sunucu taraflı yönlendirme döngüsü"
 
-#: src/game_initialization/multiplayer.cpp:334
+#: src/game_initialization/multiplayer.cpp:333
 msgid ""
 "The nickname ‘$nick’ is inactive. You cannot claim ownership of this "
 "nickname until you activate your account via email or ask an administrator "
@@ -6427,29 +6335,28 @@ msgstr ""
 "'$nick' takma adı etkin değil. Hesabınızı e-posta ile etkinleştirmeden veya "
 "bir yöneticiden istemeden bu takma ada sahip olamazsınız."
 
-#: src/game_initialization/multiplayer.cpp:343
+#: src/game_initialization/multiplayer.cpp:342
 msgid "Do you want to continue?"
 msgstr "Devam etmek istiyor musunuz?"
 
-#: src/game_initialization/multiplayer.cpp:345
+#: src/game_initialization/multiplayer.cpp:344
 msgid "Warning"
 msgstr "Uyarı"
 
-#: src/game_initialization/multiplayer.cpp:387
-#: src/game_initialization/multiplayer.cpp:408
-#: src/game_initialization/multiplayer.cpp:411
-msgid "Bad data received from server"
-msgstr "Sunucudan bozuk veri geldi"
+#: src/game_initialization/multiplayer.cpp:407
+msgid ""
+"The remote server requested a password while using an insecure connection."
+msgstr ""
 
-#: src/game_initialization/multiplayer.cpp:446
+#: src/game_initialization/multiplayer.cpp:409
 msgid "You must login first."
 msgstr "Önce oturum açmanız lazım."
 
-#: src/game_initialization/multiplayer.cpp:448
+#: src/game_initialization/multiplayer.cpp:411
 msgid "The nickname ‘$nick’ is already taken."
 msgstr "'$nick' kullanıcı adı alınmış."
 
-#: src/game_initialization/multiplayer.cpp:450
+#: src/game_initialization/multiplayer.cpp:413
 msgid ""
 "The nickname ‘$nick’ contains invalid characters. Only alpha-numeric "
 "characters (one at minimum), underscores and hyphens are allowed."
@@ -6457,40 +6364,40 @@ msgstr ""
 "'$nick' geçersiz karakter içeriyor. Sadece harfler, rakamlar, alt çizgi ve "
 "tire imine izin verilmektedir."
 
-#: src/game_initialization/multiplayer.cpp:454
+#: src/game_initialization/multiplayer.cpp:417
 msgid "The nickname ‘$nick’ is too long. Nicks must be 20 characters or less."
 msgstr "'$nick' çok uzun. Oyuncu isimleri 20 karakterden uzun olamaz."
 
-#: src/game_initialization/multiplayer.cpp:456
+#: src/game_initialization/multiplayer.cpp:419
 msgid "The nickname ‘$nick’ is reserved and cannot be used by players."
 msgstr "'$nick' yerleşik bir isim olup oyuncular tarafından kullanılamaz."
 
-#: src/game_initialization/multiplayer.cpp:458
+#: src/game_initialization/multiplayer.cpp:421
 msgid "The nickname ‘$nick’ is not registered on this server."
 msgstr "'$nick' bu sunucuda kayıtlı değil."
 
-#: src/game_initialization/multiplayer.cpp:459
+#: src/game_initialization/multiplayer.cpp:422
 msgid " This server disallows unregistered nicknames."
 msgstr " Kayıtlı olmayan oyuncu adlarına bu sunucuda izin verilmemektedir."
 
-#: src/game_initialization/multiplayer.cpp:462
+#: src/game_initialization/multiplayer.cpp:425
 msgid "The nickname ‘$nick’ is banned on this server’s forums for $duration|."
 msgstr " ‘$nick’  bu sunucunun forumlarında  $duration| süreyle yasaklıdır."
 
-#: src/game_initialization/multiplayer.cpp:464
+#: src/game_initialization/multiplayer.cpp:427
 msgid "The nickname ‘$nick’ is banned on this server’s forums."
 msgstr " ‘$nick’  bu sunucunun forumlarında yasaklıdır."
 
-#: src/game_initialization/multiplayer.cpp:468
+#: src/game_initialization/multiplayer.cpp:431
 msgid "Your IP address is banned on this server’s forums for $duration|."
 msgstr ""
 " IP adresiniz bu sunucunun forumlarında  $duration| süreyle yasaklıdır."
 
-#: src/game_initialization/multiplayer.cpp:470
+#: src/game_initialization/multiplayer.cpp:433
 msgid "Your IP address is banned on this server’s forums."
 msgstr " IP adresiniz bu sunucunun forumlarında yasaklıdır."
 
-#: src/game_initialization/multiplayer.cpp:474
+#: src/game_initialization/multiplayer.cpp:437
 msgid ""
 "The email address for the nickname ‘$nick’ is banned on this server’s forums "
 "for $duration|."
@@ -6498,17 +6405,17 @@ msgstr ""
 " ‘$nick’ adının e-posta adresi bu sunucunun forumlarında  $duration| süreyle "
 "yasaklıdır."
 
-#: src/game_initialization/multiplayer.cpp:476
+#: src/game_initialization/multiplayer.cpp:439
 msgid ""
 "The email address for the nickname ‘$nick’ is banned on this server’s forums."
 msgstr " ‘$nick’ adının e-posta adresi bu sunucunun forumlarında yasaklıdır."
 
-#: src/game_initialization/multiplayer.cpp:479
-#: src/game_initialization/multiplayer.cpp:481
+#: src/game_initialization/multiplayer.cpp:442
+#: src/game_initialization/multiplayer.cpp:444
 msgid "The nickname ‘$nick’ is registered on this server."
 msgstr "Bu sunucuda kayıtlı bir '$nick' zaten var."
 
-#: src/game_initialization/multiplayer.cpp:482
+#: src/game_initialization/multiplayer.cpp:445
 msgid ""
 "WARNING: There is already a client using this nickname, logging in will "
 "cause that client to be kicked!"
@@ -6516,18 +6423,17 @@ msgstr ""
 "UYARI: Bu adı kullanan bir oyuncu zaten var ve oturum açmanız bu oyuncunun "
 "sunucudan atılmasına sebep olacak!"
 
-#: src/game_initialization/multiplayer.cpp:485
-msgid ""
-"Error in the login procedure (the server had no seed for your connection)."
-msgstr "Oturum açarken hata oluştu (sunucunun bağlanmanız için kaynağı yok)."
-
-#: src/game_initialization/multiplayer.cpp:487
+#: src/game_initialization/multiplayer.cpp:448
 msgid "The password you provided was incorrect."
 msgstr "Belirttiğiniz parola yanlıştı."
 
-#: src/game_initialization/multiplayer.cpp:489
+#: src/game_initialization/multiplayer.cpp:450
 msgid "You have made too many login attempts."
 msgstr "Çok fazla girme girişiminde bulundunuz."
+
+#: src/game_initialization/multiplayer.cpp:452
+msgid "Password hashing failed."
+msgstr ""
 
 #: src/game_initialization/playcampaign.cpp:75
 msgid "Scenario Report"
@@ -6837,7 +6743,7 @@ msgstr "Liderler:"
 msgid "Recruits"
 msgstr "Askere alımlar"
 
-#: src/help/help_impl.cpp:770 src/units/types.cpp:488
+#: src/help/help_impl.cpp:770 src/units/types.cpp:489
 msgid "No description available."
 msgstr "Bu konuda bir açıklama yok."
 
@@ -6857,7 +6763,7 @@ msgstr " Mevcut değil"
 msgid "race^Miscellaneous"
 msgstr "Çeşitli"
 
-#: src/help/help_impl.cpp:1056 src/reports.cpp:377
+#: src/help/help_impl.cpp:1056 src/reports.cpp:383
 msgid "Alignment: "
 msgstr "Yönelim: "
 
@@ -6939,7 +6845,7 @@ msgstr "Planlama kipi etkin kılındı!"
 msgid "Planning mode deactivated!"
 msgstr "Planlama kipinden çıkıldı!"
 
-#: src/language.cpp:104
+#: src/language.cpp:114
 msgid "System default language"
 msgstr "Öntanımlı sistem dili"
 
@@ -7669,15 +7575,15 @@ msgstr "Hareket bedeli 1’den küçük arazi saptandı."
 msgid "waiting for^a global variable"
 msgstr "küresel değişken"
 
-#: src/play_controller.cpp:245
+#: src/play_controller.cpp:247
 msgid "time left for current turn"
 msgstr "El için kalan süre"
 
-#: src/play_controller.cpp:247
+#: src/play_controller.cpp:249
 msgid "current local time"
 msgstr "geçerli yerel saat"
 
-#: src/play_controller.cpp:1073
+#: src/play_controller.cpp:1075
 msgid ""
 "The game is out of sync. It might not make much sense to continue. Do you "
 "want to save your game?"
@@ -7685,11 +7591,40 @@ msgstr ""
 "Oyun eşzamanlanamadı. Devam etmenin pek bir anlamı yok. Oyunu kaydetmek "
 "ister misiniz?"
 
-#: src/play_controller.cpp:1074
+#: src/play_controller.cpp:1076
 msgid "Error details:"
 msgstr "Hata ayrıntıları:"
 
-#: src/play_controller.cpp:1368
+#: src/play_controller.cpp:1258
+msgid "Warning: broken campaign branches"
+msgstr ""
+
+#. TRANSLATORS: This is an error that will hopefully only be seen by UMC authors and by players who have already
+#. said "okay" to a "loading saves from an old version might not work" dialog.
+#: src/play_controller.cpp:1264
+msgid ""
+"The next scenario is missing, you will not be able to finish this campaign."
+msgid_plural ""
+"Some of the possible next scenarios are missing, you might not be able to "
+"finish this campaign."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/play_controller.cpp:1271
+msgid ""
+"Please report the following missing scenario to the campaign’s author:\n"
+"$unknown_list|"
+msgid_plural ""
+"Please report the following missing scenarios to the campaign’s author:\n"
+"$unknown_list|"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/play_controller.cpp:1275
+msgid "Once this is fixed, you will need to restart this scenario."
+msgstr ""
+
+#: src/play_controller.cpp:1455
 msgid "No objectives available"
 msgstr "Hiçbir Amaç yok"
 
@@ -7816,32 +7751,38 @@ msgstr "İsim: "
 msgid "Type: "
 msgstr "Tür: "
 
-#: src/reports.cpp:213
+#: src/reports.cpp:196
+#, fuzzy
+#| msgid "Specials: "
+msgid "Special Notes:"
+msgstr "Özeller: "
+
+#: src/reports.cpp:219
 msgid "Race: "
 msgstr "Irk: "
 
-#: src/reports.cpp:232
+#: src/reports.cpp:238
 msgid "Side: <b>$side_name</b> ($color_name)"
 msgstr ""
 
-#: src/reports.cpp:310
+#: src/reports.cpp:316
 msgid "Trait: "
 msgstr "Mizaç: "
 
-#: src/reports.cpp:333
+#: src/reports.cpp:339
 msgid "invisible: "
 msgstr "görünmez: "
 
-#: src/reports.cpp:334
+#: src/reports.cpp:340
 msgid "This unit is invisible. It cannot be seen or attacked by enemy units."
 msgstr ""
 "Bu birim görünmez. Düşman birimleri tarafından görülemez ve saldırılamaz."
 
-#: src/reports.cpp:337
+#: src/reports.cpp:343
 msgid "slowed: "
 msgstr "yavaşlatılmış: "
 
-#: src/reports.cpp:338
+#: src/reports.cpp:344
 msgid ""
 "This unit has been slowed. It will only deal half its normal damage when "
 "attacking and its movement cost is doubled."
@@ -7849,11 +7790,11 @@ msgstr ""
 "Bu birim yavaşlatıldı; artık her araziyi iki misli yavaş geçecek ve "
 "saldırırken de normalin yarısı kadar hasar verebilecek."
 
-#: src/reports.cpp:341
+#: src/reports.cpp:347
 msgid "poisoned: "
 msgstr "zehirlenmiş: "
 
-#: src/reports.cpp:342
+#: src/reports.cpp:348
 msgid ""
 "This unit is poisoned. It will lose 8 HP every turn until it can seek a cure "
 "to the poison in a village or from a friendly unit with the ‘cures’ "
@@ -7868,223 +7809,223 @@ msgstr ""
 "Bir birim sadece zehir ile öldürülemez. Zehir yaşam enerjisini 1 YP’nin "
 "altına düşürmez."
 
-#: src/reports.cpp:345
+#: src/reports.cpp:351
 msgid "petrified: "
 msgstr "taşlaştı: "
 
-#: src/reports.cpp:346
+#: src/reports.cpp:352
 msgid "This unit has been petrified. It may not move or attack."
 msgstr "Bu birim taşa çevirildi. Artık hareket edemez ve saldıramaz."
 
-#: src/reports.cpp:424
+#: src/reports.cpp:430
 msgid "Ability: "
 msgstr "Yetenek: "
 
-#: src/reports.cpp:426 src/reports.cpp:953
+#: src/reports.cpp:432 src/reports.cpp:959
 msgid " (inactive)"
 msgstr "(etkisiz)"
 
-#: src/reports.cpp:489
+#: src/reports.cpp:495
 msgid "Resistances: "
 msgstr "Dirençler: "
 
-#: src/reports.cpp:491
+#: src/reports.cpp:497
 msgid "(Att / Def)"
 msgstr "(Sald / Sav)"
 
-#: src/reports.cpp:522
+#: src/reports.cpp:528
 msgid "Experience Modifier: "
 msgstr "Tecrübe Niteleyicisi: "
 
-#: src/reports.cpp:572
+#: src/reports.cpp:578
 msgid "Terrain: "
 msgstr "Arazi: "
 
-#: src/reports.cpp:589
+#: src/reports.cpp:595
 msgid "maximum^max."
 msgstr "azami."
 
-#: src/reports.cpp:589
+#: src/reports.cpp:595
 msgid "minimum^min."
 msgstr "asgari."
 
-#: src/reports.cpp:594
+#: src/reports.cpp:600
 msgid "Defense: "
 msgstr "Savunma: "
 
-#: src/reports.cpp:628 src/reports.cpp:629
+#: src/reports.cpp:634 src/reports.cpp:635
 msgid "vision:"
 msgstr "görüş: "
 
-#: src/reports.cpp:633 src/reports.cpp:634
+#: src/reports.cpp:639 src/reports.cpp:640
 msgid "jamming:"
 msgstr "sıkıştırma: "
 
-#: src/reports.cpp:663
+#: src/reports.cpp:669
 msgid "Movement Costs:"
 msgstr "Hareket Bedelleri:"
 
-#: src/reports.cpp:788 src/reports.cpp:1042 src/reports.cpp:1054
+#: src/reports.cpp:794 src/reports.cpp:1048 src/reports.cpp:1060
 msgid "Weapon: "
 msgstr "Silah: "
 
-#: src/reports.cpp:789 src/reports.cpp:1043
+#: src/reports.cpp:795 src/reports.cpp:1049
 msgid "Damage: "
 msgstr "Hasar: "
 
-#: src/reports.cpp:793
+#: src/reports.cpp:799
 msgid "Base damage: "
 msgstr "Temel hasar: "
 
-#: src/reports.cpp:795 src/reports.cpp:829 src/reports.cpp:839
+#: src/reports.cpp:801 src/reports.cpp:835 src/reports.cpp:845
 msgid "With specials: "
 msgstr "Özeller ile: "
 
-#: src/reports.cpp:798
+#: src/reports.cpp:804
 msgid "Time of day: "
 msgstr "Günün saati: "
 
-#: src/reports.cpp:802
+#: src/reports.cpp:808
 msgid "Leadership: "
 msgstr "Liderlik: "
 
-#: src/reports.cpp:806
+#: src/reports.cpp:812
 msgid "Slowed: "
 msgstr "Yavaşlatılmış: "
 
-#: src/reports.cpp:810
+#: src/reports.cpp:816
 msgid "Attacks: "
 msgstr "Saldırılar: "
 
-#: src/reports.cpp:814
+#: src/reports.cpp:820
 msgid "Max swarm bonus: "
 msgstr "Azami üşüşme ödülü: "
 
-#: src/reports.cpp:815 src/reports.cpp:834
+#: src/reports.cpp:821 src/reports.cpp:840
 msgid "Swarm: "
 msgstr "Üşüşme: "
 
-#: src/reports.cpp:816 src/reports.cpp:827 src/reports.cpp:838
+#: src/reports.cpp:822 src/reports.cpp:833 src/reports.cpp:844
 msgid "Base attacks: "
 msgstr "Temel saldırılar: "
 
-#: src/reports.cpp:822
+#: src/reports.cpp:828
 msgid "Specials: "
 msgstr "Özeller: "
 
-#: src/reports.cpp:832
+#: src/reports.cpp:838
 msgid "Subject to swarm: "
 msgstr "Üşüşülecek hedef: "
 
-#: src/reports.cpp:859
+#: src/reports.cpp:865
 msgid "Weapon range: "
 msgstr "Silah menzili: "
 
-#: src/reports.cpp:860
+#: src/reports.cpp:866
 msgid "Damage type: "
 msgstr "Hasar türü: "
 
-#: src/reports.cpp:861
+#: src/reports.cpp:867
 msgid "Damage versus: "
 msgstr "Aleyhinde hasar: "
 
-#: src/reports.cpp:920
+#: src/reports.cpp:926
 msgid "Accuracy:"
 msgstr "İsabetlilik:"
 
-#: src/reports.cpp:925
+#: src/reports.cpp:931
 msgid "Parry:"
 msgstr "Savuştur:"
 
-#: src/reports.cpp:951
+#: src/reports.cpp:957
 msgid "Weapon special: "
 msgstr "Silah özel: "
 
-#: src/reports.cpp:1026
+#: src/reports.cpp:1032
 msgid "weapon^None"
 msgstr "Hiç"
 
-#: src/reports.cpp:1055
+#: src/reports.cpp:1061
 msgid "Total damage"
 msgstr "Toplam hasar"
 
-#: src/reports.cpp:1119
+#: src/reports.cpp:1125
 msgid "Attack"
 msgid_plural "Attacks"
 msgstr[0] "Saldırı"
 msgstr[1] "Saldırılar"
 
 #. TRANSLATORS: This string is shown in the sidebar beneath the word "Attacks" when a unit can attack multiple times per turn
-#: src/reports.cpp:1127
+#: src/reports.cpp:1133
 msgid "Remaining: $left/$max"
 msgstr ""
 
-#: src/reports.cpp:1131
+#: src/reports.cpp:1137
 #, fuzzy
 #| msgid "This is not a multiplayer save."
 msgid "This unit can attack multiple times per turn."
 msgstr "Bu çok oyunculu bir oyun kaydı değil."
 
-#: src/reports.cpp:1223
+#: src/reports.cpp:1229
 msgid "Time of day schedule:"
 msgstr "Günün saati zamanlaması: "
 
-#: src/reports.cpp:1273
+#: src/reports.cpp:1279
 msgid "Time of day:"
 msgstr "Günün saati: "
 
-#: src/reports.cpp:1274 src/reports.cpp:1328
+#: src/reports.cpp:1280 src/reports.cpp:1334
 msgid "Lawful units: "
 msgstr "Adil birimler: "
 
-#: src/reports.cpp:1276 src/reports.cpp:1330
+#: src/reports.cpp:1282 src/reports.cpp:1336
 msgid "Neutral units: "
 msgstr "Tarafsız birimler: "
 
-#: src/reports.cpp:1277 src/reports.cpp:1331
+#: src/reports.cpp:1283 src/reports.cpp:1337
 msgid "Chaotic units: "
 msgstr "Kaypak birimler: "
 
-#: src/reports.cpp:1279 src/reports.cpp:1333
+#: src/reports.cpp:1285 src/reports.cpp:1339
 msgid "Liminal units: "
 msgstr "İntikalî birimler: "
 
-#: src/reports.cpp:1392
+#: src/reports.cpp:1398
 msgid "Turn Number"
 msgstr "El Numarası"
 
-#: src/reports.cpp:1394
+#: src/reports.cpp:1400
 msgid ""
 "When the game exceeds the number of turns indicated by the second number, it "
 "will end."
 msgstr "Oyun 2. sayının belirttiği tur sayısını aşınca sona erecektir."
 
-#: src/reports.cpp:1419
+#: src/reports.cpp:1425
 msgid "Gold"
 msgstr "Altın"
 
-#: src/reports.cpp:1419
+#: src/reports.cpp:1425
 msgid ""
 "The amount of gold currently available to recruit and maintain your army."
 msgstr "Askere alım ve ordunun bakımı için mevcut altın miktarı."
 
-#: src/reports.cpp:1438
+#: src/reports.cpp:1444
 msgid "The fraction of known villages that your side has captured."
 msgstr "Tarafınızın ele geçirdiği bilinen köylerin oranı"
 
-#: src/reports.cpp:1438
+#: src/reports.cpp:1444
 msgid "Villages"
 msgstr "Köyler"
 
-#: src/reports.cpp:1443
+#: src/reports.cpp:1449
 msgid "The total number of units on your side."
 msgstr "Tarafınızdaki toplam birim sayısı."
 
-#: src/reports.cpp:1443
+#: src/reports.cpp:1449
 msgid "Units"
 msgstr "Birimler"
 
-#: src/reports.cpp:1453
+#: src/reports.cpp:1459
 msgid ""
 "The expenses incurred at the end of every turn to maintain your army. The "
 "first number is the amount of gold that will be deducted. It is equal to the "
@@ -8097,15 +8038,15 @@ msgstr ""
 "toplamdır. İkinci sayı ise köy gelirlerinin kapattıkları da dahil toplam "
 "bakım masrafı — yani köyleriniz olmasaydı eksilecek altın miktarı."
 
-#: src/reports.cpp:1453
+#: src/reports.cpp:1459
 msgid "Upkeep"
 msgstr "Gider"
 
-#: src/reports.cpp:1490
+#: src/reports.cpp:1496
 msgid "Net Income"
 msgstr "Net Gelir"
 
-#: src/reports.cpp:1490
+#: src/reports.cpp:1496
 msgid ""
 "The net amount of gold you gain or lose each turn, taking into account "
 "income from controlled villages and payment of upkeep."
@@ -8113,23 +8054,23 @@ msgstr ""
 "Elinizde bulunan köylerden her el kazandığınız net altın miktarı, ya da "
 "birim bakımı için her el kaybettiğiniz altın miktarı."
 
-#: src/reports.cpp:1658
+#: src/reports.cpp:1664
 msgid "Observers:"
 msgstr "Seyirciler:"
 
-#: src/reports.cpp:1700
+#: src/reports.cpp:1706
 msgid "Clock"
 msgstr "Saat"
 
-#: src/reports.cpp:1711
+#: src/reports.cpp:1717
 msgid "Battery"
 msgstr "Pil"
 
-#: src/reports.cpp:1742
+#: src/reports.cpp:1748
 msgid "Countdown until your turn automatically ends."
 msgstr "Elinizin kendiliğinden bitmesine geri sayım."
 
-#: src/reports.cpp:1742
+#: src/reports.cpp:1748
 msgid "Turn Countdown"
 msgstr "El geri sayımı"
 
@@ -8436,7 +8377,7 @@ msgstr "girdi"
 
 #. TRANSLATORS: $color_id is the internal identifier of a side color, for example, 'lightred'.
 #. Translate the quotation marks only; leave "color_id" untranslated, as it's a variable name.
-#: src/team.cpp:993
+#: src/team.cpp:1006
 msgid "“$color_id”"
 msgstr ""
 
@@ -8549,60 +8490,60 @@ msgstr "Terfiler: "
 msgid "No advancement"
 msgstr "Terfi yok"
 
-#: src/units/types.cpp:809
+#: src/units/types.cpp:842
 msgid "female^lawful"
 msgstr "adil"
 
-#: src/units/types.cpp:810
+#: src/units/types.cpp:843
 msgid "female^neutral"
 msgstr "tarafsız"
 
-#: src/units/types.cpp:811
+#: src/units/types.cpp:844
 msgid "female^chaotic"
 msgstr "kaypak"
 
-#: src/units/types.cpp:812
+#: src/units/types.cpp:845
 msgid "female^liminal"
 msgstr "intikalî"
 
-#: src/units/unit.cpp:1818
+#: src/units/unit.cpp:1824
 msgid "$attack_list|: $effect_description"
 msgstr "$attack_list|: $effect_description"
 
-#: src/units/unit.cpp:1824
+#: src/units/unit.cpp:1830
 msgid "<span color=\"$color\">$number_or_percent</span> HP"
 msgstr "<span color=\"$color\">$number_or_percent</span> YP"
 
-#: src/units/unit.cpp:1834
+#: src/units/unit.cpp:1840
 msgid "<span color=\"$color\">$number_or_percent</span> move"
 msgid_plural "<span color=\"$color\">$number_or_percent</span> moves"
 msgstr[0] "<span color=\"$color\">$number_or_percent</span> hareket"
 msgstr[1] "<span color=\"$color\">$number_or_percent</span> hareket"
 
-#: src/units/unit.cpp:1840
+#: src/units/unit.cpp:1846
 msgid "<span color=\"$color\">$number_or_percent</span> vision"
 msgstr "<span color=\"$color\">$number_or_percent</span> görüş"
 
-#: src/units/unit.cpp:1844
+#: src/units/unit.cpp:1850
 msgid "<span color=\"$color\">$number_or_percent</span> jamming"
 msgstr "<span color=\"$color\">$number_or_percent</span> sıkıştırma"
 
-#: src/units/unit.cpp:1849
+#: src/units/unit.cpp:1855
 msgid "<span color=\"$color\">$number_or_percent</span> XP to advance"
 msgstr "<span color=\"$color\">$number_or_percent</span> ilerleme için TP"
 
-#: src/units/unit.cpp:1853
+#: src/units/unit.cpp:1859
 msgid "<span color=\"$color\">$number_or_percent</span> attack per turn"
 msgid_plural ""
 "<span color=\"$color\">$number_or_percent</span> attacks per turn"
 msgstr[0] "El başına <span color=\"$color\">$number_or_percent</span> saldırı"
 msgstr[1] "El başına <span color=\"$color\">$number_or_percent</span> saldırı"
 
-#: src/units/unit.cpp:1860
+#: src/units/unit.cpp:1866
 msgid "<span color=\"$color\">$number_or_percent</span> cost to recall"
 msgstr "<span color=\"$color\">$number_or_percent</span> çağırma bedeli"
 
-#: src/units/unit.cpp:2297
+#: src/units/unit.cpp:2307
 msgid "$effect_description per level"
 msgstr "seviye başına $effect_description"
 
@@ -8649,6 +8590,246 @@ msgstr "Planları $player için gizle"
 #: src/whiteboard/manager.cpp:1137
 msgid "Whiteboard Options"
 msgstr "Beyaztahta Ayarları"
+
+#, fuzzy
+#~| msgid "female^neutral"
+#~ msgid "female^feral"
+#~ msgstr "tarafsız"
+
+#, fuzzy
+#~| msgid "unhealable"
+#~ msgid "Unhealable"
+#~ msgstr "iyileştirilemez"
+
+#, fuzzy
+#~| msgid "Leadership: "
+#~ msgid "magical leadership"
+#~ msgstr "Liderlik: "
+
+#, fuzzy
+#~| msgid "female^cured"
+#~ msgid "female^darkens"
+#~ msgstr "tedavi edildi"
+
+#, fuzzy
+#~| msgid "This unit has been petrified. It may not move or attack."
+#~ msgid "This unit sacrifices its own life in order to make more attacks."
+#~ msgstr "Bu birim taşa çevirildi. Artık hareket edemez ve saldıramaz."
+
+#, fuzzy
+#~| msgid "female^chaotic"
+#~ msgid "female^cantor"
+#~ msgstr "kaypak"
+
+#, fuzzy
+#~| msgid "Jamming:"
+#~ msgid "Jamming Orc"
+#~ msgstr "Sıkıştırma: "
+
+#, fuzzy
+#~| msgid "Vision Cost"
+#~ msgid "Vision Test"
+#~ msgstr "Görüş Bedeli"
+
+#, fuzzy
+#~| msgid "Clear Labels"
+#~ msgid "Clear sailing!"
+#~ msgstr "Etiketleri temizle"
+
+#, fuzzy
+#~| msgid "invisible: "
+#~ msgid "It is invisible!"
+#~ msgstr "görünmez: "
+
+#, fuzzy
+#~| msgid "Debug mode activated!"
+#~ msgid "Teleporters activated"
+#~ msgstr "Hata ayıklama kipi etkin kılındı!"
+
+#, fuzzy
+#~| msgid "Debug mode deactivated!"
+#~ msgid "Teleporters deactivated"
+#~ msgstr "Hata ayıklama kipinden çıkıldı!"
+
+#, fuzzy
+#~| msgid "Custom map."
+#~ msgid "Custom dialog"
+#~ msgstr "Özel harita."
+
+#, fuzzy
+#~| msgid "Clear objective orders"
+#~ msgid "objectives test"
+#~ msgstr "Amaç emirlerini sil"
+
+#, fuzzy
+#~| msgid "neutral"
+#~ msgid "Neutral"
+#~ msgstr "tarafsız"
+
+#, fuzzy
+#~| msgid "Defeat enemy leader(s)"
+#~ msgid "Defeat the enemy leader (he’s at 29,16!)"
+#~ msgstr "Düşman lider(ler)ini öldür"
+
+#, fuzzy
+#~| msgid "Defeat enemy leader(s)"
+#~ msgid "Defeat the enemy leader (he’s at 28,18!)"
+#~ msgstr "Düşman lider(ler)ini öldür"
+
+#, fuzzy
+#~| msgid "Temple"
+#~ msgid "Temporal Clone"
+#~ msgstr "Tapınak"
+
+#, fuzzy
+#~| msgid "Launch the gamestate inspector"
+#~ msgid "Gamestate Inspector"
+#~ msgstr "Oyun durumu denetçisini çalıştır"
+
+#, fuzzy
+#~| msgid "Chat message"
+#~ msgid "Parrot message"
+#~ msgstr "Sohbet iletisi"
+
+#, fuzzy
+#~| msgid "Holy Water"
+#~ msgid "Water"
+#~ msgstr "Okunmuş Su"
+
+#, fuzzy
+#~| msgid "poisoned"
+#~ msgid "poison"
+#~ msgstr "zehirlenmiş"
+
+#, fuzzy
+#~| msgid "Northerners"
+#~ msgid "Northerners unleashed!"
+#~ msgstr "Kuzeyliler"
+
+#, fuzzy
+#~| msgid "Lato Light"
+#~ msgid "Let’s fight"
+#~ msgstr "Lato Light"
+
+#, fuzzy
+#~| msgid "Cannot find era $era"
+#~ msgid "Cannot divide by zero!"
+#~ msgstr "$era çağı bulunamıyor"
+
+#, fuzzy
+#~| msgid "Trash Pile"
+#~ msgid "Crash test"
+#~ msgstr "Çöp Yığını"
+
+#, fuzzy
+#~| msgid "Potion of Decay"
+#~ msgid "Potion of bleach"
+#~ msgstr "Çürüme İksiri"
+
+#, fuzzy
+#~| msgid "Warning"
+#~ msgid "Win"
+#~ msgstr "Uyarı"
+
+#, fuzzy
+#~| msgid "This is not a multiplayer save."
+#~ msgid "This is not a forest"
+#~ msgstr "Bu çok oyunculu bir oyun kaydı değil."
+
+#, fuzzy
+#~| msgid "Still Another Wanderer"
+#~ msgid "Still there"
+#~ msgstr "Başka Bir Gezici"
+
+#, fuzzy
+#~| msgid "Summoning Circle"
+#~ msgid "Summon Troll"
+#~ msgstr "Çağırma Çemberi"
+
+#, fuzzy
+#~| msgid "Magic Circle"
+#~ msgid "Magic Troll"
+#~ msgstr "Büyü Çemberi"
+
+#, fuzzy
+#~| msgid "sceptre of fire"
+#~ msgid "ruby of fire"
+#~ msgstr "ateş asası"
+
+#, fuzzy
+#~| msgid "Turn changed"
+#~ msgid "map change"
+#~ msgstr "El değişti"
+
+#, fuzzy
+#~| msgid "Turn changed"
+#~ msgid "map change2"
+#~ msgstr "El değişti"
+
+#, fuzzy
+#~| msgid "Turn changed"
+#~ msgid "map change3"
+#~ msgstr "El değişti"
+
+#, fuzzy
+#~| msgid "Shroud"
+#~ msgid "Shrouded label"
+#~ msgstr "Örtü"
+
+#, fuzzy
+#~| msgid "Bright green"
+#~ msgid "More green!"
+#~ msgstr "Parlak yeşil"
+
+#, fuzzy
+#~| msgid "Dark Red"
+#~ msgid "More blue!"
+#~ msgstr "Koyu Kırmızı"
+
+#, fuzzy
+#~| msgid "Menu"
+#~ msgid "Menu 1"
+#~ msgstr "Menü"
+
+#, fuzzy
+#~| msgid "Menu"
+#~ msgid "Menu 2"
+#~ msgstr "Menü"
+
+#~ msgid "very long"
+#~ msgstr "çok uzun"
+
+#~ msgid "electrical"
+#~ msgstr "elektrikli"
+
+#~ msgid "Group players in lobby"
+#~ msgstr "Salondaki oyuncuları kümelere ayır"
+
+#~ msgid ""
+#~ "Lato-Regular.ttf,DejaVuSans.ttf,Andagii.ttf,DroidSansJapanese.ttf,"
+#~ "DroidSansFallbackFull.ttf,Junicode-Regular.ttf"
+#~ msgstr ""
+#~ "Lato-Regular.ttf,DejaVuSans.ttf,Andagii.ttf,DroidSansJapanese.ttf,"
+#~ "DroidSansFallbackFull.ttf,Junicode-Regular.ttf"
+
+#~ msgid "Read the <b>Hotkeys</b> list in the <b>Preferences</b> menu."
+#~ msgstr "<b>Tercihler</b> menüsündeki <b>Kısayol Tuşlar</b>ını okuyun."
+
+#~ msgid ""
+#~ "Nearly every button and icon in the Wesnoth game has a tooltip. Hover the "
+#~ "mouse pointer over any button or icon to get a description or explanation "
+#~ "of what it does."
+#~ msgstr ""
+#~ "Vesnot Savaşı oyunundaki hemen her simge ve tuşun bir ipucu vardır. Bir "
+#~ "açıklama veya tanım almak için fare imlecini bunların üzerine götürün."
+
+#~ msgid "Bad data received from server"
+#~ msgstr "Sunucudan bozuk veri geldi"
+
+#~ msgid ""
+#~ "Error in the login procedure (the server had no seed for your connection)."
+#~ msgstr ""
+#~ "Oturum açarken hata oluştu (sunucunun bağlanmanız için kaynağı yok)."
 
 #~ msgid "Back to..."
 #~ msgstr "Geri dön..."
@@ -8918,9 +9099,6 @@ msgstr "Beyaztahta Ayarları"
 #~ msgid "Vision:"
 #~ msgstr "Görüş: "
 
-#~ msgid "Jamming:"
-#~ msgstr "Sıkıştırma: "
-
 #~ msgid "Cost:"
 #~ msgstr "Bedel: "
 
@@ -8965,9 +9143,6 @@ msgstr "Beyaztahta Ayarları"
 
 #~ msgid "Defense Cap"
 #~ msgstr "Savunma Açığı"
-
-#~ msgid "Vision Cost"
-#~ msgstr "Görüş Bedeli"
 
 #~ msgid "Jamming Cost"
 #~ msgstr "Sıkıştırma Bedeli"

@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the Battle for Wesnoth package.
 # 楊綮銘 <steven2880@gmail.com>, 2008.
 # 李昆融 <likwueron@gmail.com>, 2019.
+# 李信融 <magiclen0810@gmail.com>, 2021.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: wesnoth-1.15\n"
+"Project-Id-Version: wesnoth-1.16\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-05-16 02:06 UTC\n"
-"PO-Revision-Date: 2021-04-05 23:46+0800\n"
+"POT-Creation-Date: 2021-06-23 15:36 UTC\n"
+"PO-Revision-Date: 2021-06-25 19:51+0800\n"
 "Last-Translator: 李信融 <magiclen0810@gmail.com>\n"
 "Language-Team: Wesnoth Traditional Chinese Team\n"
 "Language: zh_TW\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n>1);\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.4.3\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #. [campaign]: id=Heir_To_The_Throne
@@ -28,7 +29,7 @@ msgstr "王位繼承人"
 #. [campaign]: id=Heir_To_The_Throne
 #: data/campaigns/Heir_To_The_Throne/_main.cfg:12
 msgid "HttT"
-msgstr "王位繼承人"
+msgstr "HttT"
 
 #. [campaign]: id=Heir_To_The_Throne
 #: data/campaigns/Heir_To_The_Throne/_main.cfg:19
@@ -2910,12 +2911,6 @@ msgstr "怪獸"
 
 #. [message]: speaker=Delfador
 #: data/campaigns/Heir_To_The_Throne/scenarios/11_The_Ford_of_Abez.cfg:194
-#, fuzzy
-#| msgid ""
-#| "This is the Ford of Abez. When we ford this river, we will be leaving "
-#| "Wesnoth, and entering the lands of the North. The dwarves once ruled "
-#| "these lands, but they are now filled only with chaos. This is where your "
-#| "father and uncle were betrayed, almost seventeen years ago now, Konrad."
 msgid ""
 "This is the Ford of Abez. When we ford this river, we will be leaving "
 "Wesnoth, and entering the lands of the North. The dwarves once ruled these "
@@ -2923,8 +2918,8 @@ msgid ""
 "and uncle were betrayed, almost twenty-one years ago now, Konrad."
 msgstr ""
 "這裡就是阿貝茲淺灘。過了這條河，我們就將離開韋諾王國，進入北方的領土。矮人曾"
-"經治理過這個地方，但如今只剩下一片混亂。在將近十七年前，康拉德，你的父親與伯"
-"伯，就是在這個地方遭到背叛。"
+"經治理過這個地方，但如今只剩下一片混亂。在將近二十一年前，康拉德，你的父親與"
+"伯伯，就是在這個地方遭到背叛。"
 
 #. [message]: speaker=Konrad
 #: data/campaigns/Heir_To_The_Throne/scenarios/11_The_Ford_of_Abez.cfg:198
@@ -4590,6 +4585,11 @@ msgstr "我真不敢相信會這樣結束！"
 msgid "The Sceptre of Fire"
 msgstr "火焰權杖"
 
+#. [generator]: id=cavegen
+#: data/campaigns/Heir_To_The_Throne/scenarios/17_Scepter_of_Fire.cfg:9
+msgid "Sceptre of Fire Caves"
+msgstr "火焰權杖洞穴"
+
 #. [part]
 #: data/campaigns/Heir_To_The_Throne/scenarios/17_Scepter_of_Fire.cfg:215
 msgid ""
@@ -6033,7 +6033,7 @@ msgstr ""
 #. [message]: role=merman-advisor
 #: data/campaigns/Heir_To_The_Throne/scenarios/19c_Cliffs_of_Thoria.cfg:889
 msgid "Even we merfolk cannot swim that. The road east is blocked."
-msgstr "就連我们人魚也游不過去。東邊的路被阻住了。"
+msgstr "就連我們人魚也游不過去。東邊的路被阻住了。"
 
 #. [message]: speaker=Konrad
 #: data/campaigns/Heir_To_The_Throne/scenarios/19c_Cliffs_of_Thoria.cfg:893
@@ -6991,18 +6991,13 @@ msgstr ""
 
 #. [message]: speaker=Parandra
 #: data/campaigns/Heir_To_The_Throne/scenarios/21_Elven_Council.cfg:124
-#, fuzzy
-#| msgid ""
-#| "How quickly does the race of men mature! Only seventeen winters have "
-#| "passed since I last laid eyes on you, Konrad, yet you are now a grown "
-#| "man. A proven warrior stands before me!"
 msgid ""
 "How quickly does the race of men mature! Only twenty-one winters have passed "
 "since I last laid eyes on you, Konrad, yet you are now a grown man. A proven "
 "warrior stands before me!"
 msgstr ""
-"人類這個種族的成長迅速！僅僅經過十七個冬天，自從我上一次看見你，康拉德，你現"
-"在已經是個大人了。一個名副其實的勇士就站在我的面前！"
+"人類這個種族的成長迅速！僅僅經過二十一個冬天，自從我上一次看見你，康拉德，你"
+"現在已經是個大人了。一個名副其實的勇士就站在我的面前！"
 
 #. [message]: speaker=Konrad
 #: data/campaigns/Heir_To_The_Throne/scenarios/21_Elven_Council.cfg:128
@@ -7023,14 +7018,10 @@ msgstr "我都不知道！感謝你，女士。能再見到你是我的榮幸。
 
 #. [message]: speaker=Li'sar
 #: data/campaigns/Heir_To_The_Throne/scenarios/21_Elven_Council.cfg:140
-#, fuzzy
-#| msgid ""
-#| "Rescued him from my mother? But seventeen years ago Konrad would have "
-#| "been an infant! What is this you are talking about?"
 msgid ""
 "Rescued him from my mother? But twenty-one years ago Konrad would have been "
 "an infant! What is this you are talking about?"
-msgstr "從我母親手中救他？但十七年前康拉德不過是個嬰兒！你在說什麼？"
+msgstr "從我母親手中救他？但二十一年前康拉德不過是個嬰兒！你在說什麼？"
 
 #. [message]: speaker=Delfador
 #: data/campaigns/Heir_To_The_Throne/scenarios/21_Elven_Council.cfg:144
@@ -7828,18 +7819,13 @@ msgstr ""
 
 #. [part]
 #: data/campaigns/Heir_To_The_Throne/scenarios/24_Battle_for_Wesnoth.cfg:58
-#, fuzzy
-#| msgid ""
-#| "I have not looked upon this city for seventeen years. Seventeen years "
-#| "ago, when I should have been at the height of my power. But my strength "
-#| "failed me. I failed, and I cannot atone for it."
 msgid ""
 "I have not looked upon this city for twenty-one years. Twenty-one years ago, "
 "when I should have been at the height of my power. But my strength failed "
 "me. I failed, and I cannot atone for it."
 msgstr ""
-"我已經有十七年沒有看到這座城市了。十七年前，大概是我法力最巔峰的時期。但擁有"
-"力量的我卻失敗了，敗得一蹋糊塗且無法彌補。"
+"我已經有二十一年沒有看到這座城市了。二十一年前，大概是我法力最巔峰的時期。但"
+"擁有力量的我卻失敗了，敗得一蹋糊塗且無法彌補。"
 
 #. [part]
 #: data/campaigns/Heir_To_The_Throne/scenarios/24_Battle_for_Wesnoth.cfg:62
@@ -8208,14 +8194,14 @@ msgstr ""
 #. [variation]: race=human
 #. [unit_type]: id=Battle Princess, race=human
 #: data/campaigns/Heir_To_The_Throne/units/Battle_Princess.cfg:4
-#: data/campaigns/Heir_To_The_Throne/units/Battle_Princess.cfg:105
+#: data/campaigns/Heir_To_The_Throne/units/Battle_Princess.cfg:103
 msgid "female^Battle Princess"
 msgstr "戰鬥公主"
 
 #. [variation]: race=human
 #. [unit_type]: id=Battle Princess, race=human
 #: data/campaigns/Heir_To_The_Throne/units/Battle_Princess.cfg:29
-#: data/campaigns/Heir_To_The_Throne/units/Battle_Princess.cfg:128
+#: data/campaigns/Heir_To_The_Throne/units/Battle_Princess.cfg:126
 msgid ""
 "A noble by birth, the Princess has learnt swordplay with the greatest "
 "generals and battle tactics with the greatest sages, making her both a great "
@@ -8228,27 +8214,27 @@ msgstr ""
 
 #. [variation]: race=human
 #. [variation]
-#: data/campaigns/Heir_To_The_Throne/units/Battle_Princess.cfg:103
-#: data/campaigns/Heir_To_The_Throne/units/Commander.cfg:102
+#: data/campaigns/Heir_To_The_Throne/units/Battle_Princess.cfg:101
+#: data/campaigns/Heir_To_The_Throne/units/Commander.cfg:101
 #: data/campaigns/Heir_To_The_Throne/units/Fighter.cfg:58
-#: data/campaigns/Heir_To_The_Throne/units/Lord.cfg:115
-#: data/campaigns/Heir_To_The_Throne/units/Princess.cfg:63
+#: data/campaigns/Heir_To_The_Throne/units/Lord.cfg:114
+#: data/campaigns/Heir_To_The_Throne/units/Princess.cfg:61
 msgid "with sceptre"
 msgstr "權杖"
 
 #. [attack]: type=fire
-#: data/campaigns/Heir_To_The_Throne/units/Battle_Princess.cfg:147
-#: data/campaigns/Heir_To_The_Throne/units/Commander.cfg:112
-#: data/campaigns/Heir_To_The_Throne/units/Fighter.cfg:66
-#: data/campaigns/Heir_To_The_Throne/units/Lord.cfg:135
-#: data/campaigns/Heir_To_The_Throne/units/Princess.cfg:107
+#: data/campaigns/Heir_To_The_Throne/units/Battle_Princess.cfg:142
+#: data/campaigns/Heir_To_The_Throne/units/Commander.cfg:109
+#: data/campaigns/Heir_To_The_Throne/units/Fighter.cfg:65
+#: data/campaigns/Heir_To_The_Throne/units/Lord.cfg:132
+#: data/campaigns/Heir_To_The_Throne/units/Princess.cfg:102
 msgid "sceptre of fire"
 msgstr "火焰權杖"
 
 #. [variation]
 #. [unit_type]: id=Commander
 #: data/campaigns/Heir_To_The_Throne/units/Commander.cfg:95
-#: data/campaigns/Heir_To_The_Throne/units/Commander.cfg:106
+#: data/campaigns/Heir_To_The_Throne/units/Commander.cfg:105
 msgid ""
 "The rank of Commander is held by those who lead battle groups into combat. "
 "Possessing leadership skills, they give lower-level units in adjacent hexes "
@@ -8276,17 +8262,17 @@ msgstr ""
 "的對手，雖然她的力量主要來自於部下。"
 
 #. [attack]: type=impact
-#: data/campaigns/Heir_To_The_Throne/units/Dark_Queen.cfg:25
+#: data/campaigns/Heir_To_The_Throne/units/Dark_Queen.cfg:24
 msgid "scepter"
 msgstr "權杖"
 
 #. [attack]: type=cold
-#: data/campaigns/Heir_To_The_Throne/units/Dark_Queen.cfg:34
+#: data/campaigns/Heir_To_The_Throne/units/Dark_Queen.cfg:33
 msgid "raging blizzard"
 msgstr "狂怒暴雪"
 
 #. [variation]
-#: data/campaigns/Heir_To_The_Throne/units/Dark_Queen.cfg:95
+#: data/campaigns/Heir_To_The_Throne/units/Dark_Queen.cfg:94
 msgid "defeated"
 msgstr "被擊敗的女王"
 
@@ -8310,7 +8296,7 @@ msgstr "受傷中士"
 #. [variation]
 #. [unit_type]: id=Lord
 #: data/campaigns/Heir_To_The_Throne/units/Lord.cfg:109
-#: data/campaigns/Heir_To_The_Throne/units/Lord.cfg:119
+#: data/campaigns/Heir_To_The_Throne/units/Lord.cfg:118
 msgid ""
 "The noble leaders of many troops, Lords are especially strong in melee "
 "combat, and also possess skill with the bow. Like Commanders, Lords possess "
@@ -8323,14 +8309,14 @@ msgstr ""
 #. [variation]: race=human
 #. [unit_type]: id=Princess, race=human
 #: data/campaigns/Heir_To_The_Throne/units/Princess.cfg:4
-#: data/campaigns/Heir_To_The_Throne/units/Princess.cfg:65
+#: data/campaigns/Heir_To_The_Throne/units/Princess.cfg:63
 msgid "female^Princess"
 msgstr "公主"
 
 #. [variation]: race=human
 #. [unit_type]: id=Princess, race=human
 #: data/campaigns/Heir_To_The_Throne/units/Princess.cfg:29
-#: data/campaigns/Heir_To_The_Throne/units/Princess.cfg:88
+#: data/campaigns/Heir_To_The_Throne/units/Princess.cfg:86
 msgid ""
 "A noble by birth, the Princess has learnt swordplay with the greatest "
 "generals and battle tactics with the greatest sages, making her both a great "
@@ -8380,8 +8366,8 @@ msgid ""
 "defending."
 msgstr "所有鄰接同盟單位在近戰的時候皆可先發制人。"
 
-#. [special_note]
-#: data/campaigns/Heir_To_The_Throne/utils/abilities.cfg:35
+#. [firststrike]: id=initiative
+#: data/campaigns/Heir_To_The_Throne/utils/abilities.cfg:8
 msgid ""
 "This unit’s grasp of melee tactics allows adjacent allies to strike the "
 "first blow even when defending."
@@ -8626,7 +8612,7 @@ msgstr "卡倫茲"
 msgid ""
 "In the twenty-eighth year of the reign of Garard II, king of Wesnoth, the "
 "kingdom was plunged into a bitter war with the Orcs of the North."
-msgstr "在韋諾國王嘉拉德二世統治下的第二十七年，王國與北方半獸人陷入苦戰。"
+msgstr "在韋諾國王嘉拉德二世統治下的第二十八年，王國與北方半獸人陷入苦戰。"
 
 #. [part]
 #: data/campaigns/Heir_To_The_Throne/utils/intro.cfg:12

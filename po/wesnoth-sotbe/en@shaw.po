@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: en@shaw\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-03-12 23:18 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2009-10-13 13:00-0400\n"
 "Last-Translator: Arc Riley <arcriley@ubuntu.com>\n"
 "Language-Team: Shavian English <ubuntu-l10n-en-shaw@lists.launchpad.net>\n"
@@ -812,7 +812,9 @@ msgid "Blemaker"
 msgstr "·𐑚𐑤𐑧𐑥𐑱𐑒𐑻"
 
 #. [unit]: id=Grüü, type=Troll Hero
+#. [side]: id=Grüü, type=Great Troll
 #: data/campaigns/Son_Of_The_Black_Eye/scenarios/03_Toward_Mountains_of_Haag.cfg:248
+#: data/campaigns/Son_Of_The_Black_Eye/scenarios/14_Back_Home.cfg:80
 msgid "Grüü"
 msgstr "Grüü"
 

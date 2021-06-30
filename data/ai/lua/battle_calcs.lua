@@ -95,8 +95,8 @@ function battle_calcs.strike_damage(attacker, defender, att_weapon, def_weapon, 
     -- Set up a cache index. We use id+max_hitpoints+side for each unit, since the
     -- unit can level up.
     -- Also need to add the weapons and lawful_bonus values for each unit
-    local att_lawful_bonus = wesnoth.get_time_of_day({ dst[1], dst[2], true }).lawful_bonus
-    local def_lawful_bonus = wesnoth.get_time_of_day({ defender.x, defender.y, true }).lawful_bonus
+    local att_lawful_bonus = wesnoth.schedule.get_illumination(dst).lawful_bonus
+    local def_lawful_bonus = wesnoth.schedule.get_illumination(defender).lawful_bonus
 
     local cind = 'SD-' .. attacker.id .. attacker.max_hitpoints .. attacker.side
     cind = cind .. 'x' .. defender.id .. defender.max_hitpoints .. defender.side
@@ -183,8 +183,8 @@ function battle_calcs.best_weapons(attacker, defender, dst, cache)
     -- Set up a cache index. We use id+max_hitpoints+side for each unit, since the
     -- unit can level up.
     -- Also need to add the weapons and lawful_bonus values for each unit
-    local att_lawful_bonus = wesnoth.get_time_of_day({ dst[1], dst[2], true }).lawful_bonus
-    local def_lawful_bonus = wesnoth.get_time_of_day({ defender.x, defender.y, true }).lawful_bonus
+    local att_lawful_bonus = wesnoth.schedule.get_illumination(dst).lawful_bonus
+    local def_lawful_bonus = wesnoth.schedule.get_illumination(defender).lawful_bonus
 
     local cind = 'BW-' .. attacker.id .. attacker.max_hitpoints .. attacker.side
     cind = cind .. 'x' .. defender.id .. defender.max_hitpoints .. defender.side
@@ -1171,7 +1171,7 @@ function battle_calcs.get_attack_map_unit(unit, cfg)
     end
 
     -- Find hexes the unit can reach
-    local initial_reach = wesnoth.find_reach(unit, cfg)
+    local initial_reach = wesnoth.paths.find_reach(unit, cfg)
 
     -- Put the units back out there
     if (unit.side ~= wesnoth.current.side) then
@@ -1314,7 +1314,7 @@ function battle_calcs.best_defense_map(units, cfg)
         if (unit.side ~= wesnoth.current.side) then max_moves = true end
         local old_moves = unit.moves
         if max_moves then unit.moves = unit.max_moves end
-        local reach = wesnoth.find_reach(unit, cfg)
+        local reach = wesnoth.paths.find_reach(unit, cfg)
         if max_moves then unit.moves = old_moves end
 
         for _,loc in ipairs(reach) do
@@ -1472,7 +1472,7 @@ function battle_calcs.get_attack_combos_subset(units, enemy, cfg)
             if unit_in_way then
                 -- Units on the same side are blockers if they cannot move away
                 if (unit_in_way.side == wesnoth.current.side) then
-                    local reach = wesnoth.find_reach(unit_in_way)
+                    local reach = wesnoth.paths.find_reach(unit_in_way)
                     if (#reach <= 1) then
                         blocked_hexes:insert(unit_in_way.x, unit_in_way.y)
                     end
@@ -1510,7 +1510,7 @@ function battle_calcs.get_attack_combos_subset(units, enemy, cfg)
             if (not blocked_hexes:get(xa, ya) or ((xa == unit.x) and (ya == unit.y))) then
 
                 -- Check whether the unit can get to the hex
-                -- wesnoth.map.distance_between() is much faster than wesnoth.find_path()
+                -- wesnoth.map.distance_between() is much faster than wesnoth.paths.find_path()
                 --> pre-filter using the former
                 local cost = M.distance_between(unit.x, unit.y, xa, ya)
 

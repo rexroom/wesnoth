@@ -1,13 +1,59 @@
-## Version 1.15.13+dev
+## Version 1.17.0-dev
+ ### Add-ons client
+ ### Add-ons server
+ ### Campaigns
+ ### Editor
+ ### Multiplayer
+ ### Lua API
+ ### Packaging
+ ### Terrain
+ ### Translations
+   * Updated translations: Chinese (Traditional), Portuguese (Brazil)
+ ### Units
+ ### User interface
+ ### WML Engine
+ ### Miscellaneous and Bug Fixes
+   * Fixed: keyboard input during the loading screen intermittently caused a crash (issue #4447)
+
+## Version 1.15.14
  ### Add-ons client
    * Fixed: using the versions drop-down in small-screen mode returned to the title screen (issue #5810)
    * Fixed: keyboard input in small-screen mode returned to the title screen (part of issue #3059)
- ### Add-ons server
  ### Campaigns
+   * A Tale of Two Brothers
+     * S02: Dialog revisions.
    * Sceptre of Fire
-     * Revisions to the last two scenarios
- ### Editor
+     * Revisions to the last two scenarios.
+   * Tutorial
+     * S02: Mention the acceleration factor preference.
+ ### Lua API
+   * Pathfinding functions are now in a new wesnoth.paths module.
+     * Pathfinding in map generation now takes an options table as the third argument.
+   * New sync module that contains functions for multiplayer synchronization
+     * In particular, wesnoth.synchronize_choice is now wesnoth.sync.evaluate_single
+   * allow_end_turn and end_turn moved to the wesnoth.interface module
+   * wesnoth.message is now wesnoth.interface.add_chat_message
+   * Shroud and fog control are now in the wesnoth.sides module
+     * Shroud data strings and the special string "all" are no longer supported by place_shroud -
+       only a list of locations is supported
+     * wesnoth.map.parse_bitmap transforms a shroud data string into a list of locations
+     * wesnoth.map.make_bitmap builds a shroud data string from a list of locations
+     * There are now two different ways of altering shroud: place_shroud merges with existing shroud,
+       while override_shroud replaces the entire shroud with the new value.
+   * New schedule module for working with schedules and time areas
+     * wesnoth.map.get_time_area now returns the area's schedule object
+     * The global scenario schedule is available as wesnoth.current.schedule
+     * wesnoth.get_time_of_day is split into wesnoth.schedule.get_time_of_day (ignoring illumination)
+       and wesnoth.get_illumination (which considers illumination). Both functions now take the location
+       as the first argument.
+     * wesnoth.get_max_liminal_bonus() is now wesnoth.current.schedule.liminal_bonus
+     * wesnoth.replace_schedule is now wesnoth.schedule.replace
+   * wesnoth.end_level() and wesnoth.get_end_level_data() are now removed - instead, there's
+     an end_level_data field in wesnoth.scenario.that serves both purposes.
+   * wesnoth.get_traits() is now wesnoth.game_config.global_traits
+   * wesnoth.teleport moved to the units module
  ### Multiplayer
+   * Added Isle of Mists, a new single player or coop survival scenario.
  ### Networking
    * Added support for encrypting connection using TLS to multiplayer/addon client/server
    * Moved password hashing code from client to server, relying on TLS to avoid sending cleartext passwords
@@ -16,18 +62,42 @@
    * Added some great tree variations
    * Added 'icy cobbles' (terrain code `Rra`) - mostly useful for the transitions
  ### Translations
-   * Updated translations: British English, Czech, Indonesian, Italian, Slovak
+   * Updated translations: British English, Chinese (Traditional), Czech, Indonesian, Italian, Japanese, Scottish Gaelic, Slovak, Spanish
  ### Units
    * Added missing Seahorse graphics
    * Revised Jinn (unit config and graphics)
    * Fire Wraith added
+   * added LordBob's Jinn, Fire Guardian, and Fire Wraith portraits
    * Moved Naga guardian line from UtBS to core, and made some revisions
- ### User interface
+   * Dune Apothecary experience needed to level up changed from 100 to 65
+   * Dune Captain experience needed to level up changed from 86 to 75
+   * Dune Herbalist cost changed form 15 to 14
+   * Dune Horse Archer experience needed to level up changed form 70 to 65
+   * Naga Sicarius hp changed form 55 to 53 and melee damage changed form 9 to 6, new special "deflect" added to melee attack
+   * Fire Guardian can now level into Fire Wraith, experience needed to level up for Fire Guardian changed from 50 to 29
+   * Revised statistics of all animal horses, Bay Horse can now level into Great Horse
+ ### Wesnoth Formula Language
+   * The use of "side" on units and "owner" on terrain objects is now deprecated.
+     Instead, you should use "side_number" or "owner_side", respectively.
+     The old key returns 0 for side 1 and so on, so the new key is preferred.
+   * A unit object now has a "terrain" key that returns the terrain object the unit is standing on.
+   * Add new functions tod_bonus() and base_tod_bonus() to get the bonus on a specific location
  ### WML Engine
    * add 'unslowable' and 'unpetrifiable' status to immune to slow or petrifies
+   * Schema validation now checks whether string values are translatable or not, according to what the
+     schema specifies.
+   * Fix schema validation rejecting Lua AI goals
+   * Unit special notes are now read directly from weapon specials, abilities, and a few other places, meaning
+     the `[special_note]` tag is usually not required in `[unit]` or `[unit_type]`.
+   * A warning is now displayed when the next scenario is unknown (issue #5530).
+   * Changed the default duration for `[print]` to 5000 milliseconds, and added support for `duration=unlimited` (PR #5868).
  ### Miscellaneous and Bug Fixes
    * The unit description tooltip in the sidebar now includes the text from `[special_note]`s.
    * Added a collection of item images
+   * AI: fixed crash when using attacks aspect with invalidate_on_gamestate_change=no
+   * AI: fixed crash when using custom_synced_commands
+   * Micro AIs: fixed unit variables getting lost when continuing from replay
+   * Fixed AI state initialization problem after reloading
 
 ## Version 1.15.13
  ### Add-ons client

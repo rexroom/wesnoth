@@ -8199,11 +8199,6 @@ msgstr ""
 #~ msgstr "Käännökset:"
 
 #, fuzzy
-#~| msgid "Add-ons"
-#~ msgid "Add-on types:"
-#~ msgstr "Lisäosat"
-
-#, fuzzy
 #~| msgid "Toggle Ellipses"
 #~ msgid "Toggle All"
 #~ msgstr "Kytke ellipsit käyttöön"

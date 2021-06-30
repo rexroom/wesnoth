@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wesnoth-ei\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-04-18 02:21 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2020-10-18 16:02+0300\n"
 "Last-Translator: Artem Khrapov <artemkhrapov2001@yandex.ru>\n"
 "Language-Team: https://wiki.wesnoth.org/RussianTranslation\n"
@@ -3814,7 +3814,7 @@ msgstr ""
 "подняты из мертвых черной магией, чтобы сеять страх и разрушение."
 
 #. [attack]: type=impact
-#: data/campaigns/Eastern_Invasion/units/Bone_Knight.cfg:44
+#: data/campaigns/Eastern_Invasion/units/Bone_Knight.cfg:42
 msgid "trample"
 msgstr "топтание"
 
@@ -3902,8 +3902,8 @@ msgstr ""
 "Когда эта атака используется в нападении, враг будет отвечать на один удар "
 "меньше, но одним ударом как минимум."
 
-#. [special_note]
-#: data/campaigns/Eastern_Invasion/utils/abilities.cfg:21
+#. [attacks]: id=shock
+#: data/campaigns/Eastern_Invasion/utils/abilities.cfg:10
 #, fuzzy
 #| msgid ""
 #| " This unit’s melee attack can overwhelm the defenses of enemies, "

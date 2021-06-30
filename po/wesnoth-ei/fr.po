@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Eastern_Invasion-1.12\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-04-18 02:21 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2020-01-21 16:20+0100\n"
 "Last-Translator: Syll <syll-dev@laposte.net>\n"
 "Language-Team: français <wesnoth@ml.free.fr>\n"
@@ -3979,7 +3979,7 @@ msgstr ""
 "peur et la destruction sur leurs chevaux osseux."
 
 #. [attack]: type=impact
-#: data/campaigns/Eastern_Invasion/units/Bone_Knight.cfg:44
+#: data/campaigns/Eastern_Invasion/units/Bone_Knight.cfg:42
 msgid "trample"
 msgstr "piétinement"
 
@@ -4071,8 +4071,8 @@ msgstr ""
 "Lorsque cette attaque est utilisée offensivement, l'adversaire répliquera "
 "avec un coup de moins que d'habitude, avec un minimum d'un coup."
 
-#. [special_note]
-#: data/campaigns/Eastern_Invasion/utils/abilities.cfg:21
+#. [attacks]: id=shock
+#: data/campaigns/Eastern_Invasion/utils/abilities.cfg:10
 #, fuzzy
 #| msgid ""
 #| " This unit’s melee attack can overwhelm the defenses of enemies, "

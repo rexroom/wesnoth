@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wesnoth-1.14\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-04-18 02:21 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2019-02-18 19:25+0800\n"
 "Last-Translator: CloudiDust <cloudidust@gmail.com>\n"
 "Language-Team: Wesnoth Simplified Chinese Team\n"
@@ -4410,12 +4410,12 @@ msgstr ""
 "防御能力，但千万不能小看远方射来的凝视的致命性。"
 
 #. [attack]: type=impact
-#: data/campaigns/The_South_Guard/units/Eyestalk.cfg:35
+#: data/campaigns/The_South_Guard/units/Eyestalk.cfg:32
 msgid "smash"
 msgstr "粉碎"
 
 #. [attack]: type=arcane
-#: data/campaigns/The_South_Guard/units/Eyestalk.cfg:59
+#: data/campaigns/The_South_Guard/units/Eyestalk.cfg:56
 msgid "gaze"
 msgstr "凝视"
 
@@ -4448,8 +4448,8 @@ msgid ""
 msgstr "经验丰富的指挥官们身经百战，在指挥部下时镇定从容。"
 
 #. [attack]: type=blade
-#: data/campaigns/The_South_Guard/units/Infantry_Commander.cfg:32
-#: data/campaigns/The_South_Guard/units/Infantry_Lieutenant.cfg:30
+#: data/campaigns/The_South_Guard/units/Infantry_Commander.cfg:30
+#: data/campaigns/The_South_Guard/units/Infantry_Lieutenant.cfg:29
 msgid "glaive"
 msgstr "阔剑"
 

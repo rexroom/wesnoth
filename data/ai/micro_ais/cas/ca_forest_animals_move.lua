@@ -100,7 +100,7 @@ function ca_forest_animals_move:execution(cfg)
             end
 
             if (best_hex) then
-                local x,y = wesnoth.find_vacant_tile(best_hex[1], best_hex[2], unit)
+                local x,y = wesnoth.paths.find_vacant_hex(best_hex[1], best_hex[2], unit)
                 local next_hop = AH.next_hop(unit, x, y)
                 if (not next_hop) then next_hop = { unit.x, unit.y } end
 
@@ -150,7 +150,7 @@ function ca_forest_animals_move:execution(cfg)
 
         -- If this is a rabbit ending on a hole -> disappears
         if (unit.type == rabbit_type) and hole_map:get(farthest_hex[1], farthest_hex[2]) then
-            wesnoth.invoke_synced_command("rabbit_despawn", { x = farthest_hex[1], y = farthest_hex[2]})
+            wesnoth.sync.invoke_command("rabbit_despawn", { x = farthest_hex[1], y = farthest_hex[2]})
         end
     end
 

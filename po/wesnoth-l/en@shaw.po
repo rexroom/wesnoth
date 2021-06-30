@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: en@shaw\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-05-16 02:06 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2009-10-13 11:20-0400\n"
 "Last-Translator: Arc Riley <arcriley@ubuntu.com>\n"
 "Language-Team: Shavian English <ubuntu-l10n-en-shaw@lists.launchpad.net>\n"
@@ -2812,7 +2812,7 @@ msgstr ""
 "𐑮𐑱𐑟𐑛 𐑓𐑮𐑪𐑥 𐑞 𐑜𐑮𐑬𐑯𐑛 𐑚𐑲 𐑩𐑯𐑣𐑴𐑤𐑰 𐑥𐑨𐑡𐑦𐑒 𐑑 𐑕𐑐𐑮𐑧𐑛 𐑓𐑽 𐑯 𐑛𐑩𐑕𐑑𐑮𐑳𐑒𐑖𐑩𐑯."
 
 #. [attack]: type=impact
-#: data/campaigns/Liberty/units/Bone_Knight.cfg:44
+#: data/campaigns/Liberty/units/Bone_Knight.cfg:42
 msgid "trample"
 msgstr "𐑑𐑮𐑨𐑥𐑐𐑩𐑤"
 
@@ -2864,7 +2864,7 @@ msgstr ""
 "𐑒𐑢𐑲𐑑 𐑤𐑰𐑔𐑩𐑤, 𐑢𐑲𐑤 𐑞𐑺 𐑚𐑨𐑯𐑛𐑩𐑑𐑮𐑰 𐑣𐑨𐑟 𐑮𐑦𐑟𐑳𐑤𐑑𐑩𐑛 𐑦𐑯 𐑥𐑴𐑛𐑮𐑱𐑑 𐑕𐑒𐑦𐑤 𐑢𐑦𐑞 𐑞 𐑖𐑹𐑑 𐑕𐑹𐑛."
 
 #. [attack]: type=cold
-#: data/campaigns/Liberty/units/Rogue_Mage.cfg:34
+#: data/campaigns/Liberty/units/Rogue_Mage.cfg:33
 msgid "ice blast"
 msgstr "𐑲𐑕 𐑚𐑤𐑶𐑕𐑑"
 
@@ -2888,18 +2888,18 @@ msgstr ""
 "𐑞𐑴𐑟 𐑞𐑱 𐑤𐑹𐑛 𐑴𐑝𐑼."
 
 #. [attack]: type=blade
-#: data/campaigns/Liberty/units/Shadow_Lord.cfg:35
+#: data/campaigns/Liberty/units/Shadow_Lord.cfg:33
 msgid "astral blade"
 msgstr "𐑨𐑕𐑑𐑮𐑩𐑤 𐑚𐑤𐑱𐑛"
 
 #. [attack]: type=cold
-#: data/campaigns/Liberty/units/Shadow_Lord.cfg:46
-#: data/campaigns/Liberty/units/Shadow_Mage.cfg:47
+#: data/campaigns/Liberty/units/Shadow_Lord.cfg:44
+#: data/campaigns/Liberty/units/Shadow_Mage.cfg:45
 msgid "shadow bolt"
 msgstr "𐑖𐑨𐑛𐑴 𐑚𐑴𐑤𐑑"
 
 #. [attack]: type=impact
-#: data/campaigns/Liberty/units/Shadow_Lord.cfg:58
+#: data/campaigns/Liberty/units/Shadow_Lord.cfg:56
 msgid "shadow blast"
 msgstr "𐑖𐑨𐑛𐑴 𐑚𐑤𐑶𐑕𐑑"
 

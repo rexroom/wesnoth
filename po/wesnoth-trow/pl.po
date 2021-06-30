@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pl\n"
 "Report-Msgid-Bugs-To: https://bugs.wesnoth.org/\n"
-"POT-Creation-Date: 2021-04-18 02:22 UTC\n"
+"POT-Creation-Date: 2021-06-23 15:42 UTC\n"
 "PO-Revision-Date: 2014-06-06 11:27+0200\n"
 "Last-Translator: <nazwa.ekranowa@gmail.com>\n"
 "Language-Team: polski \n"
@@ -7224,7 +7224,7 @@ msgstr ""
 "krwi żywych."
 
 #. [attack]: type=blade
-#: data/campaigns/The_Rise_Of_Wesnoth/units/Vampire_Lady.cfg:24
+#: data/campaigns/The_Rise_Of_Wesnoth/units/Vampire_Lady.cfg:23
 msgid "blood kiss"
 msgstr "krwawy pocałunek"
 
@@ -7307,8 +7307,8 @@ msgstr ""
 "Ta jednostka neguje wpływ wrogich stref kontroli na sąsiadujących z nią "
 "polach na jednostki sojusznicze (ale nie na siebie samą)."
 
-#. [special_note]
-#: data/campaigns/The_Rise_Of_Wesnoth/utils/trow-abilities.cfg:17
+#. [skirmisher]: id=distract
+#: data/campaigns/The_Rise_Of_Wesnoth/utils/trow-abilities.cfg:8
 #, fuzzy
 #| msgid ""
 #| "This unit is capable of distracting opponents, allowing allied units to "
